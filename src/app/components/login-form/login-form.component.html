@@ -1,1 +1,17 @@
-<p>login-form works!</p>
+<form class="login-form" (ngSubmit)="onSubmit()" (formGroup)="loginForm">
+    <h2>Iniciar Sesión</h2>
+    <div class="content">
+        <div class="floating-input"> 
+            <input id="email" type="email" placeholder=" " (ngModel)="email">
+            <label class="floating-label">Correo electrónico</label>
+        </div>
+        <div class="floating-input"> 
+            <input id="password" type="password" placeholder=" " (ngModel)="password">
+            <label class="floating-label">Contraseña</label>
+        </div>    
+    </div>
+    <div class="btn-section">
+        <button id="login-btn" class="btn cyber-btn" type="submit">Iniciar Sesión</button>
+        <button id="signup-btn" class="btn cyber-btn" (click)="signUp()">Registrarse</button>
+    </div>
+</form>
