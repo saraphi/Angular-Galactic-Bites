@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PasswordValidator } from 'src/app/validators/password.validator';
 
 @Component({
   	selector: 'app-login-form',
@@ -11,7 +12,7 @@ export class LoginFormComponent {
 	constructor(private router: Router, private fb: FormBuilder) {}
 
 	loginForm: FormGroup = this.fb.group({
-		password: ['', [Validators.required]],
+		password: ['', [Validators.required, PasswordValidator.strong]],
 		email: ['', [Validators.required, Validators.email]],
 	});
 

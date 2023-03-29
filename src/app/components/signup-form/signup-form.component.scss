@@ -1,0 +1,80 @@
+@import '../../shared/colors';
+@import '../../shared/classes';
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: space-between;
+
+    box-sizing: border-box;
+
+    width: 480px;
+    height: 600px;
+
+    padding: 45px;
+
+    border-radius: 5%;
+
+    background-color: rgba($black, 0.9);
+    color: $white;
+    font-family: $raleway;
+
+    h2 {
+        font-size: 25pt;
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        height: 22em;
+        width: 90%;
+        font-size: 11pt;
+
+        .floating-input {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .floating-label {
+                position: absolute;
+                margin-left: 15px;
+
+                transition: 0.2s ease all;
+                -moz-transition: 0.2s ease all;
+                -webkit-transition: 0.2s ease all;
+
+                color: rgba($white, 0.6);
+                font-weight: bold;
+
+                .asterisk {
+                    color: $light-red;
+                }
+            }
+
+            input, input:-webkit-autofill {
+                position: relative;
+                @include cool-input(rgba($black, 0.9), $white, $turquoise, $lavender, 3px, 0 0 0 15px);
+            
+                &:focus, &:not(:placeholder-shown) {
+                    outline: none;
+                    ~ .floating-label {
+                        font-size: 10pt;
+                        margin-top: -60px;
+                        padding: 0 4px; 
+                    }
+                } 
+            }
+
+        }
+    }
+
+    #signup-btn { 
+        @include cyber-btn(12em, 2.5em, 14pt, $black, $turquoise, $raleway); 
+    }
+}
