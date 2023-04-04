@@ -1,13 +1,13 @@
-<form class="login-form" (ngSubmit)="onSubmit()" (formGroup)="loginForm">
+<form class="login-form" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
     <h2>Iniciar Sesión</h2>
     <div class="content">
         <div class="floating-input"> 
-            <input id="email" type="email" placeholder=" " (ngModel)="email">
-            <label class="floating-label">Correo electrónico</label>
+            <input #input id="email" type="email" placeholder=" " formControlName="email">
+            <label for="email" class="floating-label">Correo electrónico</label>
         </div>
         <div class="floating-input"> 
-            <input id="password" type="password" placeholder=" " (ngModel)="password">
-            <label class="floating-label">Contraseña</label>
+            <input #input id="password" type="password" placeholder=" " formControlName="password">
+            <label for="password" class="floating-label">Contraseña</label>
         </div>    
     </div>
     <div class="btn-section">

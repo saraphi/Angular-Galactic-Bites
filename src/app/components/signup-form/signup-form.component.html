@@ -1,24 +1,24 @@
-<form class="signup-form" (ngSubmit)="onSubmit()" (formGroup)="signupForm">
+<form class="signup-form" (ngSubmit)="onSubmit()" [formGroup]="signupForm">
     <h2>Registrarse</h2>
     <div class="content">
         <div class="floating-input">
-            <input id="name" type="name" placeholder=" " (ngModel)="name">
+            <input #input id="name" type="name" placeholder=" " formControlName="name">
             <label class="floating-label">Nombre <span class="asterisk">*</span></label>
         </div>
         <div class="floating-input">
-            <input id="email" type="email" placeholder=" " (ngModel)="email">
+            <input #input id="email" type="email" placeholder=" " formControlName="email">
             <label class="floating-label">Correo electrónico <span class="asterisk">*</span></label>
         </div>
         <div class="floating-input">
-            <input id="tel" type="tel" placeholder=" " (ngModel)="tel">
+            <input #input id="tel" type="tel" placeholder=" " formControlName="tel">
             <label class="floating-label">Teléfono</label>
         </div>
         <div class="floating-input">
-            <input id="password" type="password" placeholder=" " (ngModel)="password">
+            <input #input id="password" type="password" placeholder=" " formControlName="password">
             <label class="floating-label">Contraseña <span class="asterisk">*</span></label>
         </div>
         <div class="floating-input">
-            <input id="confirm-password" type="password" placeholder=" " (ngModel)="confirmPassword">
+            <input #input id="confirm-password" type="password" placeholder=" " formControlName="confirmPassword">
             <label class="floating-label">Repite la contraseña <span class="asterisk">*</span></label>
         </div>
     </div>

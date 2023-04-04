@@ -1,19 +1,18 @@
-import { FormControl } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
-export interface ValidationResult {
-	[key: string]: boolean;
-}
 
 export class PhoneValidator {
-	public static isValid(control: FormControl): ValidationResult {
-        const number: string = String(control.value);
+	public static validPhoneNumber(): ValidatorFn {
+        return (control: AbstractControl) : ValidationErrors | null  => {
+            const number: string = String(control.value);
 
-		let hasInvalid = /^\d+\s$/.test(control.value);
-        let maxLength = (number.length > 10);
+		    let hasInvalid = /^\d+\s$/.test(control.value);
+            let maxLength = (number.length > 10);
 
-        const valid = !hasInvalid && maxLength;
+            const valid = !hasInvalid && maxLength;
 
-        if (!valid) { return { strong: false }; }
-        return { strong: true };
-	}
+            if (!valid)  return { validPhoneNumber: true }; 
+            return null;    
+	    }
+    }
 }
