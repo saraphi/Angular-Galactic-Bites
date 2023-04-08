@@ -2,13 +2,14 @@ import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angu
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
 import { PasswordValidator } from 'src/app/validators/password.validator';
+import { Form } from 'src/app/models/form';
 
 @Component({
   	selector: 'app-login-form',
   	templateUrl: './login-form.component.html',
   	styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements Form {
 	loginForm: FormGroup;
 	email: string = '';
 	password: string = '';
@@ -30,7 +31,7 @@ export class LoginFormComponent {
 			const control = this.loginForm.controls[Object.keys(this.loginForm.controls)[index]];
 
 			if (control.errors) {
-				input.nativeElement.style.boxShadow = '0px 0px 10px rgb(239, 35, 60)';
+				input.nativeElement.style.boxShadow = '0px 0px 10px rgb(255, 70, 92)';
 				errors = true;
 			}
 		});

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
 import { PasswordValidator } from 'src/app/validators/password.validator';
 import { PhoneValidator } from 'src/app/validators/phone.validator';
+import { Form } from 'src/app/models/form';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { PhoneValidator } from 'src/app/validators/phone.validator';
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.scss']
 })
-export class SignupFormComponent  {
+export class SignupFormComponent implements Form {
 	signupForm: FormGroup;
 	name: string = '';
 	email: string = '';
@@ -27,7 +28,7 @@ export class SignupFormComponent  {
 			email: ['', [Validators.required, Validators.email]],
 			tel: ['', [PhoneValidator.validPhoneNumber()]],
 			password: ['', [Validators.required, PasswordValidator.strong()]],
-			confirmPassword: ['', [Validators.required, PasswordValidator.strong(), PasswordValidator.match()]]
+			confirmPassword: ['', [Validators.required, PasswordValidator.strong()]]
 		});
 	}
 
@@ -38,7 +39,7 @@ export class SignupFormComponent  {
 			const control = this.signupForm.controls[Object.keys(this.signupForm.controls)[index]];
 
 			if (control.errors) {
-				input.nativeElement.style.boxShadow = '0px 0px 10px rgb(239, 35, 60)';
+				input.nativeElement.style.boxShadow = '0px 0px 10px rgb(255, 70, 92)';
 				errors = true;
 			}
 		});
@@ -51,10 +52,18 @@ export class SignupFormComponent  {
 		});
 	}
 
+	checkPasswords(): boolean {
+		let match: boolean = false;
+
+		if (this.signupForm.get('password')?.value == this.signupForm.get('confirmPassword')?.value) match = true;
+		return match;
+	}
+
 	onSubmit() { 
 		console.log(this.signupForm.value);
 
 		this.resetErrors();
 		if (!this.checkErrors()) console.log("no hay errores");
+		if (this.checkPasswords()) console.log("passwords match");
 	}	
 }
