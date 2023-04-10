@@ -31,7 +31,7 @@
     background-color: $background-color;
     color: $color;
     padding: $padding;
-
+    font-weight: bold;
     border: $border-weight solid transparent;
     background: linear-gradient($background-color, $background-color) padding-box, linear-gradient(to right, $gradient-1, $gradient-2) border-box;
 }

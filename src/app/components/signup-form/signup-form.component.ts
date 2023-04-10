@@ -13,14 +13,9 @@ import { Form } from 'src/app/models/form';
 })
 export class SignupFormComponent implements Form {
 	signupForm: FormGroup;
-	name: string = '';
-	email: string = '';
-	tel: string = '';
-	password: string = '';
-	confirmPassword: string = '';
-	error: boolean = false;
 
 	@ViewChildren('input') inputs!: QueryList<ElementRef>;
+	@ViewChild('confirmPasswordInput') confirmPasswordInput!: ElementRef;
 
 	constructor(private router: Router, private fb: FormBuilder) {
 		this.signupForm = this.fb.group ({
@@ -32,6 +27,10 @@ export class SignupFormComponent implements Form {
 		});
 	}
 
+	onError(input: ElementRef): void {
+		input.nativeElement.style.boxShadow = '0px 0px 10px rgb(255, 70, 92)';
+	}
+
 	checkErrors(): boolean {
 		let errors: boolean = false;
 
@@ -39,7 +38,7 @@ export class SignupFormComponent implements Form {
 			const control = this.signupForm.controls[Object.keys(this.signupForm.controls)[index]];
 
 			if (control.errors) {
-				input.nativeElement.style.boxShadow = '0px 0px 10px rgb(255, 70, 92)';
+				this.onError(input);
 				errors = true;
 			}
 		});
@@ -56,6 +55,8 @@ export class SignupFormComponent implements Form {
 		let match: boolean = false;
 
 		if (this.signupForm.get('password')?.value == this.signupForm.get('confirmPassword')?.value) match = true;
+		else this.onError(this.confirmPasswordInput);
+
 		return match;
 	}
 
@@ -63,7 +64,7 @@ export class SignupFormComponent implements Form {
 		console.log(this.signupForm.value);
 
 		this.resetErrors();
-		if (!this.checkErrors()) console.log("no hay errores");
-		if (this.checkPasswords()) console.log("passwords match");
+		let match: boolean = this.checkPasswords();
+		if (!this.checkErrors() && match) console.log("no hay errores");
 	}	
 }

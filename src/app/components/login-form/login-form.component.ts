@@ -11,9 +11,6 @@ import { Form } from 'src/app/models/form';
 })
 export class LoginFormComponent implements Form {
 	loginForm: FormGroup;
-	email: string = '';
-	password: string = '';
-	error: boolean = false;
 
 	@ViewChildren('input') inputs!: QueryList<ElementRef>;
 	
@@ -23,6 +20,10 @@ export class LoginFormComponent implements Form {
 			password: ['', [Validators.required], PasswordValidator.strong()]
 		});
 	}
+
+	onError(input: ElementRef): void {
+		input.nativeElement.style.boxShadow = '0px 0px 10px rgb(255, 70, 92)';
+	}
 	
 	checkErrors(): boolean {
 		let errors: boolean = false;
@@ -31,10 +32,11 @@ export class LoginFormComponent implements Form {
 			const control = this.loginForm.controls[Object.keys(this.loginForm.controls)[index]];
 
 			if (control.errors) {
-				input.nativeElement.style.boxShadow = '0px 0px 10px rgb(255, 70, 92)';
+				this.onError(input);
 				errors = true;
 			}
 		});
+
 		return errors;
 	}
 
@@ -44,9 +46,9 @@ export class LoginFormComponent implements Form {
 		});
 	}
 
-	signUp() { }
+	signUp(): void { }
 
-	onSubmit() { 
+	onSubmit(): void { 
 		console.log(this.loginForm.value);
 
 		this.resetErrors();
