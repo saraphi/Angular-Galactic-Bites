@@ -1,0 +1,122 @@
+@import '../../shared/classes';
+@import '../../shared/colors';
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+
+    box-sizing: border-box;
+    width: 100%;
+    height: 80px;
+    background-color: $black;
+
+    padding: 10px;
+    z-index: 5;
+    top: 0;
+
+    .left-side {
+        display: flex;
+        align-items: center;
+
+        #logo {
+            width: 60px;
+            height: 60px;
+
+            margin: 0 20px;
+        }
+
+        .navbar .navbar-list {
+            display: flex;
+            padding: 0;
+
+            color: $white;
+            list-style: none;
+
+            .navbar-item {
+                margin: 0 40px;
+                height: fit-content;
+
+                .navbar-link {
+                    text-transform: uppercase;
+                    font-family: $raleway;
+                    font-weight: bold;
+                    font-size: 14pt;
+                    margin: 0;
+                    padding: 0;
+
+                    &:hover {
+                        cursor: pointer;
+                        color: $light-turquoise;
+                    }
+                }
+            }
+        }
+    }
+
+    .right-side {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        #shopping-cart {
+            width: 40px;
+            height: 40px;
+
+            &:hover {
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+        }
+
+        .profile {
+            display: flex;  
+            margin: 0 15px 0 40px;
+
+            .points {
+                display: flex;
+                flex-direction: column;
+                font-family: $raleway;
+
+                label {
+                    color: $white;
+                    text-transform: uppercase;
+                    margin: 0 0 4px 0;
+                    font-size: 10pt;
+                    font-style: italic;
+                    font-weight: bold;
+                }
+
+                .points-container {
+                    background-color: $white;
+                    width: 80px;
+                    height: 1.2em;
+                    font-size: 10pt;
+                    padding: 2px;
+                    display: flex;
+                    align-items: center;
+
+                    margin-right: 20px;
+                    border-radius: 2px;
+
+                    span {
+                        margin-left: 4px;
+                        color: $black;
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            #profile-pic {
+                background-color: $white;
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+
+                &:hover {
+                    cursor: pointer;
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+}
