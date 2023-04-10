@@ -26,9 +26,9 @@ export class SignupFormComponent implements Form {
 		this.signupForm = this.fb.group ({
 			name: ['', [Validators.required]],
 			email: ['', [Validators.required, Validators.email]],
-			tel: ['', [PhoneValidator.validPhoneNumber()]],
-			password: ['', [Validators.required, PasswordValidator.strong()]],
-			confirmPassword: ['', [Validators.required, PasswordValidator.strong()]]
+			tel: ['', [Validators.required], PhoneValidator.validPhoneNumber()],
+			password: ['', [Validators.required], PasswordValidator.strong()],
+			confirmPassword: ['', [Validators.required], PasswordValidator.strong()]
 		});
 	}
 

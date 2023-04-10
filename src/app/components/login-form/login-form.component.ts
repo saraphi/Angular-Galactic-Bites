@@ -20,7 +20,7 @@ export class LoginFormComponent implements Form {
 	constructor(private router: Router, private fb: FormBuilder) {
 		this.loginForm = this.fb.group({
 			email: ['', [Validators.required, Validators.email]],
-			password: ['', [Validators.required, PasswordValidator.strong()]]
+			password: ['', [Validators.required], PasswordValidator.strong()]
 		});
 	}
 	
