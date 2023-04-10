@@ -1,10 +1,8 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
-import { Observable, of } from "rxjs";
-
 
 export class PhoneValidator {
 	public static validPhoneNumber(): ValidatorFn {
-        return (control: AbstractControl): Observable<ValidationErrors | null>  => {
+        return (control: AbstractControl): ValidationErrors | null  => {
             const number: string = String(control.value);
 
 		    let hasInvalid = /^\d+\s$/.test(control.value);
@@ -12,8 +10,8 @@ export class PhoneValidator {
 
             const valid = !hasInvalid && maxLength;
 
-            if (!valid)  return of({ 'validPhoneNumber': true }); 
-            return of(null);    
+            if (!valid)  return { 'validPhoneNumber': true }; 
+            return null;    
 	    }
     }
 }
