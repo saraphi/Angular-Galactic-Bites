@@ -46,7 +46,9 @@ export class LoginFormComponent implements Form {
 		});
 	}
 
-	signUp(): void { }
+	signUp(): void {
+		this.router.navigate(['signup']);
+	}
 
 	onSubmit(): void { 
 		console.log(this.loginForm.value);
