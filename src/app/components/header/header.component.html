@@ -3,14 +3,14 @@
         <img id="logo" src="../../../assets/icons/planet.svg">
         <nav class="navbar">
             <ul class="navbar-list">
-                <li class="navbar-item"><a class="navbar-link" href="#">Inicio</a></li>
-                <li class="navbar-item"><a class="navbar-link" href="#">Carta</a></li>
-                <li class="navbar-item"><a class="navbar-link" href="#">Ofertas</a></li>
+                <li class="navbar-item"><a class="navbar-link" routerLink="">Inicio</a></li>
+                <li class="navbar-item"><a class="navbar-link" routerLink="menu">Carta</a></li>
+                <li class="navbar-item"><a class="navbar-link" routerLink="offers">Ofertas</a></li>
             </ul>
         </nav>
     </div>
     <div class="right-side">
-        <img id="shopping-cart" src="../../../assets/icons/shopping-cart.svg">
+        <img id="shopping-cart" src="../../../assets/icons/shopping-cart.svg" (click)="shoppingCart()">
         <div class="profile">
             <div class="points">
                 <label>Puntos</label>

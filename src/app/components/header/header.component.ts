@@ -10,6 +10,10 @@ export class HeaderComponent {
 
     constructor(private router: Router) {}
 
+    shoppingCart() {
+        this.router.navigate(['shopping-cart']);
+    }
+
     login() {
         this.router.navigate(['login']);
     }
