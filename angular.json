@@ -97,8 +97,21 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "Client:build:production",
+            "firebaseProject": "pwm-galactic-bites-48faf",
+            "firebaseHostingSite": "pwm-galactic-bites-48faf"
+          }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "2e4d1986-48ee-4fb9-bc5f-959d993d0cfc"
   }
 }
