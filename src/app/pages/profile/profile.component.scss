@@ -108,7 +108,7 @@
                 align-items: center;
         
                 font-size: 14pt;
-
+                pointer-events: none;
                 box-shadow: 0 4px 10px rgba($lavender, 0.6);
             }
         }
@@ -123,7 +123,7 @@
     #delete-btn {
         @include cyber-btn(10em, 2em, 12pt, $white, $pantone, $raleway);
         align-self: end;
-        justify-self: end;
+        bottom: 0;
         margin: -20px 25px 20px 0;
     }
 }
