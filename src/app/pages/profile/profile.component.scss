@@ -91,27 +91,31 @@
             font-family: $raleway;
 
             .h {
-                font-size: 20pt;
+                font-size: 18pt;
                 font-weight: bold;
                 text-transform: uppercase;
-                
+                font-style: italic;
             }
 
             .output {
+                margin-top: 5px;
                 width: 9em;
-                border: 1px solid $black;
+                border: 2px solid rgba($black, 0.6);
+                border-radius: 5px;
                 padding: 5px;
                 height: 1.2em;
                 display: flex;
                 align-items: center;
+        
+                font-size: 14pt;
 
-                font-size: 15pt;
+                box-shadow: 0 4px 10px rgba($lavender, 0.6);
             }
         }
 
-        #points-section { margin-bottom: 50px; }
+        #points-section { margin-bottom: 40px; }
         #tel-section {
-            .h { font-size: 17pt; }
+            .h { font-size: 15pt; }
             .output { font-size: 12pt; }
         }
     }
@@ -120,6 +124,6 @@
         @include cyber-btn(10em, 2em, 12pt, $white, $pantone, $raleway);
         align-self: end;
         justify-self: end;
-        margin: -20px 20px 20px 0;
+        margin: -20px 25px 20px 0;
     }
 }
