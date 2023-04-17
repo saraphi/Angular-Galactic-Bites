@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="btn-section">
-        <img id="edit-btn" class="profile-btn" src="../../../assets/icons/edit.svg">
+        <img id="edit-btn" class="profile-btn" src="../../../assets/icons/edit.svg" (click)="triggerEditPopup()">
         <img id="logout-btn" class="profile-btn" src="../../../assets/icons/logout.svg">
     </div>
 </div>
@@ -23,5 +23,5 @@
             <label class="output">xxx xxx xxx</label>
         </div>
     </div>
-    <button id="delete-btn" class="btn">Borrar Perfil</button>
+    <button id="delete-btn" class="btn" (click)="triggerDeletePopup()">Borrar Perfil</button>
 </main>
