@@ -1,1 +1,21 @@
-<p>edit-profile-popup works!</p>
+<form class="edit-form">
+    <h2>Editar Perfil</h2>
+    <div class="content">
+        <div class="label-input">
+            <label for="tel" class="regular-label">Nuevo número de teléfono</label>
+            <input #input id="tel" type="tel" placeholder="{{ user.phone }}">
+        </div>
+        <div class="label-input">
+            <label for="password" class="regular-label">Contraseña anterior</label>
+            <input #input id="password" type="password">
+        </div>
+        <div class="label-input">
+            <label for="new-password" class="regular-label">Nueva contraseña</label>
+            <input #input id="new-password" type="password">
+        </div>
+        <div class="label-input">
+            <label for="confirm-new-password" class="regular-label">Confirma la nueva contraseña</label>
+            <input #input id="confirm-new-password" type="password">
+        </div>
+    </div>
+</form>
