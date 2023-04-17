@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="btn-section">
-        <img id="edit-btn" class="profile-btn" src="../../../assets/icons/edit.svg" (click)="toggleEditPopup()">
+        <img id="edit-btn" class="profile-btn" src="../../../assets/icons/edit.svg" (click)="triggerEditPopup()">
         <img id="logout-btn" class="profile-btn" src="../../../assets/icons/logout.svg" (click)="logout()">
     </div>
 </div>
@@ -25,3 +25,6 @@
     </div>
     <button id="delete-btn" class="btn" (click)="triggerDeletePopup()">Borrar Perfil</button>
 </main>
+
+<div class="overlay" *ngIf="showOverlay" (click)="hideOverlay()"></div>
+<app-edit-profile-popup class="popup" *ngIf="showEditPopup" [user]="user"></app-edit-profile-popup>

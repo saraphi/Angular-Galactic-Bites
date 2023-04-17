@@ -12,7 +12,8 @@ export class ProfileComponent {
 
     /*@Input() user!: User;*/
     showOverlay: boolean = false;
-    showPopup: boolean = false;
+    showEditPopup: boolean = false;
+    showDeletePopup: boolean = false;
 
     user: User = {
         id: "0",
@@ -27,14 +28,20 @@ export class ProfileComponent {
 
     constructor(private route: ActivatedRoute, private userService: UserService) {}
 
-    togglePopup() {
+    hideOverlay() {
+        this.showOverlay = false;
+        if (this.showEditPopup) this.showEditPopup = false;
+        else if (this.showDeletePopup) this.showDeletePopup = false;
     }
 
-    toggleEditPopup() {
+    triggerEditPopup() {
+        this.showOverlay = true;
+        this.showEditPopup = true;
     }
 
     triggerDeletePopup() {
-        
+        this.showOverlay = true;
+        this.showDeletePopup = true;
     }
 
     logout() {

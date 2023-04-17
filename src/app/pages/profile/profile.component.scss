@@ -128,7 +128,7 @@
     }
 }
 
-.popup-overlay { 
+.overlay { 
     display: block;
     background-color: rgba($black, 0.05);
     backdrop-filter: blur(3px);
@@ -138,16 +138,12 @@
     height: 100%;
     position: fixed;
     z-index: 2;
-
-    .container { display: none; }
 }
 
-.show-edit-popup {
-    #edit-popup {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 3;
-    }
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
 }
