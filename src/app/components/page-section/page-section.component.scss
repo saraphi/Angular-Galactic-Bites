@@ -3,7 +3,7 @@
 
 .page-section {
   height: 100%;
-
+  width: 50%;
   display: flex;
   justify-content: space-between;
   font-family: $raleway;
@@ -68,8 +68,8 @@
 /* Device = Laptops, Desktops B/w 768px to 1023px */
 @media (min-width: 768px) and (max-width: 1023px) {
   .page-section .page-info {
-    font-size: 3.2vw;
-    a button { font-size: 3vw; }
+    font-size: 2vw;
+    a button { font-size: 1.7vw; }
   }
 }
 
@@ -77,14 +77,19 @@
 @media (min-width: 481px) and (max-width: 767px) {
   .page-section .page-info {
     font-size: 3.5vw;
-    a button { font-size: 3.4vw; }
+    a button { font-size: 1vw; }
   }
 }
 
 /*  Device = Most of the Smartphones Mobiles (Portrait) Screen = B/w 320px to 479px */
 @media (min-width: 320px) and (max-width: 767px) {
-  .page-section .page-info {
-    font-size: 3.5vw;
-    a button { font-size: 3.4vw; }
+  .page-section {
+    .page-info {
+      font-size: 2vw;
+
+      a button {
+        font-size: 1.6vw;
+      }
+    }
   }
 }
