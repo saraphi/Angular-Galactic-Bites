@@ -23,6 +23,7 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { OffersComponent } from './pages/offers/offers.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { HomeComponent } from './pages/home/home.component';
+import { SpaceBackgroundComponent } from './components/space-background/space-background.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { HomeComponent } from './pages/home/home.component';
     MenuComponent,
     OffersComponent,
     PaymentComponent,
-    HomeComponent
+    HomeComponent,
+    SpaceBackgroundComponent
   ],
   imports: [
     BrowserModule,
