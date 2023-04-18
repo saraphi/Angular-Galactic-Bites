@@ -1,1 +1,17 @@
-<p>delete-profile-popup works!</p>
+<form class="delete-form">
+    <h2>Borrar Perfil</h2>
+    <div class="content">
+        <p class="description">
+            ¿Seguro que quiere borrar el perfil? Todos
+            los puntos acumulados hasta el momento se perderán.
+        </p>
+        <div class="label-input">
+            <label for="password" class="regular-label">Escribe tu contraseña<span class="asterisk">*</span></label>
+            <input #input id="password" type="password">
+        </div>
+    </div>
+    <div class="btn-section">
+        <button id="cancel" class="btn">Cancelar</button>
+        <button id="delete" class="btn">Borrar</button>
+    </div>
+</form>

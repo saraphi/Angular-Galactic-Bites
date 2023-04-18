@@ -1,0 +1,37 @@
+@import '../../shared/colors';
+@import '../../shared/classes';
+.page-footer {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  font-family: $raleway;
+  margin: 0;
+  padding: 0;
+
+  background-color: $black;
+  color: $white;
+  font-weight: bold;
+  .info {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    padding: 10px;
+    margin: 0;
+  }
+  .copyright {
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    background-color:$dark-purple;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 750px) {
+  .page-footer { font-size: 10pt; }
+}
+
+@media screen and (max-width: 480px) {
+  .page-footer { font-size: 8pt; }
+}
