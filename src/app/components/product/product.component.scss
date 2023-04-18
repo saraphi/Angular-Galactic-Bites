@@ -1,0 +1,48 @@
+@import '../../shared/colors';
+
+.product {
+    width: 250px;
+    height: 200px;
+    
+    box-sizing: border-box;
+
+    border: 2px solid $black;
+
+    display: flex;
+    flex-direction: column;
+
+    img {
+        background-color: $white;
+        height: 70%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .name-container {
+        height: 100%;
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: $black;
+
+        .name {
+            font-size: 10pt;
+            text-transform: uppercase;
+            font-weight: bold;
+
+            color: $white;
+            font-family: $raleway;
+        }
+    }
+
+    &:hover {
+        background-color: $black;
+        cursor: pointer;
+
+        img { opacity: 0.95; }
+        .name-container .name { color: $turquoise; }
+    }
+}

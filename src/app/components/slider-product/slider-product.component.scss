@@ -1,0 +1,38 @@
+@import '../../shared/colors';
+
+.slider-product {
+    width: 800px;
+    height: 190px;
+
+    background-color: $black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 5px;
+
+    .arrow-btn {
+        width: 40px;
+        height: 40px;
+
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.1); 
+        }
+        &:active { transform: scale(1); }
+    }
+
+    #prev { justify-self: start; }
+    #next { justify-self: end; }
+
+    .wrapper {
+        justify-self: start;
+        display: flex;
+        box-sizing: border-box;
+        width: 77%;
+        height: 85%;
+        margin: 10px 30px;
+        background-color: $white;
+    }
+}
