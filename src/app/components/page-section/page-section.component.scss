@@ -2,8 +2,8 @@
 @import '../../shared/classes';
 
 .page-section {
-  height: 100%;
-  width: 50%;
+  height: 220px;
+  width: 480px;
   display: flex;
   justify-content: space-between;
   font-family: $raleway;
@@ -39,7 +39,7 @@
     h2 { margin: 0px 0px 40px 0px; }
 
     .btn {
-      @include cyber-btn(6em, 2em, 1.3vw, $black, $turquoise, $raleway);
+      @include cyber-btn(8em, 2em, 1.3vw, $black, $turquoise, $raleway);
 
     }
 
