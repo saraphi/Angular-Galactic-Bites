@@ -1,0 +1,87 @@
+@import '../../shared/colors';
+@import '../../shared/classes';
+
+.delete-form {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: space-between;
+
+    box-sizing: border-box;
+
+    width: 350px;
+    height: 340px;
+
+    padding: 20px 15px 30px 15px;
+
+    border-radius: 2%;
+
+    background-color: rgba($black, 0.9);
+    color: $white;
+    font-family: $raleway;
+
+    h2 {
+        font-size: 19pt;
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 60%;
+        width: 90%;
+        padding-inline: 7%;
+
+        .description {
+            font-family: $raleway;
+            font-size: 10pt;
+            margin: 0;
+            text-align: justify;
+        }
+
+        .label-input {
+            display: flex;
+            flex-direction: column;
+            padding-inline: 6%;
+            
+            .regular-label {
+                font-style: italic;
+                font-weight: bold;
+                color: rgba($white, 0.8);
+                padding: 0 5px;
+                margin-bottom: 5px;
+                font-size: 9pt;
+
+                .asterisk {
+                    color: rgba($pastel-red, 0.8);
+                    margin-left: 0.5em;
+                }
+            }
+
+            input, input:-webkit-autofill {
+                position: relative;
+                font-size: 8pt;
+                @include cool-input-2(1.8em, 20px, rgba($black, 0.9), $white, $turquoise, $lavender, 2px, 0 0 0 10px);
+
+                &::placeholder { font-weight: bold; }
+            }
+        }
+    }
+
+    .btn-section {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+
+        #cancel {
+            @include simple-cyber-btn(6.5em, 2em, 10pt, $black, $turquoise, $raleway);
+        }
+
+        #delete {
+            @include simple-cyber-btn(6.5em, 2em, 10pt, $black, $pastel-red, $raleway);
+        }
+    }
+}

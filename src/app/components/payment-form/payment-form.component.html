@@ -1,1 +1,28 @@
-<p>payment-form works!</p>
+<form class="payment-form" (ngSubmit)="onSubmit()" [formGroup]="paymentForm">
+    <h2>Pago con tarjeta</h2>
+    <div class="content">
+        <div class="label-input">
+            <label for="num" class="regular-label">Número de tarjeta</label>
+            <input #input id="num" type="text" placeholder="1234 5678 9012 3456" formControlName="num">
+        </div>
+        <div class="label-input">
+            <label for="name" class="regular-label">Nombre en la tarjeta</label>
+            <input #input id="name" type="name" placeholder="Ex. Sara Rodríguez" formControlName="name">
+        </div>
+        <div class="row">
+            <div class="label-input">
+                <label for="date" class="regular-label">Fecha expiración</label>
+                <input #input id="date" type="text" placeholder="01/19" formControlName="date">
+            </div>
+            <div class="label-input">
+                <label for="cvv" class="regular-label">CVV</label>
+                <input #input id="cvv" type="password" placeholder="· · ·" formControlName="cvv">
+            </div>
+        </div>
+        <div class="label-input">
+            <label for="address" class="regular-label">Dirección</label>
+            <input #input id="address" type="text" placeholder="c/ Francisco Quevedo, Telde nº5" formControlName="address">
+        </div>
+    </div>
+    <button id="pay-btn" class="cyber-btn" type="submit">Pagar</button>
+</form>

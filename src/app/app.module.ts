@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +15,14 @@ import { DeleteProfilePopupComponent } from './components/delete-profile-popup/d
 import { BannerComponent } from './components/banner/banner.component';
 import { SliderBannerComponent } from './components/slider-banner/slider-banner.component';
 import { SliderProductComponent } from './components/slider-product/slider-product.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { MenuComponent } from './pages/menu/menu.component';
+import { OffersComponent } from './pages/offers/offers.component';
+import { PaymentComponent } from './pages/payment/payment.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +36,21 @@ import { SliderProductComponent } from './components/slider-product/slider-produ
     DeleteProfilePopupComponent,
     BannerComponent,
     SliderBannerComponent,
-    SliderProductComponent
+    SliderProductComponent,
+    ProfileComponent,
+    ShoppingCartComponent,
+    LoginComponent,
+    SignupComponent,
+    MenuComponent,
+    OffersComponent,
+    PaymentComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
