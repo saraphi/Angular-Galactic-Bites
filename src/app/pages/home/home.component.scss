@@ -13,7 +13,7 @@ app-header {
     align-items: center;
     width: 100%;
     min-height: calc(100% - 65px);
-    height: calc(100% - 65px);
+    height: fit-content;
 
     .background {
         width: 100%;
@@ -28,5 +28,15 @@ app-header {
         height: 100%;
         width: 80%;
         background-color: $white;
+
+        .page-section-wrapper {
+            display: flex;
+            height: 250px;
+            width: 100%;
+
+            .page-section-container {
+                width: 50%;
+            }
+        }
     }
 }
