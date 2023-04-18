@@ -10,8 +10,8 @@
 
     box-sizing: border-box;
 
-    width: 550px;
-    height: 380px;
+    width: 400px;
+    height: 520px;
 
     padding: 20px 15px 30px 15px;
 
@@ -29,83 +29,85 @@
 
     .content {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
+        overflow-y: scroll;
         
         width: 90%;
         height: 80%;
         margin-top: 5%;
 
-
-        #right-side {
-            margin-left: 5%;
+        &::-webkit-scrollbar {
+            width: 4px;
         }
 
-        #left-side {
-            .group {
-                margin-bottom: 5%;
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba($lavender, 0.8);
+            border-radius: 20px;
+
+            &:hover {
+                background-color: rgba($lavender, 1);
             }
         }
 
-        .group-side {
+
+        .group {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            width: 50%;
+            width: 100%;
 
-            .group {
+            .group-header {
                 display: flex;
-                flex-direction: column;
-                width: 100%;
+                align-items: center;
 
-                .group-header {
-                    display: flex;
-                    align-items: center;
-
-                    img {
-                        width: 25px;
-                        height: 25px;
-                    }
-
-                    h3 {
-                        font-size: 10pt;
-                        padding: 0;
-                        margin: 0 0 0 10px;
-                        text-transform: uppercase;
-                    }
+                img {
+                    width: 25px;
+                    height: 25px;
                 }
 
-                .group-content {
+                h3 {
+                    font-size: 10pt;
+                    padding: 0;
+                    margin: 0 0 0 10px;
+                    text-transform: uppercase;
+                }
+            }
+
+            .group-content {
+                display: flex;
+                flex-direction: column;
+                margin: 5px 0px 5px 25px;
+
+                .label-input {
                     display: flex;
                     flex-direction: column;
-                    margin: 5px 0px 5px 25px;
+                    margin-bottom: 10px;
 
-                    .label-input {
-                        display: flex;
-                        flex-direction: column;
-                        margin-bottom: 10px;
+                    .regular-label {
+                        font-style: italic;
+                        font-weight: bold;
+                        color: rgba($white, 0.8);
+                        padding: 0 5px;
+                        margin-bottom: 5px;
+                        font-size: 9pt;
 
-                        .regular-label {
-                            font-style: italic;
-                            font-weight: bold;
-                            color: rgba($white, 0.8);
-                            padding: 0 5px;
-                            margin-bottom: 5px;
-                            font-size: 9pt;
-
-                            .asterisk {
-                                color: rgba($pastel-red, 0.8);
-                                margin-left: 0.5em;
-                            }
+                        .asterisk {
+                            color: rgba($pastel-red, 0.8);
+                            margin-left: 0.5em;
                         }
+                    }
 
-                        input, input:-webkit-autofill {
-                            position: relative;
-                            font-size: 8pt;
-                            width: 85%;
-                            @include cool-input-2(1.8em, 20px, rgba($black, 0.9), $white, $turquoise, $lavender, 2px, 0 0 0 10px);
-                        
-                            &::placeholder { font-weight: bold; }
-                        }
+                    input, input:-webkit-autofill {
+                        position: relative;
+                        font-size: 8pt;
+                        width: 85%;
+                        @include cool-input-2(1.8em, 20px, rgba($black, 0.9), $white, $turquoise, $lavender, 2px, 0 0 0 10px);
+                    
+                        &::placeholder { font-weight: bold; }
                     }
                 }
             }
