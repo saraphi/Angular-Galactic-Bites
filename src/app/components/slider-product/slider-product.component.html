@@ -1,1 +1,9 @@
-
+<div class="slider-product">
+    <img id="prev" class="arrow-btn" src="../../../assets/icons/left-arrow.svg">
+    <div class="wrapper">
+        <ng-container *ngFor="let product in products">
+            <app-product class="product"></app-product>
+        </ng-container>
+    </div>
+    <img id="next" class="arrow-btn" src="../../../assets/icons/right-arrow.svg">
+</div>

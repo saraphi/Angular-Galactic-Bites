@@ -9,7 +9,7 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { OffersComponent } from './pages/offers/offers.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
-import { ProductComponent } from './components/product/product.component';
+import { SliderProductComponent } from './components/slider-product/slider-product.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'payment', component: PaymentFormComponent },
-  { path: 'product', component: ProductComponent }
+  { path: 'slider-product', component: SliderProductComponent }
 ];
 
 @NgModule({

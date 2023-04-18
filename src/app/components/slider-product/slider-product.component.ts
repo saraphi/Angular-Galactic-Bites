@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Product } from 'src/app/models/product.model';
+import { ProductComponent } from '../product/product.component';
 
 @Component({
   selector: 'app-slider-product',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class SliderProductComponent {
 
+  products: ProductComponent[]
+
+  constructor() {
+    this.products = [new ProductComponent(), new ProductComponent(), new ProductComponent()];
+  }
 }
