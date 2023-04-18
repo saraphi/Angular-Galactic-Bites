@@ -9,22 +9,44 @@
   margin: 0;
   padding: 0;
 
-  background-color: $black;
+  background-color: transparent;
   color: $white;
   font-weight: bold;
+
   .info {
     display: flex;
     align-items: center;
     justify-content: space-around;
 
-    padding: 10px;
+    padding: 2.5em 10px;
     margin: 0;
+
+    background-color: rgba($black, 0.6);
+
+    .item {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 2em;
+        height: 2em;
+      
+        margin-right: 1.4em;
+      }
+
+      label { 
+        font-size: 12pt; 
+        color: rgba($white, 0.8);
+      }
+    }
   }
+
   .copyright {
     display: flex;
     justify-content: center;
-    text-transform: uppercase;
-    background-color:$dark-purple;
+    background-color: rgba($dark-purple, 0.6);
+    color: rgba($white, 0.8);
+    font-size: 8pt;
   }
 }
 
