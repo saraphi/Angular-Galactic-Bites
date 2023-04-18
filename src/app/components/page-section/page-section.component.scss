@@ -9,7 +9,8 @@
   font-family: $raleway;
 
   background-color: $black;
-  .page-img {
+
+  img {
     width: 40%;
     height: 75%;
 
@@ -19,13 +20,10 @@
     overflow: hidden;
 
     margin: 5% 0 5% 9.5%;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    object-fit: cover;
   }
-  .page-info {
+
+  .info {
     width: 50%;
 
     display: flex;
@@ -37,7 +35,15 @@
     font-size: 1.6vw;
     text-transform: uppercase;
     text-align: center;
+
     h2 { margin: 0px 0px 40px 0px; }
+
+    .btn {
+      @include cyber-btn(6em, 2em, 1.3vw, $black, $turquoise, $raleway);
+
+    }
+
+    /*
     a { width: 60%;
       button {
         width: 100%;
@@ -55,9 +61,10 @@
           color: $black;
         }
         &:active { transform: translateY(0.2vw); }
-    }}
-   }
+    }*/
+  }
 }
+
 
 
 /* Device = Laptops, Desktops B/w 768px to 1280px */

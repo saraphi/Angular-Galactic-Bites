@@ -24,6 +24,8 @@ import { OffersComponent } from './pages/offers/offers.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PageSectionComponent } from './components/page-section/page-section.component';
+import { ProductComponent } from './components/product/product.component';
+import { SpaceBackgroundComponent } from './components/space-background/space-background.component'
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { PageSectionComponent } from './components/page-section/page-section.com
     OffersComponent,
     PaymentComponent,
     HomeComponent,
-    PageSectionComponent
+    PageSectionComponent,
+    ProductComponent,
+    SpaceBackgroundComponent
   ],
   imports: [
     BrowserModule,
