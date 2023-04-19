@@ -5,7 +5,7 @@ import { Firestore, getFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 
-import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,22 +21,8 @@ export class AppComponent implements OnInit{
   }
   
   ngOnInit() {
-    this.getImages();
+    //this.getImages();
     //this.firebaseDataService.logProducts();
   }
-  getImages() {
-    const imagesRef = ref(this.storage, 'images');
 
-    listAll(imagesRef)
-      .then(async response => {
-        console.log(response);
-        this.images = [];
-        for (let item of response.items) {
-          const url = await getDownloadURL(item);
-          this.images.push(url);
-          console.log(url);
-        }
-      })
-      .catch(error => console.log(error));
-  }
 }

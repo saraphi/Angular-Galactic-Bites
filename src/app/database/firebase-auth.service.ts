@@ -1,5 +1,33 @@
 //Tengo que volver hacerlo cuando pueda comprobarlo y cambiar weas
 /*
+//Tiene que contener lo siguiente:
+logearse 
+iniciar sesion 
+editar datos del usuario 
+borrar datos 
+comprobar si esta iniciado
+mantener la sesion
+
+
+
+Codigo relevante para cuando este montado:
+async register() {
+    try {
+        const result = await this.afAuth.createUserWithEmailAndPassword(this.email, this.password);
+        const userUid = result.user.uid;
+        // Llame a la función que crea el documento con la UID del usuario
+        await this.createUserData(userUid);
+    } catch (error) {
+        console.log(error);
+    }
+}
+async createUserData(uid: string) {
+    return await this.firestore.collection('users').doc(uid).set({
+        username: this.username,
+        email: this.email
+    });
+}
+
 import { Injectable, NgZone } from '@angular/core';
 //import { User } from '../services/user';
 import * as auth from 'firebase/auth';
