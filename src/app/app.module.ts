@@ -36,6 +36,9 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
 
+import { PageSectionComponent } from './components/page-section/page-section.component';
+import { ProductComponent } from './components/product/product.component';
+import { SpaceBackgroundComponent } from './components/space-background/space-background.component'
 
 @NgModule({
   declarations: [
@@ -57,7 +60,10 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     MenuComponent,
     OffersComponent,
     PaymentComponent,
-    HomeComponent
+    HomeComponent,
+    PageSectionComponent,
+    ProductComponent,
+    SpaceBackgroundComponent
   ],
   imports: [
     BrowserModule,
