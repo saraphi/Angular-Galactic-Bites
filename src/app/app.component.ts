@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseDataService } from './database/firebase-data.service';
-import { FirebaseStorage } from '@angular/fire/storage';
-import { Firestore, getFirestore } from '@angular/fire/firestore';
+
+
 import { Observable } from 'rxjs';
 
 
@@ -11,18 +10,14 @@ import { Observable } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
+
+
   title = 'Client';
   
-  images: string[];
 
-  constructor(private storage: Storage) {
-    this.images = [];
+  constructor() {
   }
   
-  ngOnInit() {
-    //this.getImages();
-    //this.firebaseDataService.logProducts();
-  }
 
 }
