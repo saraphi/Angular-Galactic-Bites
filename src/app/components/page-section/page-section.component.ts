@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { Page } from 'src/app/models/page.model';
 
 @Component({
   selector: 'app-page-section',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class PageSectionComponent {
 
-  page_name: string = "ofertas";
-  
+  @Input() page!: Page;
+
+  constructor(private router: Router) {}
+
+  goToPage() {
+    this.router.navigate([this.page.router_link]);
+  }  
 }
