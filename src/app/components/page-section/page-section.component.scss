@@ -2,8 +2,8 @@
 @import '../../shared/classes';
 
 .page-section {
-  height: 220px;
-  width: 480px;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   font-family: $raleway;
@@ -32,7 +32,7 @@
     align-items: center;
 
     color: $white;
-    font-size: 1.6vw;
+    font-size: 1.5vw;
     text-transform: uppercase;
     text-align: center;
 
@@ -42,26 +42,6 @@
       @include cyber-btn(8em, 2em, 1.3vw, $black, $turquoise, $raleway);
 
     }
-
-    /*
-    a { width: 60%;
-      button {
-        width: 100%;
-        height: 2em;
-
-        font-size: 1.3vw;
-        font-weight: bold;
-        text-transform: uppercase;
-
-        background-color: $black;
-        color: $turquoise;
-        box-shadow: 0px 5px 10px 0px $turquoise;
-        &:hover {
-          background-color: $turquoise;
-          color: $black;
-        }
-        &:active { transform: translateY(0.2vw); }
-    }*/
   }
 }
 
