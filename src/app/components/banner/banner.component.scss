@@ -47,7 +47,7 @@
       -webkit-text-stroke: 0.025em $black;
     }
 
-    .button {
+    .btn {
       @include cyber-btn(9em, 2em, 12pt,$white ,$eerie-black , $raleway);
       cursor: pointer;
       position: relative;
@@ -62,7 +62,7 @@
 @media (min-width: 768px) and (max-width: 1280px) {
   .banner .banner-info {
       .title { font-size: 6.2vw; }
-      .button { font-size: 2.8vw; }
+      .btn { font-size: 2.8vw; }
   }
 }
 
@@ -71,7 +71,7 @@
   .banner { width: 100%;
     .banner-info {
       .title { font-size: 6.7vw; }
-      .button { font-size: 3vw; }
+      .btn { font-size: 3vw; }
     }
   }
 }
@@ -82,6 +82,6 @@
     width: 100%;
     .banner-info {
       .title { font-size: 7vw; }
-      .button { font-size: 3.2vw; } }
+      .btn { font-size: 3.2vw; } }
   }
 }
