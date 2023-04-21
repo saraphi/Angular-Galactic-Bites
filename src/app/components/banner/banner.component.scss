@@ -52,6 +52,7 @@
       cursor: pointer;
       position: relative;
       text-transform: uppercase;
+      align-self: end;
       &:hover { color: $turquoise; }
       &:active { transform: translateY(10%); }
     }
