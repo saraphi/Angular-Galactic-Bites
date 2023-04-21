@@ -25,7 +25,8 @@ import { PaymentComponent } from './pages/payment/payment.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PageSectionComponent } from './components/page-section/page-section.component';
 import { ProductComponent } from './components/product/product.component';
-import { SpaceBackgroundComponent } from './components/space-background/space-background.component'
+import { SpaceBackgroundComponent } from './components/space-background/space-background.component';
+import { CartItemComponent } from './components/cart-item/cart-item.component'
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { SpaceBackgroundComponent } from './components/space-background/space-ba
     HomeComponent,
     PageSectionComponent,
     ProductComponent,
-    SpaceBackgroundComponent
+    SpaceBackgroundComponent,
+    CartItemComponent
   ],
   imports: [
     BrowserModule,
