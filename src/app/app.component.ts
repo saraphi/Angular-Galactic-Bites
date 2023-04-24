@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-
+import { FirebaseDataService} from '../app/services/database/firebase-data.service';
 import { Observable } from 'rxjs';
 
 
@@ -16,7 +15,8 @@ export class AppComponent {
   title = 'Client';
   
 
-  constructor() {
+  constructor(FirebaseDataService: FirebaseDataService) {
+      FirebaseDataService.logProducts();
   }
   
 
