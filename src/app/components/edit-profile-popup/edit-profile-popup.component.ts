@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-edit-profile-popup',

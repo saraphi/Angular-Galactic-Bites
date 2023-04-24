@@ -5,7 +5,7 @@
         <img class="profile-icon" src="../../../assets/icons/user-light.png">
         <div class="text">
             <label id="name">{{ user.name }}</label>
-            <label id="email">{{ user.email }}</label>
+            <label id="email">{{ user.getEmail }}</label>
         </div>
     </div>
     <div class="btn-section">
@@ -21,7 +21,7 @@
         </div>
         <div id="tel-section" class="output-section">
             <label class="h">Teléfono</label>
-            <label class="output">{{ user.phone }}</label>
+            <label class="output">{{ user.getPhone }}</label>
         </div>
     </div>
     <button id="delete-btn" class="btn" (click)="triggerDeletePopup()">Borrar Perfil</button>

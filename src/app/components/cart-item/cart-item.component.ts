@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Product } from 'src/app/models/product.model';
+import { Menu } from 'src/app/models/menu';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-cart-item',
@@ -8,16 +9,9 @@ import { Product } from 'src/app/models/product.model';
 })
 export class CartItemComponent {
 
-  // @Input() product!: Product;
+  // @Input() item!: Product | Menu;
 
-  product: Product = {
-    id: "0",
-    image: "../../../assets/placeholder.png",
-    name: "Hamburguesa",
-    description: "Hambursa rica",
-    price: 6.30,
-    discount: 0
-  }
+  item: Product | Menu = new Product('0', "../../../assets/placeholder.png", "Hamburguesa","Hambursa rica", 6.30, 0);
 
   quantity: number = 1;
 

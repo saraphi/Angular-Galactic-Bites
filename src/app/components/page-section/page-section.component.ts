@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Page } from 'src/app/models/page.model';
+import { Page } from 'src/app/models/page';
 
 @Component({
   selector: 'app-page-section',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Product } from 'src/app/models/product.model';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-product',
@@ -8,14 +8,7 @@ import { Product } from 'src/app/models/product.model';
 })
 export class ProductComponent {
 
-  product: Product = {
-    id: "0",
-    image: "../../../assets/placeholder.png",
-    name: "Hamburguesa",
-    description: "Hambursa rica",
-    price: 6.30,
-    discount: 0
-  }
+  product: Product = new Product('0', "../../../assets/placeholder.png", "Hamburguesa","Hambursa rica", 6.30, 0);
 
   constructor() {}
 }

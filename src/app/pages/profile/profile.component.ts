@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'src/app/models/user.model';
+import { ShoppingCart } from 'src/app/models/shopping-cart';
+import { User } from 'src/app/models/user';
 
 @Component({
     selector: 'app-profile',
@@ -14,14 +15,7 @@ export class ProfileComponent {
     showEditPopup: boolean = false;
     showDeletePopup: boolean = false;
 
-    user: User = {
-        id: "0",
-        email: "saragonza.lez0608@gmail.com",
-        name: "Sara González Ramírez",
-        password_token: "Hola!9",
-        phone: "617 322 872",
-        points: 0
-    }
+    user: User = new User('0', 'Sara González Ramírez', 'saragonzalez@gmail.com', 'Hola!9', '623 123 123', 0, new ShoppingCart({}));
 
     @ViewChild('overlay') overlay!: ElementRef<any>;
 
