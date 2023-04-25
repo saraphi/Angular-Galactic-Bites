@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
 import { ProductComponent } from '../product/product.component';
-
+import { FirebaseDataService } from 'src/app/services/database/firebase-data.service';
 @Component({
   selector: 'app-slider-product',
   templateUrl: './slider-product.component.html',
@@ -12,6 +12,6 @@ export class SliderProductComponent {
   products: ProductComponent[]
 
   constructor() {
-    this.products = [new ProductComponent(), new ProductComponent(), new ProductComponent()];
+    this.products = [];
   }
 }

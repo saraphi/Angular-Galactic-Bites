@@ -1,15 +1,24 @@
 import { Injectable } from '@angular/core';
-import { getFirestore } from '@angular/fire/firestore';
-import { collection, query, getDocs } from '@angular/fire/firestore';
+import { idToken } from '@angular/fire/auth';
+import { getFirestore, getDoc, doc, collection, query, getDocs } from '@angular/fire/firestore';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+import { Product } from 'src/app/models/product';
+
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class FirebaseDataService {
   
   constructor(private storage: Storage) {
-    const db = getFirestore()
 
+   }
+
+   async getImage(url:string){
+    console.log();
+      return getDownloadURL(ref(this.storage, url));
+      
    }
   logProducts() {
     const db = getFirestore();
@@ -17,6 +26,15 @@ export class FirebaseDataService {
     getDocs(q).then((snapshot) => {
       console.log(snapshot.docs.map(doc => doc.data()));
     });
+  }
+  
+  //Carge unicamente los datos de la base datos y devuelve un objetos que castea los atributos
+  async getProduct(): Promise<Product> {
+    const db = getFirestore();
+    const q = query(collection(db, 'Productos'));
+    const snapshot = await getDocs(q);
+    const product = snapshot.docs[0].data() as Product;
+    return product;
   }
 
   //Adaptar 

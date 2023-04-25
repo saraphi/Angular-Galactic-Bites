@@ -1,0 +1,19 @@
+<app-header></app-header>
+<main class="main-product">
+    <app-space-background class="background"></app-space-background>
+    <article class="product-info m-auto">
+        <img  class="left-side" [src]="imageUrl | async" alt="Imagen">
+        
+        <div class="right-side column">
+            <div class="product-description column">
+                <h2 class="name">{{ product.name }}</h2>
+                <p class="description">{{ product.description }}</p>
+                <br/>
+                <p>{{ product.getPrice }}</p>
+            </div>
+            <div class="button-container"><button id="add-product" class="input-button" onclick="addProduct()">Añadir
+                </button></div>
+        </div>
+    </article>
+</main>
+<app-footer></app-footer>

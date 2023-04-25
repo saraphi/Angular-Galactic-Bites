@@ -1,5 +1,5 @@
 <div class="product">
-    <img src="{{ product.image }}">
+    <img [src]="imageUrl | async" alt="Imagen">
     <div class="name-container">
         <label class="name">{{ product.name }}</label>
     </div>
