@@ -15,7 +15,7 @@ export class ProfileComponent {
     showEditPopup: boolean = false;
     showDeletePopup: boolean = false;
 
-    user: User = new User('0', 'Sara González Ramírez', 'saragonzalez@gmail.com', 'Hola!9', '623 123 123', 0, new ShoppingCart({}));
+    user: User = new User('0', 'Sara González Ramírez', 'saragonzalez@gmail.com', 'Hola!9', '623 123 123', 0, new ShoppingCart(new Map()));
 
     @ViewChild('overlay') overlay!: ElementRef<any>;
 

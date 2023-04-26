@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Menu } from 'src/app/models/menu';
 import { Product } from 'src/app/models/product';
+import { ShoppingCart } from 'src/app/models/shopping-cart';
 
 @Component({
   selector: 'app-cart-item',
@@ -9,19 +10,22 @@ import { Product } from 'src/app/models/product';
 })
 export class CartItemComponent {
 
-  // @Input() item!: Product | Menu;
+  @Input() shoppingCart!: ShoppingCart;
+  @Input() item!: Product | Menu;
 
-  item: Product | Menu = new Product('0', "../../../assets/placeholder.png", "Hamburguesa","Hambursa rica", 6.30, 0);
+  getQuantity(): number {
+    return this.shoppingCart.getQuantity(this.item.id)!;
+  }
 
-  quantity: number = 1;
-
-  delete() {}
+  delete() {
+    this.shoppingCart.deleteItem(this.item.id);
+  }
 
   add() {
-    this.quantity++;
+    this.shoppingCart.addItem(this.item.id);
   }
 
   remove() {
-    this.quantity--;
+    this.shoppingCart.removeItem(this.item.id);
   }
 }

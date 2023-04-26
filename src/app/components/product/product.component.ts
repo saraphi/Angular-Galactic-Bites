@@ -9,6 +9,4 @@ import { Product } from 'src/app/models/product';
 export class ProductComponent {
 
   product: Product = new Product('0', "../../../assets/placeholder.png", "Hamburguesa","Hambursa rica", 6.30, 0);
-
-  constructor() {}
 }

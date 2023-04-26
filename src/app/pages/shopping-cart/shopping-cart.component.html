@@ -1,5 +1,9 @@
 <app-header></app-header>
-<main class="main-cart">
-    
-    
+<main class="main-shopping-cart">
+    <app-space-background class="background"></app-space-background>
+    <div class="shopping-cart-container">
+        <ng-container *ngFor="let itemId of getItemsKeys()">
+            <app-cart-item [shoppingCart]="shoppingCart" [item]="getItem(itemId)"></app-cart-item>
+        </ng-container>
+    </div>
 </main>

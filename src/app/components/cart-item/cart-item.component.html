@@ -10,7 +10,7 @@
             <label>Precio: <span class="price">{{ item.getPrice }} €</span></label>
             <div class="right">
                 <img id="sub-btn" class="btn btn-1" src="../../../assets/icons/minus.svg" (click)="remove()">
-                <output class="quantity">{{ quantity }}</output>
+                <output class="quantity">{{ getQuantity() }}</output>
                 <img id="add-btn" class="btn btn-1" src="../../../assets/icons/add.svg" (click)="add()">
             </div>
         </div>

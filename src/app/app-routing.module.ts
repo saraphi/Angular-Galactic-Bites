@@ -20,7 +20,6 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'payment', component: PaymentComponent },
-  { path: 'cart-item', component: CartItemComponent }
 ];
 
 @NgModule({
