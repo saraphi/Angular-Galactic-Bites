@@ -39,8 +39,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { PageSectionComponent } from './components/page-section/page-section.component';
 import { ProductComponent } from './components/product/product.component';
 import { SpaceBackgroundComponent } from './components/space-background/space-background.component';
-import { CartItemComponent } from './components/cart-item/cart-item.component';
-import { ListProductComponent } from './components/list-product/list-product.component'
+import { CartItemComponent } from './components/cart-item/cart-item.component'
 
 @NgModule({
   declarations: [
@@ -66,8 +65,7 @@ import { ListProductComponent } from './components/list-product/list-product.com
     PageSectionComponent,
     ProductComponent,
     SpaceBackgroundComponent,
-    CartItemComponent,
-    ListProductComponent
+    CartItemComponent
   ],
   imports: [
     BrowserModule,
