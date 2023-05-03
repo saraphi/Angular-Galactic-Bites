@@ -12,7 +12,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 //import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
-import { Product } from './models/product';
+import { Product } from './models/product.model';
 import { ProductComponent } from './components/product/product.component';
 
 const routes: Routes = [
@@ -26,7 +26,8 @@ const routes: Routes = [
   { path: 'payment', component: PaymentComponent },
  // { path: 'cart-item', component: CartItemComponent }, 
   { path: 'product-view', component: ProductComponent },
-  {path: 'product-detail', component: ProductDetailComponent}
+  { path: 'product-detail/:name', component: ProductDetailComponent },
+  //{path: 'product-detail', component: ProductDetailComponent}
 ];
 
 @NgModule({

@@ -5,16 +5,16 @@ import { Observable } from 'rxjs';
 
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
-  title = 'Client';
-  constructor( FirebaseDataService: FirebaseDataService) {
-    FirebaseDataService.logProducts();
-  }
-  
+  constructor(private firebaseDataService: FirebaseDataService) { }
+
 
 }
+

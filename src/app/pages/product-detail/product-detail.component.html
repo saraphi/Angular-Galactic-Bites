@@ -1,7 +1,7 @@
 <app-header></app-header>
-<main class="main-product">
+<main class="main-product" *ngIf="product"  >
     <app-space-background class="background"></app-space-background>
-    <article class="product-info m-auto">
+    <article class="product-info">
         <img  class="left-side" [src]="imageUrl | async" alt="Imagen">
         
         <div class="right-side column">
@@ -9,7 +9,8 @@
                 <h2 class="name">{{ product.name }}</h2>
                 <p class="description">{{ product.description }}</p>
                 <br/>
-                <p>{{ product.getPrice }}</p>
+                <p>Precio: {{ product.price }} €</p>
+                <p>Puntos: {{product.price *100}}</p><!--Arreglar para que produtos tenga atributo de Points que sea el precio redondeado-->
             </div>
             <div class="button-container"><button id="add-product" class="input-button" onclick="addProduct()">Añadir
                 </button></div>
