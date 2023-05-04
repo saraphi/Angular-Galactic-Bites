@@ -1,4 +1,4 @@
-export enum Category {
+export const enum Category {
     main = 'main',
     complement = 'complement',
     drink = 'drink'
