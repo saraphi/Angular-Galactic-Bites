@@ -1,15 +1,18 @@
 <app-header></app-header>
 <main class="main-shopping-cart">
     <app-space-background class="background"></app-space-background>
-    <div class="shopping-cart-container">
-        <div class="items" *ngIf="isShoppingCart()">
+    <div class="nothing-container" *ngIf="!isShoppingCart()">
+        <p>There is nothing here!</p>
+    </div>
+    <div class="shopping-cart-container" *ngIf="isShoppingCart()">
+        <ng-container>
             <ng-container *ngFor="let itemId of getItemsKeys()">
                 <app-cart-item [item]="getItemById(itemId)"></app-cart-item>
             </ng-container>
-        </div>
+        </ng-container>
         <div class="bottom">
             <label class="price-tag">TOTAL PRICE: <span class="price">{{ getTotalPrice() }}</span> €</label>
-            <button *ngIf="isShoppingCart()" class="cyber-btn">BUY</button>
+            <button class="cyber-btn">BUY</button>
         </div>
     </div>
 </main>
