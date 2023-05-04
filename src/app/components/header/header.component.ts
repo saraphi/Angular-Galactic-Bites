@@ -16,7 +16,6 @@ export class HeaderComponent {
     }
 
     login() {
-        if (this.userService.user) this.router.navigate(['profile']);
-        else this.router.navigate(['login']);
+        this.router.navigate(['profile']);
     }
 }

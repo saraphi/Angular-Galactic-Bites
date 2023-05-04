@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit(): void {
         this.user = this.userService.user;
+        if (!this.user) this.router.navigate(['login']); 
     }
 
     hideOverlay() {
