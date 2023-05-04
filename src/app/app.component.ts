@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseDataService } from './services/database/firebase-data.service';
 
 import { Observable } from 'rxjs';
+import { ProductService } from './services/products/product.service';
 
 
 
@@ -13,7 +14,10 @@ import { Observable } from 'rxjs';
 })
 
 export class AppComponent {
-  constructor(private firebaseDataService: FirebaseDataService) { }
+  constructor(private firebaseDataService: FirebaseDataService, productservices: ProductService) {
+    productservices.setUp();
+
+  }
 
 
 }

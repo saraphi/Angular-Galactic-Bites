@@ -16,7 +16,7 @@ export class ProductDetailComponent implements OnInit{
   ngOnInit() {
     this.product = history.state.producto;
     console.log(this.product);
-    this.imageUrl = from(this.firebaseDataService.getImage(this.product.image));;
+    this.imageUrl = from( this.firebaseDataService.getImage(this.product.image));
 
   }
 }

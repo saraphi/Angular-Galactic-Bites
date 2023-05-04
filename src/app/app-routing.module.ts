@@ -14,6 +14,7 @@ import { PaymentComponent } from './pages/payment/payment.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { Product } from './models/product.model';
 import { ProductComponent } from './components/product/product.component';
+import { ListCategoryProductsComponent } from './components/list-category-products/list-category-products.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
  // { path: 'cart-item', component: CartItemComponent }, 
   { path: 'product-view', component: ProductComponent },
   { path: 'product-detail/:name', component: ProductDetailComponent },
+  { path: 'product-list', component: ListCategoryProductsComponent}
   //{path: 'product-detail', component: ProductDetailComponent}
 ];
 
