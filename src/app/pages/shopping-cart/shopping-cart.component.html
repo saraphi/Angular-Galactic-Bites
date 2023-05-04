@@ -2,7 +2,7 @@
 <main class="main-shopping-cart">
     <app-space-background class="background"></app-space-background>
     <div class="shopping-cart-container">
-        <div class="items">
+        <div class="items" *ngIf="isShoppingCart()">
             <ng-container *ngFor="let itemId of getItemsKeys()">
                 <app-cart-item [item]="getItemById(itemId)"></app-cart-item>
             </ng-container>
