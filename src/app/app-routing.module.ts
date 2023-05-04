@@ -1,7 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PaymentFormComponent } from './components/payment-form/payment-form.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -10,11 +9,14 @@ import { OffersComponent } from './pages/offers/offers.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+
 //import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { Product } from './models/product.model';
 import { ProductComponent } from './components/product/product.component';
 import { ListCategoryProductsComponent } from './components/list-category-products/list-category-products.component';
+
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,11 +27,12 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'payment', component: PaymentComponent },
- // { path: 'cart-item', component: CartItemComponent }, 
   { path: 'product-view', component: ProductComponent },
   { path: 'product-detail/:name', component: ProductDetailComponent },
   { path: 'product-list', component: ListCategoryProductsComponent}
   //{path: 'product-detail', component: ProductDetailComponent}
+  { path: 'payment', component: PaymentComponent }
+
 ];
 
 @NgModule({

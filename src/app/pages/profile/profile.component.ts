@@ -1,8 +1,10 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+
 import { AuthService } from 'src/app/services/database/firebase-auth.service';
 import { UserService } from 'src/app/services/user.service';
+
 
 @Component({
     selector: 'app-profile',
@@ -27,7 +29,9 @@ export class ProfileComponent {
 
     @ViewChild('overlay') overlay!: ElementRef<any>;
 
+
     constructor(private route: ActivatedRoute, private userService: UserService, private authService: AuthService) {}
+
 
     hideOverlay() {
         this.showOverlay = false;
