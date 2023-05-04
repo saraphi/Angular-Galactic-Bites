@@ -1,8 +1,8 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ShoppingCart } from 'src/app/models/shopping-cart';
-import { User } from 'src/app/models/user';
-import { UserService } from 'src/app/services/user/user.service';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/database/firebase-auth.service';
+
 
 @Component({
     selector: 'app-profile',
@@ -18,11 +18,7 @@ export class ProfileComponent implements OnInit {
     @ViewChild('overlay') overlay!: ElementRef<any>;
     user: User | null = null;
 
-    constructor(private router: Router, private userService: UserService) {}
-
-    ngOnInit(): void {
-        this.user = this.userService.user;
-    }
+    constructor(private route: ActivatedRoute, private userService: UserService, private authService: AuthService) {}
 
     hideOverlay() {
         this.showOverlay = false;
@@ -41,7 +37,6 @@ export class ProfileComponent implements OnInit {
     }
 
     logout() {
-        this.userService.logout();
-        this.router.navigate(['login']);
+        console.log(this.authService.getCurrentUser());
     }
 }
