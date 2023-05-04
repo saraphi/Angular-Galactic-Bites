@@ -13,7 +13,7 @@ export class ShoppingCartService {
   constructor(private userService: UserService, private itemService: ProductService) {}
 
   isShoppingCart(): boolean {
-    return this.userService.isLogged() || this.getItemsKeys().length > 0;
+    return this.userService.isLogged() && this.getItemsKeys().length > 0;
   }
 
   getQuantity(itemId: string): number | null {
