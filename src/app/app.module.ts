@@ -11,6 +11,7 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
 import { PaymentFormComponent } from './components/payment-form/payment-form.component';
 import { EditProfilePopupComponent } from './components/edit-profile-popup/edit-profile-popup.component';
 import { DeleteProfilePopupComponent } from './components/delete-profile-popup/delete-profile-popup.component';
+
 import { BannerComponent } from './components/banner/banner.component';
 import { SliderBannerComponent } from './components/slider-banner/slider-banner.component';
 import { SliderProductComponent } from './components/slider-product/slider-product.component';

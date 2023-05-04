@@ -1,8 +1,7 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/database/firebase-auth.service';
-
+import { User } from 'src/app/models/user';
 
 @Component({
     selector: 'app-profile',
@@ -16,9 +15,14 @@ export class ProfileComponent implements OnInit {
     showDeletePopup: boolean = false;
 
     @ViewChild('overlay') overlay!: ElementRef<any>;
+    
     user: User | null = null;
 
-    constructor(private route: ActivatedRoute, private userService: UserService, private authService: AuthService) {}
+
+    constructor(private route: ActivatedRoute, private authService: AuthService) {}
+    ngOnInit(): void {
+        throw new Error('Method not implemented.');
+    }
 
     hideOverlay() {
         this.showOverlay = false;
