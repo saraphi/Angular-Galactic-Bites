@@ -14,10 +14,5 @@ export class AppComponent {
 
 
   title = 'Client';
-  
-
-  constructor() {
-  }
-  
 
 }

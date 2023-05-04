@@ -8,7 +8,5 @@ import { Product } from 'src/app/models/product';
 })
 export class ProductComponent {
 
-  product: Product = new Product('0', "../../../assets/placeholder.png", "Hamburguesa","Hambursa rica", 6.30, 0);
-
-  constructor() {}
+  product: Product = { id: '1', image: '../../../assets/placeholder.png', name: 'Borguesa', description: 'Borguesa wena', price: 6.2, discount: 0 }
 }

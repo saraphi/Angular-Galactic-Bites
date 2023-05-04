@@ -4,8 +4,8 @@
     <div class="profile">
         <img class="profile-icon" src="../../../assets/icons/user-light.png">
         <div class="text">
-            <label id="name">{{ user.name }}</label>
-            <label id="email">{{ user.getEmail }}</label>
+            <label id="name" *ngIf="user">{{ user.name }}</label>
+            <label id="email" *ngIf="user">{{ user.email }}</label>
         </div>
     </div>
     <div class="btn-section">
@@ -17,16 +17,16 @@
     <div class="content">
         <div id="points-section" class="output-section">
             <label class="h">Puntos</label>
-            <label class="output">{{ user.points }}</label>
+            <label class="output" *ngIf="user">{{ user.points }}</label>
         </div>
         <div id="tel-section" class="output-section">
             <label class="h">Teléfono</label>
-            <label class="output">{{ user.getPhone }}</label>
+            <label class="output" *ngIf="user">{{ user.phone }}</label>
         </div>
     </div>
     <button id="delete-btn" class="btn" (click)="triggerDeletePopup()">Borrar Perfil</button>
 </main>
 
-<div class="overlay" *ngIf="showOverlay" (click)="hideOverlay()"></div>
-<app-edit-profile-popup class="popup" *ngIf="showEditPopup" [user]="user"></app-edit-profile-popup>
-<app-delete-profile-popup class="popup" *ngIf="showDeletePopup" [user]="user"></app-delete-profile-popup>
+<div class="overlay" *ngIf="showOverlay && user" (click)="hideOverlay()"></div>
+<app-edit-profile-popup class="popup" *ngIf="showEditPopup && user" [user]="user"></app-edit-profile-popup>
+<app-delete-profile-popup class="popup" *ngIf="showDeletePopup && user" [user]="user"></app-delete-profile-popup>
