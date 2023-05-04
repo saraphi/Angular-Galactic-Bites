@@ -8,9 +8,13 @@ import { ProductService } from '../product/product.service';
 })
 export class ShoppingCartService {
 
-  shoppingCart: ShoppingCart = { items: {'0': 1, '1': 2}, totalPrice: 0 };
+  shoppingCart: ShoppingCart = { items: {'0': 1, '1': 2, '2': 1}, totalPrice: 0 };
 
   constructor(private userService: UserService, private itemService: ProductService) {}
+
+  isShoppingCart(): boolean {
+    return this.userService.isLogged() && this.getItemsKeys().length > 0;
+  }
 
   getQuantity(itemId: string): number | null {
     return this.shoppingCart.items[itemId];
@@ -35,6 +39,8 @@ export class ShoppingCartService {
 
   getTotalPrice(): number  {
     this.shoppingCart.totalPrice = 0;
+    if (!this.isShoppingCart()) return this.shoppingCart.totalPrice;
+
 
     Object.keys(this.shoppingCart.items).forEach((key: string) => {
       this.shoppingCart.totalPrice += this.itemService.getItemPrice(key) * this.shoppingCart.items[key];

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product/product.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
-import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -11,10 +10,10 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class ShoppingCartComponent {
 
-  constructor(private userService: UserService, private shoppingCartService: ShoppingCartService, private itemService: ProductService) {}
+  constructor(private shoppingCartService: ShoppingCartService, private itemService: ProductService) {}
 
   isShoppingCart(): boolean {
-    return this.userService.user != null;
+    return this.shoppingCartService.isShoppingCart();
   }
 
   getItemsKeys(): string[] {

@@ -28,6 +28,10 @@ export class UserService {
   nextId: number = 1;
   user: User | null = null;
 
+  isLogged(): boolean {
+    return this.user != null;
+  }
+
   logout(): void {
     this.user = null;
   }
