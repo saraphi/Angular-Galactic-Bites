@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Menu } from 'src/app/models/menu';
+import { Component } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { ShoppingCart } from 'src/app/models/shopping-cart';
+import { ProductService } from 'src/app/services/product/product.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -10,33 +11,25 @@ import { ShoppingCart } from 'src/app/models/shopping-cart';
 })
 export class ShoppingCartComponent {
 
-  // @Input() shoppingCart!: ShoppingCart;
-  shoppingCart: ShoppingCart;
+  constructor(private userService: UserService, private shoppingCartService: ShoppingCartService, private itemService: ProductService) {}
 
-  // ESTO NO ESTARÁ EN LA VERSIÓN FINAL
-  products: Product[];
-  items: Map<string, number> = new Map();
-
-  constructor() {
-    // ESTO NO ESTARÁ EN LA VERSIÓN FINAL
-    this.products = [
-      new Product('0', '../../../assets/placeholder.png', 'Pizza', 'Pizza rica', 10.8, 0),
-      new Product('1', '../../../assets/placeholder.png', 'Borguesa', 'Borguesa rica', 6.2, 0),
-      new Product('2', '../../../assets/placeholder.png', 'Taquito', 'Taquito weno', 2.5, 0)
-    ];
-    this.items.set('0', 1);
-    this.items.set('1', 1);
-    this.shoppingCart = new ShoppingCart(this.items);
+  isShoppingCart(): boolean {
+    return this.userService.user != null;
   }
 
-  getItemsKeys() {
-    return Array.from(this.shoppingCart.items.keys());
+  getItemsKeys(): string[] {
+    let itemsKeys: string[] = [];
+    if (this.shoppingCartService.shoppingCart) itemsKeys = this.shoppingCartService.getItemsKeys(); 
+    return itemsKeys;
   }
 
-  getItem(itemId: string): Product | Menu {
-    for (let i = 0; i < this.products.length; i++) {
-      if (this.products[i].id == itemId) return this.products[i];
-    }
-    return this.products[2];
-  } 
+  getItemById(itemId: string): Product | null {
+    let itemsKeys: string[] = this.getItemsKeys();
+    if (itemsKeys.includes(itemId)) return this.itemService.getItem(itemId);
+    else return null;
+  }
+
+  getTotalPrice(): number {
+    return this.shoppingCartService.getTotalPrice();
+  }
 }

@@ -1,4 +1,4 @@
-<div class="cart-item">
+<div class="cart-item" *ngIf="item">
     <img class="product-image" src="{{ item.image }}">
     <div class="content">
         <div class="top">
@@ -7,7 +7,7 @@
         </div>
         <p class="description">{{ item.description }}</p>
         <div class="bottom">
-            <label>Precio: <span class="price">{{ item.getPrice }} €</span></label>
+            <label>Precio: <span class="price">{{ getPrice(item) }} €</span></label>
             <div class="right">
                 <img id="sub-btn" class="btn btn-1" src="../../../assets/icons/minus.svg" (click)="remove()">
                 <output class="quantity">{{ getQuantity() }}</output>

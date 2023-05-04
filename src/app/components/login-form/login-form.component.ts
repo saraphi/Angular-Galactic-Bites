@@ -1,8 +1,9 @@
 import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PasswordValidator } from 'src/app/validators/password.validator';
 import { Form } from 'src/app/models/form';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   	selector: 'app-login-form',
@@ -13,8 +14,10 @@ export class LoginFormComponent implements Form {
 	loginForm: FormGroup;
 
 	@ViewChildren('input') inputs!: QueryList<ElementRef>;
+	@ViewChild('email') email!: ElementRef;
+	@ViewChild('password') password!: ElementRef;
 	
-	constructor(private router: Router, private fb: FormBuilder) {
+	constructor(private router: Router, private fb: FormBuilder, private userService: UserService) {
 		this.loginForm = this.fb.group({
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required, PasswordValidator.strong()]]
@@ -54,6 +57,20 @@ export class LoginFormComponent implements Form {
 		console.log(this.loginForm.value);
 
 		this.resetErrors();
-		if (!this.checkErrors()) this.router.navigate(['profile']);
+		if (!this.checkErrors()) {
+			let email: string = this.loginForm.value.email;
+			let password: string = this.loginForm.value.password;
+
+			if (this.userService.login(email, password)) this.router.navigate(['profile']);
+			
+			if (!this.userService.emailExists(email)) {
+				console.log('email doesn\'t exists');
+				this.onError(this.email);
+			}
+			if (!this.userService.checkPassword(email, password)) {
+				console.log('password does not match');
+				this.onError(this.password); 
+			}
+		}
 	}
 }

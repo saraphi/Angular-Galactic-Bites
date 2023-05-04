@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Menu } from 'src/app/models/menu';
+import { Component, Input } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { ShoppingCart } from 'src/app/models/shopping-cart';
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -10,22 +9,32 @@ import { ShoppingCart } from 'src/app/models/shopping-cart';
 })
 export class CartItemComponent {
 
-  @Input() shoppingCart!: ShoppingCart;
-  @Input() item!: Product | Menu;
+  @Input() item: Product | null = null;
 
-  getQuantity(): number {
-    return this.shoppingCart.getQuantity(this.item.id)!;
+  constructor(private shoppingCartService: ShoppingCartService) {}
+
+  getPrice(item: Product): number | null {
+    if (!this.item) return null;
+    return this.item.price - (this.item.price*this.item.discount);
+  }
+
+  getQuantity(): number | null {
+    if (!this.item) return null;
+    return this.shoppingCartService.getQuantity(this.item.id)!;
   }
 
   delete() {
-    this.shoppingCart.deleteItem(this.item.id);
+    if (!this.item) return;
+    this.shoppingCartService.deleteItem(this.item.id);
   }
 
   add() {
-    this.shoppingCart.addItem(this.item.id);
+    if (!this.item) return;
+    this.shoppingCartService.addItem(this.item.id);
   }
 
   remove() {
-    this.shoppingCart.removeItem(this.item.id);
+    if (!this.item) return;
+    this.shoppingCartService.removeItem(this.item.id);
   }
 }
