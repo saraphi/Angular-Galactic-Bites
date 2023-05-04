@@ -1,8 +1,4 @@
-export class ShoppingCart {
-    public items: {};
-    public totalPrice: number = 0;   
-    
-    constructor(items: {}) {
-        this.items = items;
-    } 
+export interface ShoppingCart {
+    items: {[key: string]: number};
+    totalPrice: number;      
 }

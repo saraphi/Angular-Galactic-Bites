@@ -1,9 +1,10 @@
 import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PasswordValidator } from 'src/app/validators/password.validator';
 import { PhoneValidator } from 'src/app/validators/phone.validator';
 import { Form } from 'src/app/models/form';
+import { UserService } from 'src/app/services/user/user.service';
 
 
 @Component({
@@ -15,9 +16,10 @@ export class SignupFormComponent implements Form {
 	signupForm: FormGroup;
 
 	@ViewChildren('input') inputs!: QueryList<ElementRef>;
+	@ViewChild('emailInput') emailInput!: ElementRef;
 	@ViewChild('confirmPasswordInput') confirmPasswordInput!: ElementRef;
 
-	constructor(private router: Router, private fb: FormBuilder) {
+	constructor(private router: Router, private fb: FormBuilder, private userService: UserService) {
 		this.signupForm = this.fb.group ({
 			name: ['', [Validators.required]],
 			email: ['', [Validators.required, Validators.email]],
@@ -65,6 +67,14 @@ export class SignupFormComponent implements Form {
 
 		this.resetErrors();
 		let match: boolean = this.checkPasswords();
-		if (!this.checkErrors() && match) console.log("no hay errores");
+		if (!this.checkErrors() && match) {
+			let name: string = this.signupForm.value.name; 
+			let email: string = this.signupForm.value.email;
+			let password: string = this.signupForm.value.password;
+			let phone: string = this.signupForm.value.phone;
+
+			if (this.userService.signup(name, email, password, phone)) this.router.navigate(['profile']);
+			else this.onError(this.emailInput);
+		}
 	}	
 }

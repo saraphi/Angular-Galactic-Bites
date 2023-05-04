@@ -1,5 +1,18 @@
 <app-header></app-header>
-<main class="main-cart">
-    
-    
+<main class="main-shopping-cart">
+    <app-space-background class="background"></app-space-background>
+    <div class="nothing-container" *ngIf="!isShoppingCart()">
+        <p>¡El carrito de compra está vacío!</p>
+    </div>
+    <div class="shopping-cart-container" *ngIf="isShoppingCart()">
+        <ng-container>
+            <ng-container *ngFor="let itemId of getItemsKeys()">
+                <app-cart-item [item]="getItemById(itemId)"></app-cart-item>
+            </ng-container>
+        </ng-container>
+        <div class="bottom">
+            <label class="price-tag">TOTAL PRICE: <span class="price">{{ getTotalPrice() }}</span> €</label>
+            <button class="cyber-btn">BUY</button>
+        </div>
+    </div>
 </main>

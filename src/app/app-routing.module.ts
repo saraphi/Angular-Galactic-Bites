@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -9,8 +9,9 @@ import { OffersComponent } from './pages/offers/offers.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { PaymentComponent } from './pages/payment/payment.component';
-import { CartItemComponent } from './components/cart-item/cart-item.component';
-import {SliderBannerComponent} from "./components/slider-banner/slider-banner.component";
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { ProductComponent } from './components/product/product.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,8 +22,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'payment', component: PaymentComponent },
-  { path: 'cart-item', component: CartItemComponent },
-  { path: 'slider-banner', component: SliderBannerComponent}
+  { path: 'product-view', component: ProductComponent },
+  { path: 'product-detail/:id', component: ProductDetailComponent },
 ];
 
 @NgModule({

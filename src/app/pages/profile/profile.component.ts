@@ -1,25 +1,30 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ShoppingCart } from 'src/app/models/shopping-cart';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/database/firebase-auth.service';
 import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
     styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
 
-    /*@Input() user!: User;*/
     showOverlay: boolean = false;
-    showEditPopup: boolean = false;
+    showEditPopup: boolean = false;    
     showDeletePopup: boolean = false;
 
-    user: User = new User('0', 'Sara González Ramírez', 'saragonzalez@gmail.com', 'Hola!9', '623 123 123', 0, new ShoppingCart({}));
-
     @ViewChild('overlay') overlay!: ElementRef<any>;
+    
+    user: User | null = null;
 
-    constructor(private route: ActivatedRoute) {}
+    constructor(private router: Router, private authService: AuthService, private userService: UserService) {}
+    
+    ngOnInit(): void {
+        this.user = this.userService.user;
+        if (!this.user) this.router.navigate(['login']);
+    }
 
     hideOverlay() {
         this.showOverlay = false;
@@ -38,6 +43,8 @@ export class ProfileComponent {
     }
 
     logout() {
-
+        console.log(this.authService.getCurrentUser());
+        this.userService.logout();
+        this.ngOnInit();
     }
 }

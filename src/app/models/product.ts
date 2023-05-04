@@ -1,11 +1,14 @@
-export class Product {
-    public id: string;
-    public image: string;
-    public name: string;
-    public description: string;
-    private price: number;
-    public discount: number;
+export interface Product {
+    id: string;
+    image: string;
+    name: string;
+    description: string;
+    price: number;
+    discount: number;
+    category: Category;
+}
 
+/*
     constructor(id: string, image: string, name: string, description: string, price: number, discount: number) {
         this.id = id;
         this.image = image;
@@ -22,4 +25,4 @@ export class Product {
     public isOnOffer(): boolean {
         return this.discount > 0;
     }
-}
+*/

@@ -10,7 +10,7 @@ export class BannerComponent {
 
   constructor(private router: Router) {}
 
-  goToPage() {
+  goToMenu() {
     this.router.navigate(['menu']);
   }
 }
