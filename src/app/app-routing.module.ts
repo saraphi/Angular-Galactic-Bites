@@ -25,7 +25,6 @@ const routes: Routes = [
   { path: 'product-view', component: ProductComponent },
   { path: 'product-detail/:id', component: ProductDetailComponent },
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
