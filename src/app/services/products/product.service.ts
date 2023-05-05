@@ -33,13 +33,10 @@ export class ProductService {
   
   //ver si queremos ponerlo en el componente
   async getProductsIdByCategory() {
-    if (this.mapCategory.size > 0) {
+   
         
       return this.mapCategory;
-      } else {
-        //await this.setUp();
-        return this.mapCategory;
-      }
+      
   }
   async getProductById(id: string): Promise<Product | undefined> {
     return new Promise(async (resolve, reject) => {

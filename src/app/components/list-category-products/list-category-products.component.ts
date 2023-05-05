@@ -9,16 +9,23 @@ import { ProductService } from 'src/app/services/products/product.service';
   styleUrls: ['./list-category-products.component.scss']
 })
 export class ListCategoryProductsComponent {
-  mapCategory: Map<String, string[]>;
-  categorys:String[]
+  mapCategory: Map<string, string[]> =new Map<string, string[]>
+  categorys: string[] = [];
   constructor(private firebaseDataService: FirebaseDataService, private productServices:ProductService) {
   }
   ngOnInit() { 
-   this.setUp();
+    this.setUp(); 
   }
   async setUp() {
-    this.productServices.getProductsIdByCategory().then((mapa) => {
+    await this.productServices.getProductsIdByCategory().then((mapa) => {
+      
       this.mapCategory = mapa;
+      console.log(this.mapCategory)
+      for (let key of this.mapCategory.keys()) {
+        this.categorys.push(key)
+        console.log(key)
+      }
+      
     })
 
     

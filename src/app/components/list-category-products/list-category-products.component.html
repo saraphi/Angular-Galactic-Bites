@@ -1,8 +1,9 @@
 <ul>
-    <li *ngFor="let key of mapCategory.keys()">
-        {{ key}}
+    <li *ngFor="let categoria of mapCategory |keyvalue">
+        {{ categoria.key}}
         <ul>
-            <li *ngFor="let producto of mapCategory.get(key)">
+            <li *ngFor="let producto of categoria.value">
+                
                 <app-product [productoid]="producto" ></app-product>
             </li>
         </ul>

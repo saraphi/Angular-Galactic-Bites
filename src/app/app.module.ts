@@ -42,6 +42,7 @@ import { ProductComponent } from './components/product/product.component';
 import { SpaceBackgroundComponent } from './components/space-background/space-background.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component'
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { ListCategoryProductsComponent } from './components/list-category-products/list-category-products.component';
 
 
 @NgModule({
@@ -69,7 +70,9 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
     ProductComponent,
     SpaceBackgroundComponent,
     CartItemComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductComponent,
+    ListCategoryProductsComponent
 
   ],
   imports: [
