@@ -48,21 +48,34 @@ export class UserService {
       });
   }
 
-  signup(name: string, email: string, password: string, phone: string): boolean {
-    if (Object.keys(this.usersEmail).includes(email)) return false;
-    this.nextId += 1;
+  signup(name: string, email: string, password: string, phone: string): Promise<boolean> {  
+    // console.log(phone);
+    // this.firebaseAuthService.signUp({ email, password, name, phone })
+    //   .then(user => {
+    //     this.user = user;
+    //     console.log(user);
+    //     return true;
+    //     })
+    //   .catch(e => { 
+    //     return false;
+    //   })
 
-   
-    
-    this.firebaseAuthService.signUp({ email, password, name, phone })
-      .then(user => {
+    //   if (this.user!=null) return true;
+    //   return false;
+
+    return this.firebaseAuthService.signUp({ email, password, name, phone })
+      .then((user) => {
         this.user = user;
-
-          return true;})
-      .catch(e => { 
+        console.log(user);
+        if (this.user != null) return true;
         return false;
       })
+      .catch((e) => {
+        console.error('error signing up user', e)
+        return false;
+    });
   }
+  
 
   emailExists(email: string, callback: (exists: boolean) => void): void {
     this.firebaseAuthService.checkIfEmailExists(email)

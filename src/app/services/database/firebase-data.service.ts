@@ -87,12 +87,24 @@ export class FirebaseDataService {
 
     //Arreglar esto
     async setUserData(uid: string, userData: UserData) {
+      console.log("llegue");
+      console.log(uid);
+      console.log(userData);
+      console.log(userData.name);
+      console.log(userData.email);
+      console.log(userData.points);
+      console.log(userData.phone);
       const userDoc = doc(this.db, 'Users', uid);
-      await setDoc(userDoc, { userData });
+      await setDoc(userDoc, { 
+        name: userData.name,
+        email: userData.email,
+        points: userData.points,
+        phone: userData.phone 
+      })
     }
   
     async getUserData(uid: string): Promise<User | null> {
-      const userDoc = doc(this.db, 'users', uid);
+      const userDoc = doc(this.db, 'Users', uid);
       const userDocSnap = await getDoc(userDoc);
   
       if (userDocSnap.exists()) {

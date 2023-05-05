@@ -65,8 +65,12 @@ export class LoginFormComponent implements Form {
 			let email: string = this.loginForm.value.email;
 			let password: string = this.loginForm.value.password;
 
+			this.userService.login(email, password, (user) => console.log(user));
+			/*
 			if (this.userService.login(email, password)) this.router.navigate(['profile']);
-			
+			this.userService.emailExists(email, (exists) => {
+				exists?
+			  });
 			if (!this.userService.emailExists(email)) {
 				console.log('email doesn\'t exists');
 				this.onError(this.email);
@@ -75,7 +79,7 @@ export class LoginFormComponent implements Form {
 				console.log('password does not match');
 				this.onError(this.password); 
 			}
-			
+			*/
 		}
 	}
 }

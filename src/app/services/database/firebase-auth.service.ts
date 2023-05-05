@@ -23,24 +23,26 @@ export class FirebaseAuthService {
   
   constructor(private auth: Auth, private afAuth: AngularFireAuth, private firestoreService: FirebaseDataService) {}
 
-  async signUp({ email, password, name, phone,  }: { email: string; password: string; name:string; phone:string; }) {
+  async signUp({email, password, name, phone}: {email: string; password: string; name:string; phone:string;}): Promise<User | null>  {
     try {
-      const credential = await createUserWithEmailAndPassword(this.auth, email, password);
-      const uid = credential.user.uid;
-      const userData: UserData = {
-        name:  name,
-        email: email,
-        points: 0,
-        phone: phone
-        
-      };
-      let user: User = {
-        id: uid,
-        ...userData}
-      await this.firestoreService.setUserData(uid, userData);
-      return user;
+      return createUserWithEmailAndPassword(this.auth, email, password).then(
+        async (credential) => {
+          const uid = credential.user.uid;
+          const userData: UserData = {
+            name:  name,
+            email: email,
+            points: 0,
+            phone: phone
+
+          };
+          let user: User = {
+            id: uid,
+            ...userData}
+          return this.firestoreService.setUserData(uid, userData).then(() => {return user});
+      })
     } catch (error) {
       console.error('Error registering user:', error);
+      return null;
     }
   }
 
