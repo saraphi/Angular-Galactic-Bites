@@ -12,7 +12,6 @@ import { PaymentComponent } from './pages/payment/payment.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ProductComponent } from './components/product/product.component';
 
-
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'menu', component: MenuComponent },

@@ -35,8 +35,6 @@ import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 
-
-
 import { PageSectionComponent } from './components/page-section/page-section.component';
 import { ProductComponent } from './components/product/product.component';
 import { SpaceBackgroundComponent } from './components/space-background/space-background.component';
@@ -69,8 +67,8 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
     ProductComponent,
     SpaceBackgroundComponent,
     CartItemComponent,
-    ProductDetailComponent
-
+    ProductDetailComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
