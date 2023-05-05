@@ -31,14 +31,21 @@
 
     .wrapper {
         display: flex;
+        justify-content: space-between;
+        width: 70%;
 
         .category {
-
+            padding: 5%;
+            box-sizing: border-box;
+            width:8em;
+            height: 4em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba($lavender, .4);
 
             .name {
                 margin: 0;
-
-
             }
         }
     }
