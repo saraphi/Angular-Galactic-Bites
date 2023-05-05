@@ -67,8 +67,8 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
     ProductComponent,
     SpaceBackgroundComponent,
     CartItemComponent,
-    ProductDetailComponent
-
+    ProductDetailComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,

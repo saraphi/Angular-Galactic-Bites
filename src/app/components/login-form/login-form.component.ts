@@ -19,7 +19,7 @@ export class LoginFormComponent implements Form {
 	@ViewChild('email') email!: ElementRef;
 	@ViewChild('password') password!: ElementRef;
 	
-	constructor(private router: Router, private fb: FormBuilder,private userService: UserService) {
+	constructor(private router: Router, private fb: FormBuilder, private userService: UserService) {
 		this.loginForm = this.fb.group({
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required, PasswordValidator.strong()]]
@@ -59,7 +59,6 @@ export class LoginFormComponent implements Form {
 		console.log(this.loginForm.value);
 		// const pipo = this.authServices.login(this.loginForm.value);
 	
-		
 		this.resetErrors();
 		if (!this.checkErrors()) {
 			
