@@ -33,35 +33,26 @@ export class UserService {
   }
 
   async logout(): Promise<void> {
-    this.user = null;
-    await this.firebaseAuthService.logout();
+    this.firebaseAuthService.logout().then(() => {
+      this.user = null;
+    })
+ 
   }
 
-  login(email: string, password: string, callback: (success: boolean) => void): void {
-    this.firebaseAuthService.login({ email, password })
+  login(email: string, password: string, ): Promise<boolean>  {
+    return this.firebaseAuthService.login({ email, password })
       .then(user => {
         this.user = user;
-        callback(true);
+        return true;
       })
       .catch(e => {
-        callback(false);
+        console.error('error logging in user', e)
+        return false;
       });
   }
 
   signup(name: string, email: string, password: string, phone: string): Promise<boolean> {  
-    // console.log(phone);
-    // this.firebaseAuthService.signUp({ email, password, name, phone })
-    //   .then(user => {
-    //     this.user = user;
-    //     console.log(user);
-    //     return true;
-    //     })
-    //   .catch(e => { 
-    //     return false;
-    //   })
 
-    //   if (this.user!=null) return true;
-    //   return false;
 
     return this.firebaseAuthService.signUp({ email, password, name, phone })
       .then((user) => {
@@ -77,13 +68,14 @@ export class UserService {
   }
   
 
-  emailExists(email: string, callback: (exists: boolean) => void): void {
-    this.firebaseAuthService.checkIfEmailExists(email)
+  emailExists(email: string): Promise<boolean> {
+    return this.firebaseAuthService.checkIfEmailExists(email)
       .then((booleano) => {
-        callback(booleano);
+        return booleano;
       })
       .catch((e) => {
-        callback(false);
+        console.error('error checking email', e)
+        return false;
       });
   }
 

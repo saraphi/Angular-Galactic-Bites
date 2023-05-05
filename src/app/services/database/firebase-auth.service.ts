@@ -51,15 +51,15 @@ export class FirebaseAuthService {
   }
 
   async login({email, password }: { email: string; password: string }): Promise<User | null> {
-      await signInWithEmailAndPassword(this.auth, email, password);
-      return this.firestoreService.getUserData(this.auth.currentUser.uid);
-
+      return signInWithEmailAndPassword(this.auth, email, password).then(()=>{
+        return this.firestoreService.getUserData(this.auth.currentUser.uid)
+      })
   }
 
   async checkIfEmailExists(email: string): Promise<boolean> {
     try {
-      const signInMethods = await this.afAuth.fetchSignInMethodsForEmail(email);
-      return signInMethods.length > 0;
+      return this.afAuth.fetchSignInMethodsForEmail(email).then((value)=> {return value.length > 0})
+
     } catch (error) {
       console.error('Error checking if email exists:', error);
       return false;
