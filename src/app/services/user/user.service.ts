@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/models/user';
-
+import { FirebaseAuthService } from '../database/firebase-auth.service';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
+  constructor(private firebaseAuthService: FirebaseAuthService) {}
   usersEmail: {[key: string]: User} = {
     'saragonza.lez0608@gmail.com': {
-      id: 0, 
+      id: "0", 
       name: 'Sara', 
       email: 'saragonza.lez0608@gmail.com', 
       password: 'Hola!9', 
@@ -16,7 +16,7 @@ export class UserService {
       points: 0
     },
     'pipo@gmail.com': {
-      id: 1, 
+      id: "1", 
       name: 'Pipo', 
       email: 'pipo@gmail.com', 
       password: 'Hola!8', 
@@ -28,12 +28,13 @@ export class UserService {
   nextId: number = 1;
   user: User | null = null;
 
-  isLogged(): boolean {
-    return this.user != null;
+  async isLogged(): Promise<boolean> {
+    return await this.firebaseAuthService.isLoggedIn();
   }
 
-  logout(): void {
+  async logout(): Promise<void> {
     this.user = null;
+    await this.firebaseAuthService.logout();
   }
 
   login(email: string, password: string): boolean {
@@ -46,11 +47,10 @@ export class UserService {
 
   signup(name: string, email: string, password: string, phone: string): boolean {
     if (Object.keys(this.usersEmail).includes(email)) return false;
-
     this.nextId += 1;
 
     let user: User = {
-      id: this.nextId,
+      id: this.nextId.toString(),
       name: name,
       email: email,
       password: password,

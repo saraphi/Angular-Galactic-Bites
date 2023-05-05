@@ -1,102 +1,68 @@
-//Tengo que volver hacerlo cuando pueda comprobarlo y cambiar weas
-/*
-//Tiene que contener lo siguiente:
-logearse 
-iniciar sesion 
-editar datos del usuario 
-borrar datos 
-comprobar si esta iniciado
-mantener la sesion
-
-
-
-Codigo relevante para cuando este montado:
-async register() {
-    try {
-        const result = await this.afAuth.createUserWithEmailAndPassword(this.email, this.password);
-        const userUid = result.user.uid;
-        Llame a la función que crea el documento con la UID del usuario
-        await this.createUserData(userUid);
-    } catch (error) {
-        console.log(error);
-    }
-}
-async createUserData(uid: string) {
-    return await this.firestore.collection('users').doc(uid).set({
-        username: this.username,
-        email: this.email
-    });
-}
-*/
-
-import { getFirestore, doc, setDoc } from '@angular/fire/firestore';
-import { Injectable, NgZone } from '@angular/core';
-//import { User } from '../services/user';
-import * as auth from 'firebase/auth';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/compat/firestore';
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FirebaseDataService } from './firebase-data.service';
-import { getDoc } from 'firebase/firestore';
-interface user {
-    
- email: string;
-    
+
+interface UserData {
+  name: string;
+  email: string;
+  points: number;
+  phone: string;
+}
+
+interface User extends UserData {
+  id: string;
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 
 
-//Esto es basico que te cagas
 export class FirebaseAuthService {
-  userData
-
-  constructor(private auth: Auth,private firebaseServices: FirebaseDataService) { }
   
-  async register({ email, password, userData }: any) {
+  constructor(private auth: Auth, private afAuth: AngularFireAuth, private firestoreService: FirebaseDataService) {}
 
-    const credential = await createUserWithEmailAndPassword(this.auth, email, password);
-    const uid =  credential.user.uid;
-    const db = getFirestore();
-    //Idea 
-    
-    const userDoc = doc(db, 'Users', uid);
-    await setDoc(userDoc, { userData})
-
-  }
-
-  login({ email, password }: any) {
-    return signInWithEmailAndPassword(this.auth, email, password);
-    
-  }
-
-  logout() {
-    return signOut(this.auth);
-  }
-
-  async getCurrentUser(): Promise<user | null> {
-    const user = this.auth.currentUser;
-    if (user) {
-      const uid = user.uid;
-      const db = getFirestore();
-      const userDoc = doc(db, 'users', uid);
-
-      const userDocSnap = await getDoc(userDoc);
-
-      if (userDocSnap.exists()) {
-        const userData = userDocSnap.data();
-        return {
-          email: user.email,
-          
-        };
-      }
+  async register({ email, password, userData }: { email: string; password: string; userData: UserData }) {
+    try {
+      const credential = await createUserWithEmailAndPassword(this.auth, email, password);
+      const uid = credential.user.uid;
+      await this.firestoreService.setUserData(uid, userData);
+    } catch (error) {
+      console.error('Error registering user:', error);
     }
-    return null;
+  }
+
+  async isLoggedIn(): Promise<boolean> {
+    return this.auth.currentUser !== null;
+  }
+
+  async login({ email, password }: { email: string; password: string }): Promise<User | null> {
+    try {
+      await signInWithEmailAndPassword(this.auth, email, password);
+      return this.firestoreService.getUserData(this.auth.currentUser.uid);
+    } catch (error) {
+      console.error('Error logging in:', error);
+      return null;
+    }
+  }
+
+  async checkIfEmailExists(email: string): Promise<boolean> {
+    try {
+      const signInMethods = await this.afAuth.fetchSignInMethodsForEmail(email);
+      return signInMethods.length > 0;
+    } catch (error) {
+      console.error('Error checking if email exists:', error);
+      return false;
+    }
+  }
+
+  async logout(): Promise<void> {
+    try {
+      await signOut(this.auth);
+      console.log('User logged out.');
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
   }
 }
