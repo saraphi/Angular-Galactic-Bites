@@ -19,7 +19,7 @@ export class LoginFormComponent implements Form {
 	@ViewChild('email') email!: ElementRef;
 	@ViewChild('password') password!: ElementRef;
 	
-	constructor(private router: Router, private fb: FormBuilder, private userService: UserService) {
+	constructor(private router: Router, private fb: FormBuilder,private userService: UserService) {
 		this.loginForm = this.fb.group({
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required, PasswordValidator.strong()]]
@@ -59,22 +59,23 @@ export class LoginFormComponent implements Form {
 		console.log(this.loginForm.value);
 		// const pipo = this.authServices.login(this.loginForm.value);
 	
+		
 		this.resetErrors();
 		if (!this.checkErrors()) {
 			
 			let email: string = this.loginForm.value.email;
 			let password: string = this.loginForm.value.password;
 
-			if (this.userService.login(email, password)) this.router.navigate(['profile']);
+			this.userService.login(email, password).then(() => {this.router.navigate(['profile'])}).catch((error) => {
+				if (!this.userService.emailExists(email)) {
+					console.log('email doesn\'t exists');
+					this.onError(this.email);
+				}else if (!this.userService.checkPassword(email, password)) {
+					console.log('password does not match');
+					this.onError(this.password); 
+				}
+			})
 			
-			if (!this.userService.emailExists(email)) {
-				console.log('email doesn\'t exists');
-				this.onError(this.email);
-			}
-			if (!this.userService.checkPassword(email, password)) {
-				console.log('password does not match');
-				this.onError(this.password); 
-			}
 			
 		}
 	}

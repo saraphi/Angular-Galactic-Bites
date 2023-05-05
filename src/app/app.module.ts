@@ -34,7 +34,8 @@ import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { PageSectionComponent } from './components/page-section/page-section.component';
 import { ProductComponent } from './components/product/product.component';
 import { SpaceBackgroundComponent } from './components/space-background/space-background.component';
@@ -83,7 +84,9 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
     provideMessaging(() => getMessaging()),
     providePerformance(() => getPerformance()),
     provideRemoteConfig(() => getRemoteConfig()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [
     ScreenTrackingService,UserTrackingService

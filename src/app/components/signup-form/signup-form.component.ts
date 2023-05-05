@@ -71,10 +71,26 @@ export class SignupFormComponent implements Form {
 			let name: string = this.signupForm.value.name; 
 			let email: string = this.signupForm.value.email;
 			let password: string = this.signupForm.value.password;
-			let phone: string = this.signupForm.value.phone;
-
-			if (this.userService.signup(name, email, password, phone)) this.router.navigate(['profile']);
-			else this.onError(this.emailInput);
+			let tel: string = this.signupForm.value.tel;
+			console.log('form:', name, email, password, tel);
+			
+			this.userService.signup(name, email, password, tel).then((value: boolean) => {
+				if(value)this.router.navigate(['profile']);
+				else this.onError(this.emailInput);
+			});
+			
+			// this.signup(name, email, password, tel);
 		}
 	}	
+
+	// private signup(name: string, email: string, password: string, tel: string) {
+	// 	this.userService.signup(name, email, password, tel).subscribe({
+	// 		next: (value: boolean) => {	
+	// 			if (value) this.router.navigate(['profile']);
+	// 			else this.onError(this.emailInput);
+	// 			console.log('next:', value)
+	// 		},
+	// 		error: (error: any) => console.error('error signing up:', error)
+	// 	})
+	// } 
 }

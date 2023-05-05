@@ -36,7 +36,7 @@ export class ProductService {
   async getProductsIdByCategory() {
    
         
-      return this.mapCategory;
+    return this.mapCategory;
       
   }
 

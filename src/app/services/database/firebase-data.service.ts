@@ -1,10 +1,18 @@
 import { Injectable } from '@angular/core';
-import { getFirestore, getDoc, doc, collection, query, getDocs, addDoc } from '@angular/fire/firestore';
+import { getFirestore, getDoc, doc, collection, query, getDocs, addDoc, setDoc } from '@angular/fire/firestore';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 import { Observable, from } from 'rxjs';
 import { Category } from 'src/app/models/category';
 
 import { Product } from 'src/app/models/product';
+import { User } from 'src/app/models/user';
+interface UserData {
+  name: string;
+  email: string;
+  points: number;
+  phone: string;
+}
+
 interface ProductO {
     
     image: string;
@@ -22,7 +30,7 @@ interface ProductO {
 export class FirebaseDataService {
   //Images
   private cache: { [url: string]: Observable<string> } = {};
-  
+  private db = getFirestore();
   
   constructor(private storage: Storage) {
 
@@ -78,5 +86,38 @@ export class FirebaseDataService {
         });
       }
       return this.cache[url];
+    }
+
+    //Arreglar esto
+    async setUserData(uid: string, userData: UserData) {
+      console.log("llegue");
+      console.log(uid);
+      console.log(userData);
+      console.log(userData.name);
+      console.log(userData.email);
+      console.log(userData.points);
+      console.log(userData.phone);
+      const userDoc = doc(this.db, 'Users', uid);
+      await setDoc(userDoc, { 
+        name: userData.name,
+        email: userData.email,
+        points: userData.points,
+        phone: userData.phone 
+      })
+    }
+  
+    async getUserData(uid: string): Promise<User | null> {
+      const userDoc = doc(this.db, 'Users', uid);
+      const userDocSnap = await getDoc(userDoc);
+  
+      if (userDocSnap.exists()) {
+        const userData = userDocSnap.data() as UserData;
+        const user: User = {
+          id: userDocSnap.id,
+          ...userData,
+        };
+        return user;
+      }
+      return null;
     }
 }
