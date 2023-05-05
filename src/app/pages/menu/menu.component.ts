@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/database/firebase-auth.service';
+// import { AuthService } from 'src/app/services/database/firebase-auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/database/firebase-auth.service';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit{
-  constructor(private authservices: AuthService) { }
+  // constructor(private authservices: AuthService) { }
   
   ngOnInit() {
     //this.authservices.signUp();

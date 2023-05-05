@@ -35,14 +35,11 @@ import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 
-
-
 import { PageSectionComponent } from './components/page-section/page-section.component';
 import { ProductComponent } from './components/product/product.component';
 import { SpaceBackgroundComponent } from './components/space-background/space-background.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component'
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
-import { ListCategoryProductsComponent } from './components/list-category-products/list-category-products.component';
 
 
 @NgModule({
@@ -72,8 +69,6 @@ import { ListCategoryProductsComponent } from './components/list-category-produc
     CartItemComponent,
     ProductDetailComponent,
     ProductComponent,
-    ListCategoryProductsComponent
-
   ],
   imports: [
     BrowserModule,

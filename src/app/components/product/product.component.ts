@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
 import { Observable, from } from 'rxjs';
-import { FirebaseDataService } from 'src/app/services/database/firebase-data.service';
+// import { FirebaseDataService } from 'src/app/services/database/firebase-data.service';
 import { Router } from '@angular/router';
-import { ProductService } from 'src/app/services/products/product.service';
+// import { ProductService } from 'src/app/services/products/product.service';
 
 
 
@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit {
   imageUrl: Observable<string>;
   product: Product;
 
-  constructor(private firebaseDataService: FirebaseDataService, private productServices:ProductService, private router: Router) { }
+  constructor(private router: Router) { }
   @Input() productoid: string;
   details() {
     this.router.navigate(['/product-detail', this.product.name], { state: { producto: this.product } });
@@ -28,9 +28,9 @@ export class ProductComponent implements OnInit {
    this.setup();
   }
   async setup() {
-  await this.productServices.getProductById(this.productoid).then((product) => {
-     this.product = product
-    });
-   this.imageUrl = from( this.firebaseDataService.getImage(this.product.image));
+  // await this.productServices.getProductById(this.productoid).then((product) => {
+  //    this.product = product
+  //   });
+  //  this.imageUrl = from( this.firebaseDataService.getImage(this.product.image));
   }
 }

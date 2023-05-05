@@ -15,7 +15,7 @@ async register() {
     try {
         const result = await this.afAuth.createUserWithEmailAndPassword(this.email, this.password);
         const userUid = result.user.uid;
-        // Llame a la función que crea el documento con la UID del usuario
+        Llame a la función que crea el documento con la UID del usuario
         await this.createUserData(userUid);
     } catch (error) {
         console.log(error);
@@ -28,6 +28,7 @@ async createUserData(uid: string) {
     });
 }
 */
+
 import { getFirestore, doc, setDoc } from '@angular/fire/firestore';
 import { Injectable, NgZone } from '@angular/core';
 //import { User } from '../services/user';
@@ -53,7 +54,7 @@ interface user {
 
 
 //Esto es basico que te cagas
-export class AuthService {
+export class FirebaseAuthService {
   userData
 
   constructor(private auth: Auth,private firebaseServices: FirebaseDataService) { }
@@ -98,5 +99,4 @@ export class AuthService {
     }
     return null;
   }
-
 }

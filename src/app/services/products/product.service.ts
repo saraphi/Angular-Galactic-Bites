@@ -9,7 +9,8 @@ import { finalize } from 'rxjs';
 export class ProductService {
   private mapProducts: Map<string, Product>  //ids: Productos
   private mapCategory: Map<string, string[]>
-   myMap = new Map<number, string>();  //categorias: idsProductos//categorias: idsProductos
+  myMap = new Map<number, string>();  //categorias: idsProductos//categorias: idsProductos
+
   constructor(private firebaseservice: FirebaseDataService) { 
     this.mapProducts = new Map<string, Product>();
     this.mapCategory = new Map<string, string[]>();
@@ -31,13 +32,14 @@ export class ProductService {
 
   }
   
-  //ver si queremos ponerlo en el componente
+  // ver si queremos ponerlo en el componente
   async getProductsIdByCategory() {
    
         
       return this.mapCategory;
       
   }
+
   async getProductById(id: string): Promise<Product | undefined> {
     return new Promise(async (resolve, reject) => {
       if (this.mapProducts.size > 0) {
@@ -52,5 +54,4 @@ export class ProductService {
       }
     });
   }
-
 }

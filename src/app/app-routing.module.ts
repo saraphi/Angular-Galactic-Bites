@@ -9,13 +9,8 @@ import { OffersComponent } from './pages/offers/offers.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { PaymentComponent } from './pages/payment/payment.component';
-import { CartItemComponent } from './components/cart-item/cart-item.component';
-
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
-import { Product } from './models/product.model';
 import { ProductComponent } from './components/product/product.component';
-import { ListCategoryProductsComponent } from './components/list-category-products/list-category-products.component';
-
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,12 +21,9 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'payment', component: PaymentComponent },
- // { path: 'cart-item', component: CartItemComponent }, 
   { path: 'product-view', component: ProductComponent },
-  { path: 'product-detail/:name', component: ProductDetailComponent },
-  {path:'list-product', component: ListCategoryProductsComponent}
+  { path: 'product-detail/:id', component: ProductDetailComponent },
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

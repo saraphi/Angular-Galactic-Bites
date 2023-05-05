@@ -1,7 +1,8 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AuthService } from 'src/app/services/database/firebase-auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+// import { AuthService } from 'src/app/services/database/firebase-auth.service';
 import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
     selector: 'app-profile',
@@ -18,10 +19,11 @@ export class ProfileComponent implements OnInit {
     
     user: User | null = null;
 
-
-    constructor(private route: ActivatedRoute, private authService: AuthService) {}
+    constructor(private router: Router, private userService: UserService) {}
+    
     ngOnInit(): void {
-        throw new Error('Method not implemented.');
+        this.user = this.userService.user;
+        if (!this.user) this.router.navigate(['login']);
     }
 
     hideOverlay() {
@@ -41,6 +43,8 @@ export class ProfileComponent implements OnInit {
     }
 
     logout() {
-        console.log(this.authService.getCurrentUser());
+        // console.log(this.authService.getCurrentUser());
+        this.userService.logout();
+        this.ngOnInit();
     }
 }
