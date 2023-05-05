@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PasswordValidator } from 'src/app/validators/password.validator';
 import { Form } from 'src/app/models/form';
-import { AuthService } from 'src/app/services/database/firebase-auth.service';
+// import { AuthService } from 'src/app/services/database/firebase-auth.service';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -19,7 +19,7 @@ export class LoginFormComponent implements Form {
 	@ViewChild('email') email!: ElementRef;
 	@ViewChild('password') password!: ElementRef;
 	
-	constructor(private router: Router, private fb: FormBuilder,private userService:UserService, private authServices:AuthService) {
+	constructor(private router: Router, private fb: FormBuilder,private userService: UserService) {
 		this.loginForm = this.fb.group({
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required, PasswordValidator.strong()]]
@@ -57,7 +57,7 @@ export class LoginFormComponent implements Form {
 
 	onSubmit(): void { 
 		console.log(this.loginForm.value);
-		const pipo = this.authServices.login(this.loginForm.value);
+		// const pipo = this.authServices.login(this.loginForm.value);
 	
 		
 		this.resetErrors();

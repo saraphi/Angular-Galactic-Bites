@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseDataService } from './services/database/firebase-data.service';
+// import { FirebaseDataService } from './services/database/firebase-data.service';
 
 import { Observable } from 'rxjs';
-import { ProductService } from './services/products/product.service';
+// import { ProductService } from './services/products/product.service';
 
 
 
@@ -14,10 +14,10 @@ import { ProductService } from './services/products/product.service';
 })
 
 export class AppComponent {
-  constructor(private firebaseDataService: FirebaseDataService, productservices: ProductService) {
-    productservices.setUp();
+  // constructor(private firebaseDataService: FirebaseDataService, productservices: ProductService) {
+  //   productservices.setUp();
 
-  }
+  // }
 
 
 }
