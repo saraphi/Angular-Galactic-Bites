@@ -1,6 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { AuthService } from 'src/app/services/database/firebase-auth.service';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -43,7 +42,6 @@ export class ProfileComponent implements OnInit {
     }
 
     logout() {
-        // console.log(this.authService.getCurrentUser());
         this.userService.logout().then(()=> this.ngOnInit());
 
     }

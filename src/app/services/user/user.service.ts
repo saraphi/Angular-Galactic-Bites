@@ -8,24 +8,7 @@ import { waitForAsync } from '@angular/core/testing';
 })
 export class UserService {
   constructor(private firebaseAuthService: FirebaseAuthService) {}
-  usersEmail: {[key: string]: User} = {
-    'saragonza.lez0608@gmail.com': {
-      id: "0", 
-      name: 'Sara', 
-      email: 'saragonza.lez0608@gmail.com', 
-      phone: '123 456 789',
-      points: 0
-    },
-    'pipo@gmail.com': {
-      id: "1", 
-      name: 'Pipo', 
-      email: 'pipo@gmail.com', 
-      phone: '123 456 789',
-      points: 0
-    }
-  };
 
-  nextId: number = 1;
   user: User | null = null;
 
   async isLogged(): Promise<boolean> {
@@ -36,7 +19,6 @@ export class UserService {
     return await this.firebaseAuthService.logout().then(() => {
       this.user = null;
     })
- 
   }
 
   login(email: string, password: string, ): Promise<boolean>  {
