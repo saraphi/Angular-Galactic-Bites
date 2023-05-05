@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Product } from 'src/app/models/product.model';
+import { Product } from 'src/app/models/product';
 import { FirebaseDataService } from '../database/firebase-data.service';
 import { finalize } from 'rxjs';
 

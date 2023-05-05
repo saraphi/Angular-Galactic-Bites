@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from 'src/app/models/product.model';
+import { Product } from 'src/app/models/product';
 import { Observable, from } from 'rxjs';
 // import { FirebaseDataService } from 'src/app/services/database/firebase-data.service';
 

@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { getFirestore, getDoc, doc, collection, query, getDocs, addDoc } from '@angular/fire/firestore';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 import { Observable, from } from 'rxjs';
+import { Category } from 'src/app/models/category';
 
-import { Product } from 'src/app/models/product.model';
+import { Product } from 'src/app/models/product';
 interface ProductO {
     
     image: string;
@@ -33,6 +34,8 @@ export class FirebaseDataService {
     const q = query(collection(db, 'Productos'));
     const snapshot = await getDocs(q);
     const productList = [];
+    
+
     snapshot.docs.forEach((doc) => {
       const data = doc.data() as ProductO;
       const product: Product = {

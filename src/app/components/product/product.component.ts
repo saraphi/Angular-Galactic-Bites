@@ -1,10 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product.model';
+import { Product } from 'src/app/models/product';
 import { Observable, from } from 'rxjs';
-// import { FirebaseDataService } from 'src/app/services/database/firebase-data.service';
 import { Router } from '@angular/router';
-// import { ProductService } from 'src/app/services/products/product.service';
-
 
 
 @Component({

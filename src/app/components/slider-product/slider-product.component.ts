@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductComponent } from '../product/product.component';
 import { ProductService } from 'src/app/services/product/product.service';
-// import { FirebaseDataService } from 'src/app/services/database/firebase-data.service';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-slider-product',
@@ -11,11 +11,12 @@ import { ProductService } from 'src/app/services/product/product.service';
 })
 export class SliderProductComponent implements OnInit {
 
-  products: Product[] = [];
+  // products: Product[] = [];
+  categories: string[] = [Category.menu, Category.pizza, Category.burguer, Category.taco, Category.main, Category.complement, Category.drink]
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-      this.products = this.productService.getProducts();
+      // this.products = this.productService.getProducts();
   }
 }
