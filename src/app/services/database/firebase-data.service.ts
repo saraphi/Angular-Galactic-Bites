@@ -100,7 +100,6 @@ export class FirebaseDataService {
         const user: User = {
           id: userDocSnap.id,
           ...userData,
-          password: ''
         };
         return user;
       }
