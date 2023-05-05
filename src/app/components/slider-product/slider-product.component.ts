@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductComponent } from '../product/product.component';
+import { ProductService } from 'src/app/services/product/product.service';
 // import { FirebaseDataService } from 'src/app/services/database/firebase-data.service';
 
 @Component({
