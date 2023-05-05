@@ -1,3 +1,5 @@
+import { Category } from 'src/app/models/category';
+
 export interface Product {
     id: string;
     image: string;
@@ -5,6 +7,7 @@ export interface Product {
     description: string;
     price: number;
     discount: number;
+    category: Category;
 }
 
 /*

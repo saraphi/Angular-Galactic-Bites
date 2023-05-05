@@ -11,6 +11,7 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
 import { PaymentFormComponent } from './components/payment-form/payment-form.component';
 import { EditProfilePopupComponent } from './components/edit-profile-popup/edit-profile-popup.component';
 import { DeleteProfilePopupComponent } from './components/delete-profile-popup/delete-profile-popup.component';
+
 import { BannerComponent } from './components/banner/banner.component';
 import { SliderBannerComponent } from './components/slider-banner/slider-banner.component';
 import { SliderProductComponent } from './components/slider-product/slider-product.component';
@@ -34,12 +35,12 @@ import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 
-
-
 import { PageSectionComponent } from './components/page-section/page-section.component';
 import { ProductComponent } from './components/product/product.component';
 import { SpaceBackgroundComponent } from './components/space-background/space-background.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component'
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+
 
 @NgModule({
   declarations: [
@@ -65,7 +66,9 @@ import { CartItemComponent } from './components/cart-item/cart-item.component'
     PageSectionComponent,
     ProductComponent,
     SpaceBackgroundComponent,
-    CartItemComponent
+    CartItemComponent,
+    ProductDetailComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,

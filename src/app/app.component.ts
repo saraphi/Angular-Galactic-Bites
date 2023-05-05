@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FirebaseDataService } from './services/database/firebase-data.service';
 
 import { Observable } from 'rxjs';
+import { ProductService } from './services/products/product.service';
+
 
 
 
@@ -10,9 +12,13 @@ import { Observable } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
 
+export class AppComponent implements OnInit {
+  constructor(private firebaseDataService: FirebaseDataService, private productservices: ProductService) {
+  }
 
-  title = 'Client';
-
+  ngOnInit(): void {
+    this.productservices.setUp();
+  }
 }
+

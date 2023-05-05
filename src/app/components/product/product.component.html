@@ -1,6 +1,6 @@
-<div class="product">
-    <img src="{{ product.image }}">
+<div class="product" (click)="details()">
+    <img [src]="imageUrl | async" alt="Imagen">
     <div class="name-container">
-        <label class="name">{{ product.name }}</label>
+        <label *ngIf="product" class="name">{{ product.name }}</label>
     </div>
 </div>

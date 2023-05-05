@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PasswordValidator } from 'src/app/validators/password.validator';
 import { Form } from 'src/app/models/form';
+// import { AuthService } from 'src/app/services/database/firebase-auth.service';
+import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -55,9 +57,11 @@ export class LoginFormComponent implements Form {
 
 	onSubmit(): void { 
 		console.log(this.loginForm.value);
-
+		// const pipo = this.authServices.login(this.loginForm.value);
+	
 		this.resetErrors();
 		if (!this.checkErrors()) {
+			
 			let email: string = this.loginForm.value.email;
 			let password: string = this.loginForm.value.password;
 
@@ -71,6 +75,7 @@ export class LoginFormComponent implements Form {
 				console.log('password does not match');
 				this.onError(this.password); 
 			}
+			
 		}
 	}
 }
