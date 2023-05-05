@@ -33,7 +33,7 @@ export class UserService {
   }
 
   async logout(): Promise<void> {
-    this.firebaseAuthService.logout().then(() => {
+    return await this.firebaseAuthService.logout().then(() => {
       this.user = null;
     })
  
