@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product/product.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
@@ -10,7 +11,7 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-car
 })
 export class ShoppingCartComponent {
 
-  constructor(private shoppingCartService: ShoppingCartService, private itemService: ProductService) {}
+  constructor(private router: Router, private shoppingCartService: ShoppingCartService, private itemService: ProductService) {}
 
   isShoppingCart(): boolean {
     return this.shoppingCartService.isShoppingCart();
@@ -30,5 +31,9 @@ export class ShoppingCartComponent {
 
   getTotalPrice(): number {
     return this.shoppingCartService.getTotalPrice();
+  }
+
+  onBuy(): void {
+    this.router.navigate(['payment']);
   }
 }
