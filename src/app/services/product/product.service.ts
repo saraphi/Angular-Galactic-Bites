@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { Category } from 'src/app/models/category';
 import { FirebaseDataService } from '../database/firebase-data.service';
-import { Observable, from } from 'rxjs';
+import { Observable, finalize, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,9 +30,9 @@ export class ProductService {
       })
   }
 
-  getUrl(itemId: string): Observable<string> {
+  getURL(itemId: string): Observable<string> {
     return from(this.firebaseDataService.getImage(this.getItem(itemId).image));
-  }
+  } 
 
   getProductsId(): string[] {
     return Object.keys(this.mapProducts);

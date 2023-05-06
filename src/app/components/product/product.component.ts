@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { Observable, from } from 'rxjs';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product/product.service';
 
@@ -12,7 +11,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 })
 export class ProductComponent implements OnInit {
 
-  @Input() productId: string = '';
+  @Input() productId: string = '../../assets/placeholder.png';
 
   image: string = '';
   product: Product | null = null;
@@ -23,14 +22,14 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.product = this.productService.getItem(this.productId);
-    this.getUrl();
+    this.setUrl();
   }
 
-  getUrl() {
-    this.productService.getUrl(this.productId).subscribe(
-      (url: string) => this.image = url,
-      (error: any) => console.error('error getting url:', error)
-    )
+  private setUrl() {
+    this.productService.getURL(this.productId).subscribe({
+      next: (url: string) => this.image = url,
+      error: (error: any) => console.error('error getting url:', error)
+    });
   }
 
   details() {
