@@ -13,6 +13,8 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class ProductComponent implements OnInit {
 
   @Input() productId: string = '';
+
+  image: string = '';
   product: Product | null = null;
   discount: number | null = null;
   points: number | null = null;
@@ -21,7 +23,14 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.product = this.productService.getItem(this.productId);
-    if (this.product && this.productService.isOnDiscount(this.productId)) this.discount = this.productService.getItemDiscount(this.productId);
+    this.getUrl();
+  }
+
+  getUrl() {
+    this.productService.getUrl(this.productId).subscribe(
+      (url: string) => this.image = url,
+      (error: any) => console.error('error getting url:', error)
+    )
   }
 
   details() {

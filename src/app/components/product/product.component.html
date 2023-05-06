@@ -1,11 +1,11 @@
 <div class="product-container" *ngIf="product" (click)="details()">
     <div class="product">
-        <img src="{{ product.image }}" alt="Imagen">
+        <img src="{{ image }}" alt="Imagen">
         <div class="text-container">
             <label class="name">{{ product.name }}</label>
         </div>
     </div>
     <div class="overlay-tag">
-        <label *ngIf="discount" class="price">- {{ discount }} %</label>
+        <label class="price">- {{ product.discount }} %</label>
     </div>
 </div>
