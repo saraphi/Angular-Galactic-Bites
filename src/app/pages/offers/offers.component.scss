@@ -27,7 +27,8 @@
         background-color: rgba($black, .4);
 
         article {
-
+            width: 100%;
+            
             header {
                 width: 100%;
                 height: calc($header-height + .4em);
@@ -41,6 +42,17 @@
                 font-size: 30pt;
                 font-style: italic;
                 text-shadow: 1px 1px .5em $lavender;
+            }
+        }
+
+        .banner {
+            width: 100%;
+            height: $big-carousel-heigth;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
         }
 

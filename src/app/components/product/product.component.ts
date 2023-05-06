@@ -11,9 +11,9 @@ import { ProductService } from 'src/app/services/product/product.service';
 })
 export class ProductComponent implements OnInit {
 
-  @Input() productId: string = '../../assets/placeholder.png';
+  @Input() productId: string = '';
 
-  image: string = '';
+  image: string = '../../assets/placeholder.png';
   product: Product | null = null;
   discount: number | null = null;
   points: number | null = null;
@@ -35,26 +35,4 @@ export class ProductComponent implements OnInit {
   details() {
     this.router.navigate(['']);
   }
-
-
-//   title: string = 'Client';
-//   imageUrl: Observable<string>;
-//   product: Product;
-
-//   constructor(private router: Router) { }
-//   @Input() productoid: string;
-//   details() {
-//     this.router.navigate(['/product-detail', this.product.name], { state: { producto: this.product } });
-//   }
-
-//  async ngOnInit() {
-
-//    this.setup();
-//   }
-//   async setup() {
-//   // await this.productServices.getProductById(this.productoid).then((product) => {
-//   //    this.product = product
-//   //   });
-//   //  this.imageUrl = from( this.firebaseDataService.getImage(this.product.image));
-//   }
 }

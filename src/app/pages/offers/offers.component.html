@@ -3,7 +3,7 @@
     <div class="offers">
         <article id="discount">  
             <header>OFERTAS</header>
-            <app-banner-carousel></app-banner-carousel>
+            <app-banner-carousel [products]="discountedBanner"></app-banner-carousel>
             <div class="list">
                 <ng-container *ngFor="let product of discounted">
                     <app-product class="product" [productId]="product"></app-product>
@@ -12,7 +12,7 @@
         </article>
         <article id="points">
             <header>PUNTOS</header>
-            <app-banner-carousel></app-banner-carousel>
+            <div class="banner"><img src='../../../assets/points.png'></div>
         </article>
     </div>
 </main>
