@@ -44,7 +44,10 @@
             @include cyber-btn(9em, 2em, 20pt, $white, $eerie-black, $raleway);
             cursor: pointer;
             align-self: end;
-            &:hover { color: $turquoise; }
+            &:hover { 
+                color: $lavender; 
+                box-shadow: 0 8px 5px rgba($lavender, 0.7);
+            }
             &:active { transform: translateY(10%); }
         }
     }
