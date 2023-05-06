@@ -5,7 +5,9 @@
             <header>OFERTAS</header>
             <app-banner-carousel></app-banner-carousel>
             <div class="list">
-
+                <ng-container *ngFor="let product of discounted">
+                    <app-product class="product" [productId]="product"></app-product>
+                </ng-container>
             </div>
         </article>
         <article id="points">

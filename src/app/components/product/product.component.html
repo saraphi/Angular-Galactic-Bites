@@ -1,6 +1,11 @@
-<div class="product" (click)="details()">
-    <img [src]="imageUrl | async" alt="Imagen">
-    <div class="name-container">
-        <label *ngIf="product" class="name">{{ product.name }}</label>
+<div class="product-container" *ngIf="product" (click)="details()">
+    <div class="product">
+        <img src="{{ product.image }}" alt="Imagen">
+        <div class="text-container">
+            <label class="name">{{ product.name }}</label>
+        </div>
+    </div>
+    <div class="overlay-tag">
+        <label *ngIf="discount" class="price">- {{ discount }} %</label>
     </div>
 </div>

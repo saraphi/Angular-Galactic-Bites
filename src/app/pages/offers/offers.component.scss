@@ -17,6 +17,9 @@
     }
 
     .offers {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         z-index: 1;
         width: 90%;
         min-height: $main-height;
@@ -40,5 +43,17 @@
                 text-shadow: 1px 1px .5em $lavender;
             }
         }
+
+        .list {
+            display: flex;
+            max-width: 100%;
+            height: fit-content;
+            padding-top: 5%;
+            padding-left: 2.1%;
+            box-sizing: border-box;
+            flex-wrap: wrap;
+            
+            .product { margin: 0 4.2% 5% 4.2%; }
+        }        
     }
 }
