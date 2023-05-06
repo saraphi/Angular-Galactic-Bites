@@ -14,7 +14,7 @@ import { DeleteProfilePopupComponent } from './components/delete-profile-popup/d
 
 import { BannerComponent } from './components/banner/banner.component';
 import { SliderBannerComponent } from './components/slider-banner/slider-banner.component';
-import { SliderProductComponent } from './components/slider-product/slider-product.component';
+import { CategoryCarouselComponent } from './components/category-carousel/category-carousel.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -54,7 +54,7 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
     DeleteProfilePopupComponent,
     BannerComponent,
     SliderBannerComponent,
-    SliderProductComponent,
+    CategoryCarouselComponent,
     ProfileComponent,
     ShoppingCartComponent,
     LoginComponent,
