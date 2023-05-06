@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product';
-import { ProductComponent } from '../product/product.component';
-import { ProductService } from 'src/app/services/product/product.service';
 import { Category } from 'src/app/models/category';
-import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-slider-product',
