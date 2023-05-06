@@ -29,19 +29,30 @@ export class UserService {
     })
   }
   
-  async login(email: string, password: string, ): Promise<boolean>  {
-    return await this.firebaseAuthService.login({ email, password })
-      .then(async user => {
-        this.user = user;
-        await this.setUpCarritoWey();
-        this.updateData()
+  async login(email: string, password: string): Promise<boolean> {
+  try {
+    const user = await this.firebaseAuthService.login({ email, password });
+    this.user = user;
+    
+    try {
+      await this.setUpCarritoWey();
+      try {
+        await this.updateData();
         return true;
-      })
-      .catch(e => {
-        console.error('error logging in user', e)
+      } catch (e) {
+        console.error('Error updating data', e);
         return false;
-      });
+      }
+    } catch (e) {
+      console.error('Error setting up carrito', e);
+      return false;
+    }
+  } catch (e) {
+    console.error('Error logging in user', e);
+    return false;
   }
+}
+
 
   async signup(name: string, email: string, password: string, phone: string): Promise<boolean> {  
     return await this.firebaseAuthService.signUp({ email, password, name, phone })
@@ -74,11 +85,10 @@ export class UserService {
   checkPassword(email: string, password: string): boolean {
     return true;
   } 
-  updateData() {
-    this.shoppingCartService.shoppingCart.subscribe((value) => {
+  async updateData():Promise<void>  {
+    this.shoppingCartService.shoppingCart.subscribe(async (value) => {
       this.user.shoppingCart = value;
-      console.log(this.user.shoppingCart)
-      //this.firebaseAuthService.saveUser(this.user); Hago más tarde
+      await this.firebaseAuthService.saveUser(this.user).then(() => { return; }); //Hago más tarde
     }
      
    )

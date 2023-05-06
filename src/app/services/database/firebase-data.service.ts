@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { getFirestore, getDoc, doc, collection, query, getDocs, addDoc, setDoc } from '@angular/fire/firestore';
+import { getFirestore, getDoc, doc, collection, query, getDocs, addDoc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+import { update } from 'firebase/database';
 import { Observable, from } from 'rxjs';
 
 import { Product } from 'src/app/models/product';
@@ -96,7 +97,22 @@ export class FirebaseDataService {
     })
   } 
 
-    
+  async updateUser(userData: User) {
+    console.log("Pi")
+    console.log(userData.id)
+    console.log(userData)
+    const userDoc = doc(this.db, 'Users', userData.id);
+    await updateDoc(userDoc, { 
+      id: userData.id,
+      name: userData.name,
+      email: userData.email,
+      points: userData.points,
+      phone: userData.phone, 
+      shoppingCart: userData.shoppingCart
+    });
+
+
+  }
   // async getShopping(uid: string):Promise<Map<string, number>| null > {
   //     // console.log(uid)
   //     // const userDoc = doc(this.db, 'Users', uid);
@@ -144,7 +160,9 @@ export class FirebaseDataService {
     const userDoc = doc(this.db, 'Users', uid);
     const userDocSnap = await getDoc(userDoc);
     if (userDocSnap.exists()) {
+
       const user = userDocSnap.data() as User;
+      user.id = userDoc.id;
       return user;
     }
     return null;
