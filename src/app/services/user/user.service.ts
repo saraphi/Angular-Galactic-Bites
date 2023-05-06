@@ -26,12 +26,12 @@ export class UserService {
       this.user = null;
     })
   }
-
+  
   async login(email: string, password: string, ): Promise<boolean>  {
     return await this.firebaseAuthService.login({ email, password })
-      .then(user => {
+      .then(async user => {
         this.user = user;
-        this.shoppingCartService.setData(this.user.shoppingCart);
+        await this.setUpCarritoWey();
         return true;
       })
       .catch(e => {
@@ -53,7 +53,10 @@ export class UserService {
         return false;
       });
   }
-  
+  async setUpCarritoWey(): Promise<void> {
+    return this.shoppingCartService.setData(this.user.shoppingCart);
+}
+
   async emailExists(email: string): Promise<boolean> {
     return this.firebaseAuthService.checkIfEmailExists(email)
       .then((value) => {
