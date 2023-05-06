@@ -1,10 +1,10 @@
 <app-header></app-header>
 <main class="main-shopping-cart">
     <app-space-background class="background"></app-space-background>
-    <div class="nothing-container" *ngIf="!showe">
+    <div class="nothing-container" *ngIf="!show()">
         <p>¡El carrito de compra está vacío!</p>
     </div>
-    <div class="shopping-cart-container" *ngIf="showe">
+    <div class="shopping-cart-container" *ngIf="show()">
         <ng-container>
             <ng-container *ngFor="let itemId of getItemsKeys()">
                 <app-cart-item [item]="getItemById(itemId)"></app-cart-item>

@@ -4,6 +4,8 @@ import { FirebaseAuthService } from '../database/firebase-auth.service';
 import { __await } from 'tslib';
 import { waitForAsync } from '@angular/core/testing';
 import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
+import { from } from 'rxjs/internal/observable/from';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +34,7 @@ export class UserService {
       .then(async user => {
         this.user = user;
         await this.setUpCarritoWey();
+        this.updateData()
         return true;
       })
       .catch(e => {
@@ -71,4 +74,13 @@ export class UserService {
   checkPassword(email: string, password: string): boolean {
     return true;
   } 
+  updateData() {
+    this.shoppingCartService.shoppingCart.subscribe((value) => {
+      this.user.shoppingCart = value;
+      console.log(this.user.shoppingCart)
+      //this.firebaseAuthService.saveUser(this.user); Hago más tarde
+    }
+     
+   )
+  }
 }
