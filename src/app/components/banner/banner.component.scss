@@ -1,4 +1,4 @@
-@import '../../shared/colors';
+@import '../../shared/variables';
 @import '../../shared/classes';
 // * { font-weight: bold; }
 
@@ -9,7 +9,7 @@
     background-color: $white;
 
     width: 100%;
-    height: 400px;
+    height: $banner-height;
 
     text-transform: uppercase;
     font-weight: bold;

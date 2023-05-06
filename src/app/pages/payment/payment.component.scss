@@ -1,10 +1,5 @@
 @import '../../shared/classes';
-@import '../../shared/colors';
-
-app-header {
-    z-index: 2;
-    position: sticky;
-}
+@import '../../shared/variables';
 
 .main-payment {
     display: flex;

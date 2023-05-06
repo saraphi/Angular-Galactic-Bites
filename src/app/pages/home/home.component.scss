@@ -1,15 +1,9 @@
 @import '../../shared/classes';
-@import '../../shared/colors';
-
-app-header {
-    z-index: 2;
-    position: sticky;
-}
+@import '../../shared/variables';
 
 .main-home {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
     max-height: fit-content;
@@ -23,13 +17,13 @@ app-header {
     }
 
     .home {
-        z-index: 1;
         width: 80%;
         background-color: rgba($black, 0.4);
-        
+        min-height: $main-height;
+
         .page-section-wrapper {
             display: flex;
-            height: 250px;
+            height: calc($main-height - $banner-height);
             width: 100%;
 
             .page-section-container {
