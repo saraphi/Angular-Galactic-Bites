@@ -4,6 +4,8 @@ import { FirebaseAuthService } from '../database/firebase-auth.service';
 import { __await } from 'tslib';
 import { waitForAsync } from '@angular/core/testing';
 import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
+import { from } from 'rxjs/internal/observable/from';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,18 +29,30 @@ export class UserService {
     })
   }
   
-  async login(email: string, password: string, ): Promise<boolean>  {
-    return await this.firebaseAuthService.login({ email, password })
-      .then(async user => {
-        this.user = user;
-        await this.setUpCarritoWey();
+  async login(email: string, password: string): Promise<boolean> {
+  try {
+    const user = await this.firebaseAuthService.login({ email, password });
+    this.user = user;
+    
+    try {
+      await this.setUpCarritoWey();
+      try {
+        await this.updateData();
         return true;
-      })
-      .catch(e => {
-        console.error('error logging in user', e)
+      } catch (e) {
+        console.error('Error updating data', e);
         return false;
-      });
+      }
+    } catch (e) {
+      console.error('Error setting up carrito', e);
+      return false;
+    }
+  } catch (e) {
+    console.error('Error logging in user', e);
+    return false;
   }
+}
+
 
   async signup(name: string, email: string, password: string, phone: string): Promise<boolean> {  
     return await this.firebaseAuthService.signUp({ email, password, name, phone })
@@ -71,4 +85,12 @@ export class UserService {
   checkPassword(email: string, password: string): boolean {
     return true;
   } 
+  async updateData():Promise<void>  {
+    this.shoppingCartService.shoppingCart.subscribe(async (value) => {
+      this.user.shoppingCart = value;
+      await this.firebaseAuthService.saveUser(this.user).then(() => { return; }); //Hago más tarde
+    }
+     
+   )
+  }
 }
