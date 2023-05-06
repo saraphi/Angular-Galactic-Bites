@@ -1,9 +1,9 @@
 export const enum Category {
-    main = 'main',
-    complement = 'complement',
-    drink = 'drink',
-    menu = 'menu',
-    burguer = 'burguer',
-    pizza = 'pizza',
-    taco = 'taco'
+    main = 'principales',
+    complement = 'complementos',
+    drink = 'bebidas',
+    menu = 'menus',
+    burguer = 'hamburguesas',
+    pizza = 'pizzas',
+    taco = 'tacos'
 }
