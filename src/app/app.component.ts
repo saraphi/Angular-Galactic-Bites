@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseDataService } from './services/database/firebase-data.service';
 
 import { Observable } from 'rxjs';
-import { ProductService } from './services/products/product.service';
+import { ProductService } from './services/product/product.service';
 
 
 
@@ -18,6 +18,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setUp();
+  }
+  setUp() {
     this.productservices.setUp();
   }
 }

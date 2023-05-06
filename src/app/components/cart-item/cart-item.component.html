@@ -1,5 +1,5 @@
 <div class="cart-item" *ngIf="item">
-    <img class="product-image" src="{{ item.image }}">
+    <img [src]="imageUrl | async" alt="Imagen">
     <div class="content">
         <div class="top">
             <h3>{{ item.name }}</h3>
@@ -7,7 +7,7 @@
         </div>
         <p class="description">{{ item.description }}</p>
         <div class="bottom">
-            <label>Precio: <span class="price">{{ getPrice(item) }} €</span></label>
+            <label>Precio: <span class="price">{{ getPrice(item.id) }} €</span></label>
             <div class="right">
                 <img id="sub-btn" class="btn btn-1" src="../../../assets/icons/minus.svg" (click)="remove()">
                 <output class="quantity">{{ getQuantity() }}</output>

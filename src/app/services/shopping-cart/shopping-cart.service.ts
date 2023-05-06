@@ -8,12 +8,12 @@ import { ProductService } from '../product/product.service';
 })
 export class ShoppingCartService {
 
-  shoppingCart: ShoppingCart = { items: {'0': 1, '1': 2, '2': 1}, totalPrice: 0 };
+  shoppingCart: ShoppingCart = { items: {'2d9jYtJjN3EcmUkHtPwI': 1, 'PvnOAtwxdt0d6EHrVfN8': 2}, totalPrice: 0 };
 
   constructor(private userService: UserService, private itemService: ProductService) {}
 
   isShoppingCart(): boolean {
-    return this.userService.isLogged() && this.getItemsKeys().length > 0;
+    return this.getItemsKeys().length > 0; //this.userService.isLogged() && this.getItemsKeys().length > 0;
   }
 
   getQuantity(itemId: string): number | null {

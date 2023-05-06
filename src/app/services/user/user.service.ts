@@ -11,15 +11,16 @@ export class UserService {
 
   user: User | null = null;
 
-  async isLogged(): Promise<boolean> {
-    return await this.firebaseAuthService.isLoggedIn();
-  }
+  // async isLogged(): Promise<boolean> {
+  //   return await this.firebaseAuthService.isLoggedIn();
+  // }
 
   async logout(): Promise<void> {
     return await this.firebaseAuthService.logout().then(() => {
       this.user = null;
     })
   }
+   
 
   login(email: string, password: string, ): Promise<boolean>  {
     return this.firebaseAuthService.login({ email, password })
@@ -34,7 +35,6 @@ export class UserService {
   }
 
   signup(name: string, email: string, password: string, phone: string): Promise<boolean> {  
-
 
     return this.firebaseAuthService.signUp({ email, password, name, phone })
       .then((user) => {
