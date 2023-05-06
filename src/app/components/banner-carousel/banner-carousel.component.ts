@@ -1,31 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-banner-carousel',
   templateUrl: './banner-carousel.component.html',
   styleUrls: ['./banner-carousel.component.scss']
 })
-export class BannerCarouselComponent {
-  bannerImages = ["../../../assets/placeholder.png", "https://media-cdn.tripadvisor.com/media/photo-s/1b/99/44/8e/kfc-faxafeni.jpg", "https://www.mcdonalds.com/content/dam/sites/usa/nfl/publication/1PUB_PaypalVenmo_v2_2236x1040.jpg", "https://graffica.info/wp-content/uploads/2021/01/BK_Rebrand_Stills_Overview_1-1024x576.jpg"];
-  i = 0;
-  bannerUrl = this.bannerImages[this.i];
-  slideLeft() {
-    console.log("left");
-    if (this.i <= 0) {
-      this.i = this.bannerImages.length - 1;
-    } else {
-      this.i--
-    }
-    this.bannerUrl = this.bannerImages[this.i];
+export class BannerCarouselComponent implements OnInit {
+  images: string[] = 
+  [
+    'https://static.kfc.es/images/content/home/carousel/lg/chollazo.jpg?v=30k25g', 
+    'https://images.getduna.com/ucrmq9mk2ej1277f0v2gbe8pjir4.jpg', 
+    'https://static.kfc.es/images/content/home/carousel/lg/losmalditos.jpg?v=30k25g',
+    'https://brand-uk.assets.kfc.co.uk/2023-04/W4_23_WEBSITE_CAROUSEL_DESKTOP_HW_2000X650.jpg?VersionId=zRmEv456lu__2T2vW5GaywBXGZEIlKK8'
+  ];
+
+  position: number = 0;
+  url: string;
+
+  constructor(private productService: ProductService) {}
+
+  ngOnInit(): void {
+    this.updateUrl();
   }
 
-  slideRight() {
-    console.log("right");
-    if (this.i >= this.bannerImages.length - 1) {
-      this.i = 0;
-    } else {
-      this.i++;
-    }
-    this.bannerUrl = this.bannerImages[this.i];
+  private updateUrl() {
+    this.url = this.images[this.position];
+    console.log('position:', this.position, 'img:', this.url)
+  }
+
+  moveLeft() {
+    this.position = ((this.position > 0) ? this.position : this.images.length) - 1;
+    this.updateUrl();
+  }
+
+  moveRight() {
+    this.position = ((this.position < this.images.length - 1) ? this.position : -1) + 1;
+    this.updateUrl();
   }
 }

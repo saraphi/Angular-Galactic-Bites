@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 
 $raleway: "Raleway", sans-serif;
+
 $banner-height: 55vh;
 $header-height: 65px;
 $main-height: calc(100vh - $header-height);
+$big-carousel-heigth: 60vh;
 
 $black: rgb(0, 0, 0);
 $eerie-black: rgb(37, 37, 37);
