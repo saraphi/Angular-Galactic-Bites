@@ -14,7 +14,8 @@ interface ProductO {
     description: string;
     price: number;
     discount: number;
-    category: string;
+  category: string;
+  hasPoints: boolean;
 }
 
 @Injectable({
@@ -43,7 +44,8 @@ export class FirebaseDataService {
         image: data.image,
         price: data.price,
         discount: data.discount,
-        category: data.category
+        category: data.category,
+        hasPoints: data.hasPoints
       };
 
       productList.push(product)
