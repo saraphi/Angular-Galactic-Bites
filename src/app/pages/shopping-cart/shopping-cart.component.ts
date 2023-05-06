@@ -1,25 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product/product.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
-import { OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user/user.service';
+
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss']
 })
-export class ShoppingCartComponent {
+export class ShoppingCartComponent implements OnInit {
 
-  constructor(private router: Router, private shoppingCartService: ShoppingCartService, private itemService: ProductService) {}
-  ngOnInit(){
-    this.shoppingCartService.setUp()
-    console.log("AAAAA")
+  constructor(private router: Router, private userService: UserService, private shoppingCartService: ShoppingCartService, private itemService: ProductService) {}
+
+  ngOnInit(): void {
+    console.log(this.shoppingCartService.shoppingCart);
   }
-  async isShoppingCart(): Promise<boolean> {
-    return await this.shoppingCartService.isShoppingCart().then((value) => {
-      return value
-    })
+
+  show(): boolean {
+    return this.shoppingCartService.isShoppingCart();
   }
 
   getItemsKeys(): string[] {

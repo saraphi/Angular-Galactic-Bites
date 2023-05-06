@@ -4,29 +4,34 @@ import { FirebaseAuthService } from '../database/firebase-auth.service';
 import { __await } from 'tslib';
 import { waitForAsync } from '@angular/core/testing';
 import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private firebaseAuthService: FirebaseAuthService) {}
+  constructor(private firebaseAuthService: FirebaseAuthService, private shoppingCartService: ShoppingCartService) {}
 
   user: User | null = null;
 
-   async isLogged(): Promise<boolean> {
-     return true//return await this.firebaseAuthService.isLoggedIn();
-   } 
+  //  async isLogged(): Promise<boolean> {
+  //    return true//return await this.firebaseAuthService.isLoggedIn();
+  //  } 
+
+  isLogged(): boolean {
+    return (this.user != null);
+  }
 
   async logout(): Promise<void> {
     return await this.firebaseAuthService.logout().then(() => {
       this.user = null;
     })
   }
-   
 
-   async login(email: string, password: string, ): Promise<boolean>  {
-    return this.firebaseAuthService.login({ email, password })
+  async login(email: string, password: string, ): Promise<boolean>  {
+    return await this.firebaseAuthService.login({ email, password })
       .then(user => {
         this.user = user;
+        this.shoppingCartService.setData(this.user.shoppingCart);
         return true;
       })
       .catch(e => {
@@ -36,8 +41,7 @@ export class UserService {
   }
 
   async signup(name: string, email: string, password: string, phone: string): Promise<boolean> {  
-
-    return this.firebaseAuthService.signUp({ email, password, name, phone })
+    return await this.firebaseAuthService.signUp({ email, password, name, phone })
       .then((user) => {
         this.user = user;
         console.log(user);
@@ -47,14 +51,13 @@ export class UserService {
       .catch((e) => {
         console.error('error signing up user', e)
         return false;
-    });
+      });
   }
   
-
   async emailExists(email: string): Promise<boolean> {
     return this.firebaseAuthService.checkIfEmailExists(email)
-      .then((booleano) => {
-        return booleano;
+      .then((value) => {
+        return value;
       })
       .catch((e) => {
         console.error('error checking email', e)
@@ -64,7 +67,5 @@ export class UserService {
 
   checkPassword(email: string, password: string): boolean {
     return true;
-  }
-
-  
+  } 
 }
