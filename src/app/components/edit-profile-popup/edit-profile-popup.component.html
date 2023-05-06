@@ -1,7 +1,7 @@
-<form class="edit-form">
+<form class="edit-form" *ngIf="user">
     <h2>Editar Perfil</h2>
     <div class="content">
-        <div class="group">
+        <form class="group" [formGroup]="phoneForm">
             <div class="group-header">
                 <img src="../../../assets/icons/phone.svg">
                 <h3>Teléfono</h3>
@@ -9,27 +9,27 @@
             <div class="group-content">
                 <div class="label-input">
                     <label for="tel" class="regular-label">Nuevo número de teléfono</label>
-                    <input #input id="tel" type="tel" placeholder="{{ user.phone }}">
+                    <input formControlName="tel" #tel #input id="tel" type="tel" placeholder="{{ user.phone }}">
                 </div>
             </div>
-        </div>
+        </form>
         <div class="group">
             <div class="group-header">
                 <img src="../../../assets/icons/user-popup.svg">
                 <h3>Usuario</h3>
             </div>
             <div class="group-content">
-                <div class="label-input">
+                <form class="label-input" [formGroup]="nameForm">
                     <label for="name" class="regular-label">Nuevo nombre</label>
-                    <input #input id="name" type="name" placeholder="{{ user.name }}">
-                </div>
-                <div class="label-input">
+                    <input formControlName="name" #name #input id="name" type="name" placeholder="{{ user.name }}">
+                </form>
+                <form class="label-input" [formGroup]="emailForm">
                     <label for="email" class="regular-label">Nuevo correo</label>
-                    <input #input id="email" type="email" placeholder="{{ user.email }}">
-                </div>
+                    <input formControlName="email" #email #input id="email" type="email" placeholder="{{ user.email }}">
+                </form>
             </div>
         </div>
-        <div class="group">
+        <form class="group" [formGroup]="passwordForm">
             <div class="group-header">
                 <img src="../../../assets/icons/lock.svg">
                 <h3>Contraseña</h3>
@@ -37,18 +37,18 @@
             <div class="group-content">
                 <div class="label-input">
                     <label for="password" class="regular-label">Contraseña anterior<span class="asterisk">*</span></label>
-                    <input #input id="password" type="password">
+                    <input formControlName="oldPassword" #old #password #input id="password" type="password">
                 </div>
                 <div class="label-input">
                     <label for="new-password" class="regular-label">Nueva contraseña<span class="asterisk">*</span></label>
-                    <input #input id="new-password" type="password">
+                    <input formControlName="newPassword" #password #input id="new-password" type="password">
                 </div>
                 <div class="label-input">
                     <label for="confirm-new-password" class="regular-label">Confirma la nueva contraseña<span class="asterisk">*</span></label>
-                    <input #input id="confirm-new-password" type="password">
+                    <input formControlName="confirmPassword" #confirm #password #input id="confirm-new-password" type="password">
                 </div>
             </div>
-        </div>
+        </form>
     </div>
     <div class="btn-section">
         <button id="cancel" class="btn">Cancelar</button>

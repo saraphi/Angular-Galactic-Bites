@@ -1,4 +1,3 @@
-<app-header></app-header>
 <main>
     <div class="profile-header">
         <div class="wallpaper"></div>
@@ -30,5 +29,5 @@
 </main>
 
 <div class="overlay" *ngIf="showOverlay && user" (click)="hideOverlay()"></div>
-<app-edit-profile-popup class="popup" *ngIf="showEditPopup && user" [user]="user"></app-edit-profile-popup>
+<app-edit-profile-popup class="popup" (close)="hideOverlay()" *ngIf="showEditPopup && user" [user]="user"></app-edit-profile-popup>
 <app-delete-profile-popup class="popup" *ngIf="showDeletePopup && user" [user]="user"></app-delete-profile-popup>

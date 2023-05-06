@@ -21,8 +21,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'payment', component: PaymentComponent },
-  { path: 'product-view', component: ProductComponent },
-  { path: 'product-detail/:id', component: ProductDetailComponent },
+  // { path: 'product-view', component: ProductComponent },
+  // { path: 'product-detail/:id', component: ProductDetailComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

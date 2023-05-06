@@ -21,7 +21,7 @@ export class SignupFormComponent implements Form {
 
 	constructor(private router: Router, private fb: FormBuilder, private userService: UserService) {
 		this.signupForm = this.fb.group ({
-			name: ['', [Validators.required]],
+			name: ['', [Validators.required, Validators.maxLength(20)]],
 			email: ['', [Validators.required, Validators.email]],
 			tel: ['', [Validators.required, PhoneValidator.validPhoneNumber()]],
 			password: ['', [Validators.required, PasswordValidator.strong()]],
