@@ -2,17 +2,15 @@ import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FirebaseDataService } from './firebase-data.service';
-
+import { User } from 'src/app/models/user';
 interface UserData {
   name: string;
   email: string;
   points: number;
   phone: string;
+  shoppingCart:Map<string, number>
 }
 
-interface User extends UserData {
-  id: string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -29,11 +27,11 @@ export class FirebaseAuthService {
         async (credential) => {
           const uid = credential.user.uid;
           const userData: UserData = {
-            name:  name,
+            name: name,
             email: email,
             points: 0,
-            phone: phone
-
+            phone: phone,
+            shoppingCart:new Map<string, number>()
           };
           let user: User = {
             id: uid,
@@ -47,7 +45,12 @@ export class FirebaseAuthService {
   }
 
   async isLoggedIn(): Promise<boolean> {
-    return this.auth.currentUser !== null;
+    if (this.auth.currentUser !== null) {
+      return true;
+    } else {
+      return false;
+    }
+    
   }
 
   async login({email, password }: { email: string; password: string }): Promise<User | null> {

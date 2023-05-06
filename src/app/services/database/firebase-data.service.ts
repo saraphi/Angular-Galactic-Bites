@@ -6,11 +6,14 @@ import { Category } from 'src/app/models/category';
 
 import { Product } from 'src/app/models/product';
 import { User } from 'src/app/models/user';
+import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 interface UserData {
   name: string;
   email: string;
   points: number;
   phone: string;
+  shoppingCart: Map<string, number>
+
 }
 
 interface ProductO {
@@ -54,8 +57,6 @@ export class FirebaseDataService {
         price: data.price,
         discount: data.discount,
         category: data.category
-        //mirar si hacemos el descuento aqui
-        //puntos 
 
       };
       productList.push(product)
@@ -90,26 +91,65 @@ export class FirebaseDataService {
 
     //Arreglar esto
     async setUserData(uid: string, userData: UserData) {
-      console.log("llegue");
-      console.log(uid);
-      console.log(userData);
-      console.log(userData.name);
-      console.log(userData.email);
-      console.log(userData.points);
-      console.log(userData.phone);
       const userDoc = doc(this.db, 'Users', uid);
       await setDoc(userDoc, { 
         name: userData.name,
         email: userData.email,
         points: userData.points,
-        phone: userData.phone 
+        phone: userData.phone, 
+        shoppingCart: userData.shoppingCart
       })
+  }
+    async updateShopping(uid: string, products: Map<string, number>) {
+        const userDoc = doc(this.db, 'Users', uid);
+        await setDoc(userDoc, { 
+          shoppingCart: products
+        })
+    } 
+  async getShopping(uid: string):Promise<Map<string, number>| null > {
+      // console.log(uid)
+      // const userDoc = doc(this.db, 'Users', uid);
+    // return await getDoc(userDoc).then((doc) =>
+    // {
+    //   console.log(doc.data())
+    //   if (doc.exists()) {
+    //     const userData = doc.data() as UserData;
+    //     console.log(userData)
+    //     return userData.shoppingCart;
+    //   } else {
+    //     console.log("Paso por aqui")
+    //     return new Map<string,number>()
+    //   }
+    //   }
+    // ).catch((error) => {
+    //   console.error(error)
+    //   return new Map<string,number>()
+    // })
+    try {
+      const userDoc = doc(this.db, 'Users', uid);
+      return getDoc(userDoc).then((doc) => {
+        console.log(doc.data())
+        if (doc.exists()) {
+          const userData = doc.data() as UserData;
+          console.log(userData)
+          return userData.shoppingCart;
+        } else {
+          console.log("Paso por aqui")
+          return new Map<string, number>()
+        }
+      })
+    } catch (error) {
+      console.error("Error getInShoppingCart", error)
+      return null
     }
+
+    }
+    
+  
   
     async getUserData(uid: string): Promise<User | null> {
       const userDoc = doc(this.db, 'Users', uid);
       const userDocSnap = await getDoc(userDoc);
-  
       if (userDocSnap.exists()) {
         const userData = userDocSnap.data() as UserData;
         const user: User = {

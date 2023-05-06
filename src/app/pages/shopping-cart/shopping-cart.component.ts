@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product/product.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
-
+import { OnInit } from '@angular/core';
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
@@ -12,9 +12,14 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-car
 export class ShoppingCartComponent {
 
   constructor(private router: Router, private shoppingCartService: ShoppingCartService, private itemService: ProductService) {}
-
-  isShoppingCart(): boolean {
-    return this.shoppingCartService.isShoppingCart();
+  ngOnInit(){
+    this.shoppingCartService.setUp()
+    console.log("AAAAA")
+  }
+  async isShoppingCart(): Promise<boolean> {
+    return await this.shoppingCartService.isShoppingCart().then((value) => {
+      return value
+    })
   }
 
   getItemsKeys(): string[] {

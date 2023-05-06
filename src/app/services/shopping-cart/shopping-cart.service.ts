@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { ShoppingCart } from 'src/app/models/shopping-cart';
 import { UserService } from '../user/user.service';
 import { ProductService } from '../product/product.service';
+import { of } from 'rxjs';
+import { FirebaseDataService } from '../database/firebase-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +11,26 @@ import { ProductService } from '../product/product.service';
 export class ShoppingCartService {
 
   shoppingCart: ShoppingCart = { items: {'2d9jYtJjN3EcmUkHtPwI': 1, 'PvnOAtwxdt0d6EHrVfN8': 2}, totalPrice: 0 };
+  isShop = true;
+  constructor(private userService: UserService, private itemService: ProductService, private firebaseServices: FirebaseDataService) {}
 
-  constructor(private userService: UserService, private itemService: ProductService) {}
-
-  isShoppingCart(): boolean {
-    return this.getItemsKeys().length > 0; //this.userService.isLogged() && this.getItemsKeys().length > 0;
+  async isShoppingCart(): Promise<boolean> {
+    return this.isShop;
   }
+  async setUp():Promise<void> {
+    console.log("AAAA")
+    return await this.firebaseServices.getShopping(this.userService.user.id).then((value2) => {
+      console.log(value2)
+      if (value2.size > 0) {
+        this.setData(value2)
+        this.isShop= true
+      } else {
+        this.isShop= false
+      }
+      }
+    )
+  }
+
 
   getQuantity(itemId: string): number | null {
     return this.shoppingCart.items[itemId];
@@ -51,5 +67,12 @@ export class ShoppingCartService {
 
   getItemsKeys(): string[] {
     return Object.keys(this.shoppingCart.items);
-  } 
+  }
+  getData() {
+    return new Map(Object.entries(this.shoppingCart.items));
+  }
+  setData(mapa: Map<string, number>) {
+    this.shoppingCart.items = Object.fromEntries(mapa);
+  }
+
 }

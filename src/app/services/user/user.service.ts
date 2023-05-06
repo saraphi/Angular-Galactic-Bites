@@ -3,6 +3,7 @@ import { User } from 'src/app/models/user';
 import { FirebaseAuthService } from '../database/firebase-auth.service';
 import { __await } from 'tslib';
 import { waitForAsync } from '@angular/core/testing';
+import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,9 +12,9 @@ export class UserService {
 
   user: User | null = null;
 
-  // async isLogged(): Promise<boolean> {
-  //   return await this.firebaseAuthService.isLoggedIn();
-  // }
+   async isLogged(): Promise<boolean> {
+     return true//return await this.firebaseAuthService.isLoggedIn();
+   } 
 
   async logout(): Promise<void> {
     return await this.firebaseAuthService.logout().then(() => {
@@ -22,7 +23,7 @@ export class UserService {
   }
    
 
-  login(email: string, password: string, ): Promise<boolean>  {
+   async login(email: string, password: string, ): Promise<boolean>  {
     return this.firebaseAuthService.login({ email, password })
       .then(user => {
         this.user = user;
@@ -34,7 +35,7 @@ export class UserService {
       });
   }
 
-  signup(name: string, email: string, password: string, phone: string): Promise<boolean> {  
+  async signup(name: string, email: string, password: string, phone: string): Promise<boolean> {  
 
     return this.firebaseAuthService.signUp({ email, password, name, phone })
       .then((user) => {
@@ -50,7 +51,7 @@ export class UserService {
   }
   
 
-  emailExists(email: string): Promise<boolean> {
+  async emailExists(email: string): Promise<boolean> {
     return this.firebaseAuthService.checkIfEmailExists(email)
       .then((booleano) => {
         return booleano;
@@ -64,4 +65,6 @@ export class UserService {
   checkPassword(email: string, password: string): boolean {
     return true;
   }
+
+  
 }
