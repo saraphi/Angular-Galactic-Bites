@@ -13,7 +13,7 @@ import { EditProfilePopupComponent } from './components/edit-profile-popup/edit-
 import { DeleteProfilePopupComponent } from './components/delete-profile-popup/delete-profile-popup.component';
 
 import { BannerComponent } from './components/banner/banner.component';
-import { SliderBannerComponent } from './components/slider-banner/slider-banner.component';
+import { BannerCarouselComponent } from './components/banner-carousel/banner-carousel.component';
 import { CategoryCarouselComponent } from './components/category-carousel/category-carousel.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
@@ -54,7 +54,7 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
     EditProfilePopupComponent,
     DeleteProfilePopupComponent,
     BannerComponent,
-    SliderBannerComponent,
+    BannerCarouselComponent,
     CategoryCarouselComponent,
     ProfileComponent,
     ShoppingCartComponent,

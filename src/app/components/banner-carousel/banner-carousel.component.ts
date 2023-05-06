@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-slider-banner',
-  templateUrl: './slider-banner.component.html',
-  styleUrls: ['./slider-banner.component.scss']
+  selector: 'app-banner-carousel',
+  templateUrl: './banner-carousel.component.html',
+  styleUrls: ['./banner-carousel.component.scss']
 })
-export class SliderBannerComponent {
+export class BannerCarouselComponent {
   bannerImages = ["../../../assets/placeholder.png", "https://media-cdn.tripadvisor.com/media/photo-s/1b/99/44/8e/kfc-faxafeni.jpg", "https://www.mcdonalds.com/content/dam/sites/usa/nfl/publication/1PUB_PaypalVenmo_v2_2236x1040.jpg", "https://graffica.info/wp-content/uploads/2021/01/BK_Rebrand_Stills_Overview_1-1024x576.jpg"];
   i = 0;
   bannerUrl = this.bannerImages[this.i];
