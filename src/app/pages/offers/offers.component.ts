@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-offers',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class OffersComponent {
 
+  constructor() {}
 }

@@ -26,7 +26,6 @@ export class BannerCarouselComponent implements OnInit {
 
   private updateUrl() {
     this.url = this.images[this.position];
-    console.log('position:', this.position, 'img:', this.url)
   }
 
   moveLeft() {
