@@ -4,4 +4,5 @@ export interface User {
     email: string;
     phone: string;
     points: number;
+    shoppingCart: Map<string, number>;
 }

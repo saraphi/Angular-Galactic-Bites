@@ -75,8 +75,6 @@ export class LoginFormComponent implements Form {
 					this.onError(this.password); 
 				}
 			})
-			
-			
 		}
 	}
 }

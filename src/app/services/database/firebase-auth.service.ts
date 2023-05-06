@@ -2,23 +2,11 @@ import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FirebaseDataService } from './firebase-data.service';
-
-interface UserData {
-  name: string;
-  email: string;
-  points: number;
-  phone: string;
-}
-
-interface User extends UserData {
-  id: string;
-}
+import { User } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root'
 })
-
-
 export class FirebaseAuthService {
   
   constructor(private auth: Auth, private afAuth: AngularFireAuth, private firestoreService: FirebaseDataService) {}
@@ -28,17 +16,15 @@ export class FirebaseAuthService {
       return createUserWithEmailAndPassword(this.auth, email, password).then(
         async (credential) => {
           const uid = credential.user.uid;
-          const userData: UserData = {
-            name:  name,
+          const user: User = {
+            id: uid,
+            name: name,
             email: email,
             points: 0,
-            phone: phone
-
+            phone: phone,
+            shoppingCart:new Map<string, number>()
           };
-          let user: User = {
-            id: uid,
-            ...userData}
-          return this.firestoreService.setUserData(uid, userData).then(() => {return user});
+          return this.firestoreService.setUserData(user).then(() => { return user});
       })
     } catch (error) {
       console.error('Error registering user:', error);
@@ -47,7 +33,11 @@ export class FirebaseAuthService {
   }
 
   async isLoggedIn(): Promise<boolean> {
-    return this.auth.currentUser !== null;
+    if (this.auth.currentUser !== null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   async login({email, password }: { email: string; password: string }): Promise<User | null> {

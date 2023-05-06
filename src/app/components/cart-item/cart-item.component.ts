@@ -1,27 +1,38 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, AfterContentInit, AfterContentChecked } from '@angular/core';
+import { Observable, from, of } from 'rxjs';
 import { Product } from 'src/app/models/product';
+import { FirebaseDataService } from 'src/app/services/database/firebase-data.service';
+import { ProductService } from 'src/app/services/product/product.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
+
 
 @Component({
   selector: 'app-cart-item',
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.scss']
 })
-export class CartItemComponent {
+export class CartItemComponent  implements OnInit {
+  q:Observable<number>
 
   @Input() item: Product | null = null;
-
-  constructor(private shoppingCartService: ShoppingCartService) {}
-
-  getPrice(item: Product): number | null {
+  imageUrl: Observable<string>;
+  constructor(private shoppingCartService:ShoppingCartService,private prdoductService:ProductService ,private firebaseservices:FirebaseDataService) {}
+  ngOnInit() {
+    this.imageUrl = from(this.firebaseservices.getImage(this.item.image));
+    this.q = of(this.shoppingCartService.getQuantity(this.item.id)) ;
+    console.log(this.q);
+    
+  }
+  
+  getPrice(id:string): number | null {
     if (!this.item) return null;
-    return this.item.price - (this.item.price*this.item.discount);
+    return parseFloat(this.prdoductService.getItemPrice(id).toFixed(2));
   }
 
-  getQuantity(): number | null {
-    if (!this.item) return null;
-    return this.shoppingCartService.getQuantity(this.item.id)!;
+  getQuantity(): number {
+    return this.shoppingCartService.getQuantity(this.item.id);
   }
+
 
   delete() {
     if (!this.item) return;
@@ -37,4 +48,5 @@ export class CartItemComponent {
     if (!this.item) return;
     this.shoppingCartService.removeItem(this.item.id);
   }
+  
 }

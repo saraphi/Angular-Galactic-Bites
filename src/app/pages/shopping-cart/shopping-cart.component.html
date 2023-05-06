@@ -1,9 +1,9 @@
 <main class="main-shopping-cart">
     <app-space-background class="background"></app-space-background>
-    <div class="nothing-container" *ngIf="!isShoppingCart()">
+    <div class="nothing-container" *ngIf="!showe">
         <p>¡El carrito de compra está vacío!</p>
     </div>
-    <div class="shopping-cart-container" *ngIf="isShoppingCart()">
+    <div class="shopping-cart-container" *ngIf="showe">
         <ng-container>
             <ng-container *ngFor="let itemId of getItemsKeys()">
                 <app-cart-item [item]="getItemById(itemId)"></app-cart-item>
