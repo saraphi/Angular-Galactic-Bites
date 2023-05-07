@@ -13,13 +13,13 @@ import { UserService } from 'src/app/services/user/user.service';
 export class ProductDetailPopupComponent implements OnInit {
 
   @Input() product: Product | null = null;
-  @Input() showPoints: boolean = false;
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
   @Output() notLogged: EventEmitter<void> = new EventEmitter<void>();
 
   url: string = '../../../assets/placeholder.png';
   discount: number = 0;
   price: number = 0;
+  showPoints: boolean = false;
   points: number = 0;
 
   constructor(private shoppingCartService: ShoppingCartService, private userService: UserService, private productService: ProductService) {}
@@ -27,8 +27,8 @@ export class ProductDetailPopupComponent implements OnInit {
   ngOnInit(): void {
     if (!this.product) return;
     this.setUrl();
-    if (this.showPoints) this.getPoints();
-    else this.getRealPrice();
+    this.getPoints();
+    this.getRealPrice();
   }
 
   onClose(): void {
@@ -47,16 +47,17 @@ export class ProductDetailPopupComponent implements OnInit {
   }
 
   private getPoints() {
-    this.points = 50;
+    this.showPoints = this.productService.isOnPoints(this.product.id);
+    if (this.showPoints) this.points = this.productService.getPointsCost(this.product.id);
   }
 
   showDiscount(): boolean {
-    // return this.productService.isOnDiscount(this.product.id);
-    return false;
+
+    return this.productService.isOnDiscount(this.product.id);
+    // return false;
   }
 
   add(): void {
-    console.log('holi');
     if (!this.product) return;
     this.userService.isLogged().subscribe({
       next: (value: boolean) => {

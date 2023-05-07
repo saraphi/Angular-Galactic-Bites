@@ -32,7 +32,7 @@ export class ProductService {
     return Array.from(this.mapCategory.keys());
   }
 
-  getProdutsIdByCategory(category: string): string[] {
+  getProductsIdByCategory(category: string): string[] {
     return this.mapCategory.get(category);
   }
 
@@ -48,6 +48,16 @@ export class ProductService {
     })
 
     return discounted;
+  }
+
+  getProductsOnPoints(): string[] {
+    let points: string[] = [];
+
+    this.mapProducts.forEach((value: Product, key: string) => {
+      if (this.isOnPoints(key)) points.push(key);
+    })
+
+    return points;
   }
   
   getPointsCost(itemId: string) {

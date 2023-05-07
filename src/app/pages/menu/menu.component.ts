@@ -18,7 +18,7 @@ export class MenuComponent {
   constructor(private router: Router, private productService: ProductService, private viewportScroller: ViewportScroller) {}
 
   getProducts(category: string): string[] {
-    return this.productService.getProdutsIdByCategory(category);
+    return this.productService.getProductsIdByCategory(category);
   }
 
   scroll(elementId: string): void {
@@ -28,6 +28,10 @@ export class MenuComponent {
   showDetails(product: Product) {
     this.selectedProduct = product;
     this.showProductDetail = true;
+  }
+
+  show(itemId: string): boolean {
+    return !this.productService.isOnPoints(itemId);
   }
 
   goToLogin() {

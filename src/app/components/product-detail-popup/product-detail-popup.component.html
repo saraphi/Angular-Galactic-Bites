@@ -7,8 +7,8 @@
                 <i class="close-btn bi bi-x-circle-fill" (click)="onClose()"></i>
             </div>
             <div class="product-description">
-                <label class="price" *ngIf="!this.showPoints">Precio: <span class="cost">{{ price }}</span> €</label>
-                <label class="price" *ngIf="this.showPoints">Puntos: <span class="cost">{{ points }}</span></label>
+                <label class="price" *ngIf="!showPoints">Precio: <span class="cost">{{ price }}</span> €</label>
+                <label class="price" *ngIf="showPoints">Precio: <span class="cost">{{ points }}</span> Puntos</label>
                 <p class="description">{{ product.description }}</p>
                 <!-- <p>Puntos: {{ product.price *100 }}</p>Arreglar para que produtos tenga atributo de Points que sea el precio redondeado -->
             </div>
@@ -19,6 +19,6 @@
 
     </div>
     <div *ngIf="showDiscount()" class="overlay-tag">
-        <label class="price">- {{ product.discount }} %</label>
+        <label class="price-tag">- {{ product.discount }} %</label>
     </div>
 </div>
