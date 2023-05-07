@@ -13,7 +13,7 @@ export class CategoryCarouselComponent implements OnInit {
   position: number = 0;
 
   constructor() {
-    this.categories = [Category.menu, Category.pizza, Category.burguer, Category.taco, Category.main, Category.complement, Category.drink];
+    this.categories = [Category.main, Category.complement, Category.drink, Category.dessert];
     this.carouselItems = this.categories.slice(0, 3);
   }
 
