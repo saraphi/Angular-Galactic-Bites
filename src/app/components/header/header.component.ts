@@ -18,13 +18,8 @@ export class HeaderComponent implements OnInit {
     }
 
     checkUser(): void {
-        this.userService.isLogged().subscribe({
-            next: (value: boolean) => {
-                if (value) this.userPic = "../../../assets/profile.jpg";
-                else this.userPic =  "../../../assets/icons/user.png";
-            },
-            error: (error: any) => console.error('error checking user is logged:', error)
-        })
+        if (this.userService.user) this.userPic = "../../../assets/profile.jpg";
+        else this.userPic =  "../../../assets/icons/user.png";
     }
 
     shoppingCart() {
