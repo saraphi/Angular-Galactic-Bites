@@ -65,7 +65,7 @@ export class ProductService {
   getItemPrice(itemId: string): number {
     let product: Product = this.getItem(itemId);
     if (!product) return 0;
-    return  product.price - (product.price * (product.discount/100))
+    return parseFloat((product.price - (product.price * (product.discount/100))).toFixed(2));
   }
 
   getItem(id: string) {
