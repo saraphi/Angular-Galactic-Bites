@@ -50,7 +50,8 @@ export class ProductDetailPopupComponent implements OnInit {
   }
 
   showDiscount(): boolean {
-    return this.productService.isOnDiscount(this.product.id);
+    // return this.productService.isOnDiscount(this.product.id);
+    return false;
   }
 
   add(): void {

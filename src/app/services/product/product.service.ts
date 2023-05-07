@@ -49,6 +49,7 @@ export class ProductService {
 
     return discounted;
   }
+  
   getPointsCost(itemId: string) {
     let product: Product = this.getItem(itemId);
     if (product.hasPoints) {

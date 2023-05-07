@@ -1,20 +1,24 @@
-<article class="product-info" *ngIf="product">
-    <img  class="left-side" [src]="url" alt="Imagen">
-    <div class="right-side column">
-        <div class="product-description column">
+<div class="product-info" *ngIf="product">
+    <div class="left-side"><img [src]="url" alt="Imagen"></div>
+    <div class="right-side">
+        <div class="content">
             <div class="top">
                 <h2 class="name">{{ product.name }}</h2>
                 <i class="close-btn bi bi-x-circle-fill" (click)="onClose()"></i>
             </div>
-            <p class="description">{{ product.description }}</p>
-            <p class="price" *ngIf="!this.showPoints">Precio: {{ price }} €</p>
-            <p class="price" *ngIf="this.showPoints">Puntos: {{ points }}</p>
-            <!-- <p>Puntos: {{ product.price *100 }}</p>Arreglar para que produtos tenga atributo de Points que sea el precio redondeado -->
+            <div class="product-description">
+                <label class="price" *ngIf="!this.showPoints">Precio: {{ price }} €</label>
+                <label class="price" *ngIf="this.showPoints">Puntos: {{ points }}</label>
+                <p class="description">{{ product.description }}</p>
+                <!-- <p>Puntos: {{ product.price *100 }}</p>Arreglar para que produtos tenga atributo de Points que sea el precio redondeado -->
+            </div>
         </div>
-        <div class="button-container"><button id="add-product" class="input-button" onclick="addProduct()">Añadir
-            </button></div>
+        <div class="btn-container">
+            <button class="btn" onclick="addProduct()">Añadir</button>
+        </div>
+
     </div>
     <div *ngIf="showDiscount()" class="overlay-tag">
         <label class="price">- {{ product.discount }} %</label>
     </div>
-</article>
+</div>
