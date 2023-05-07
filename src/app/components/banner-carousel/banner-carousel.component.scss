@@ -1,0 +1,100 @@
+@import '../../shared/variables';
+@import '../../shared/classes';
+
+.carousel {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: $big-carousel-heigth;
+
+  background-color: rgba($black, .4);
+  border-bottom: 1.5px solid rgba($white, .6);
+  border-top: 1.5px solid rgba($white, .6);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .overlay {
+    position: absolute;
+
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    padding-inline: 2%;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      padding-top: .05em;
+      border-radius: 50%;
+      width: 1em;
+      height: 1em;
+      font-size: 30pt;
+      background-color: $white;
+      
+      .bi {
+        background: -webkit-linear-gradient($turquoise, $lavender);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+  
+        padding: 0;
+        margin: 0;
+      }
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+      }
+      &:active { transform: scale(1); }
+    }
+  }
+}
+
+// /* Device = Laptops, Desktops B/w 768px to 1280px */
+// @media (min-width: 768px) and (max-width: 1280px) {
+
+// }
+
+// /*  Device = Low Resolution Tablets, Mobiles (Landscape) Screen = B/w 481px to 767px */
+// @media (min-width: 481px) and (max-width: 767px) {
+//   .slider-banner {
+//     height: 350px;
+//     .above-section .arrow-button {
+//       width: 6vw;
+//       height: 6vw;
+//     }
+//   }
+// }
+
+// /*  Device = Most of the Smartphones Mobiles (Portrait) Screen = B/w 320px to 479px */
+// @media (min-width: 320px) and (max-width: 767px) {
+//   .slider-banner {
+//     height: 280px;
+//     .above-section .arrow-button {
+//       width: 7vw;
+//       height: 7vw;
+//       img {
+//         width: 80%;
+//         height: 80%;
+
+//         margin: 5% 0 0 12%;
+//       }
+//     }
+//   }
+// }

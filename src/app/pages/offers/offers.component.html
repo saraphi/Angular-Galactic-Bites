@@ -1,2 +1,26 @@
 <app-header></app-header>
-<p>offers works!</p>
+<main class="main-offers">
+    <app-space-background class="background"></app-space-background>
+    <div class="offers">
+        <article id="discount">  
+            <header>OFERTAS</header>
+            <app-banner-carousel [products]="discountedBanner"></app-banner-carousel>
+            <div class="list">
+                <ng-container *ngFor="let product of discounted()">
+                    <app-product class="product" (details)="showDetails($event)" [productId]="product"></app-product>
+                </ng-container>
+            </div>
+        </article>
+        <article id="points">
+            <header>PUNTOS</header>
+            <div class="banner"><img src='../../../assets/points.png'></div>
+            <div class="list">
+                <ng-container *ngFor="let product of points()">
+                    <app-product class="product" (details)="showDetails($event)" [productId]="product"></app-product>
+                </ng-container>
+            </div>
+        </article>
+    </div>
+</main>
+<div class="overlay" *ngIf="showProductDetail && selectedProduct" (click)="hideOverlay()"></div>
+<app-product-detail-popup class="popup" (notLogged)="goToLogin()" (close)="hideOverlay()" *ngIf="showProductDetail && selectedProduct" [product]="selectedProduct"></app-product-detail-popup>

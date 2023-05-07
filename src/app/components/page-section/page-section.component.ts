@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Page } from 'src/app/models/page.model';
 
 @Component({
   selector: 'app-page-section',
@@ -9,11 +8,13 @@ import { Page } from 'src/app/models/page.model';
 })
 export class PageSectionComponent {
 
-  @Input() page!: Page;
+  @Input() name: string = '';
+  @Input() img: string = '';
+  @Input() fragment: string = '';
 
   constructor(private router: Router) {}
 
   goToPage() {
-    this.router.navigate([this.page.router_link]);
+    this.router.navigate(['/offers'], { fragment: this.fragment });
   }  
 }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,9 +11,10 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
 import { PaymentFormComponent } from './components/payment-form/payment-form.component';
 import { EditProfilePopupComponent } from './components/edit-profile-popup/edit-profile-popup.component';
 import { DeleteProfilePopupComponent } from './components/delete-profile-popup/delete-profile-popup.component';
+
 import { BannerComponent } from './components/banner/banner.component';
-import { SliderBannerComponent } from './components/slider-banner/slider-banner.component';
-import { SliderProductComponent } from './components/slider-product/slider-product.component';
+import { BannerCarouselComponent } from './components/banner-carousel/banner-carousel.component';
+import { CategoryCarouselComponent } from './components/category-carousel/category-carousel.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -23,9 +23,24 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { OffersComponent } from './pages/offers/offers.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { HomeComponent } from './pages/home/home.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideFunctions,getFunctions } from '@angular/fire/functions';
+import { provideMessaging,getMessaging } from '@angular/fire/messaging';
+import { providePerformance,getPerformance } from '@angular/fire/performance';
+import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
+import { provideStorage,getStorage } from '@angular/fire/storage';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { PageSectionComponent } from './components/page-section/page-section.component';
 import { ProductComponent } from './components/product/product.component';
-import { SpaceBackgroundComponent } from './components/space-background/space-background.component'
+import { SpaceBackgroundComponent } from './components/space-background/space-background.component';
+import { CartItemComponent } from './components/cart-item/cart-item.component'
+import { ProductDetailPopupComponent } from './components/product-detail-popup/product-detail-popup.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +53,8 @@ import { SpaceBackgroundComponent } from './components/space-background/space-ba
     EditProfilePopupComponent,
     DeleteProfilePopupComponent,
     BannerComponent,
-    SliderBannerComponent,
-    SliderProductComponent,
+    BannerCarouselComponent,
+    CategoryCarouselComponent,
     ProfileComponent,
     ShoppingCartComponent,
     LoginComponent,
@@ -50,15 +65,31 @@ import { SpaceBackgroundComponent } from './components/space-background/space-ba
     HomeComponent,
     PageSectionComponent,
     ProductComponent,
-    SpaceBackgroundComponent
+    SpaceBackgroundComponent,
+    CartItemComponent,
+    ProductDetailPopupComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    MatDialogModule
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAnalytics(() => getAnalytics()),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore()),
+    provideFunctions(() => getFunctions()),
+    provideMessaging(() => getMessaging()),
+    providePerformance(() => getPerformance()),
+    provideRemoteConfig(() => getRemoteConfig()),
+    provideStorage(() => getStorage()),
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [],
+  providers: [
+    ScreenTrackingService,UserTrackingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

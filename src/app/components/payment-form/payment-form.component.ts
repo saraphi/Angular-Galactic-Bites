@@ -1,7 +1,10 @@
 import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Form } from 'src/app/models/form';
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { CreditCardValidator } from 'src/app/validators/credit-card.validator';
 
 @Component({
@@ -14,7 +17,7 @@ export class PaymentFormComponent implements Form {
 
     @ViewChildren('input') inputs!: QueryList<ElementRef>; 
         
-    constructor(private router: Router, private fb: FormBuilder) {
+    constructor(private router: Router, private fb: FormBuilder, private shoopingServices:ShoppingCartService,private  userservices:UserService) {
         this.paymentForm = this.fb.group({
             num: ['', [Validators.required, CreditCardValidator.number()]],
             name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(40), CreditCardValidator.nameOnCard()]],
@@ -51,8 +54,23 @@ export class PaymentFormComponent implements Form {
 
     onSubmit(): void {
         console.log(this.paymentForm.value);
+        if ((this.userservices.getUserPoints() - this.shoopingServices.getTotalPoints()) > 0) {
+            this.userservices.setPoints(this.shoopingServices.getPoints()).then(() => {
+             Swal.fire({
+                title: '¡Compra realizada con éxito!',
+                text: 'Has ganado ' + this.shoopingServices.getPoints() + ' puntos',
+                icon: 'success'
+             })
+             this.shoopingServices.clear();
+             this.router.navigate(['']);
+        })
 
-        this.resetErrors();
-        if (!this.checkErrors()) console.log("no hay errores");
+        }else {
+            Swal.fire({
+                title: 'Puntos insuficientes',
+                text: 'No tienes suficientes puntos para completar la compra.',
+                icon: 'error'
+            });
+        }
     }
 }

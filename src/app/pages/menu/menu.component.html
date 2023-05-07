@@ -1,2 +1,19 @@
 <app-header></app-header>
-<p>menu works!</p>
+<main class="main-menu">
+    <app-space-background class="background"></app-space-background>
+    <div class="menu">
+        <app-category-carousel class="carousel" (scroll)="scroll($event)" [categories]="categories"></app-category-carousel>
+        <ng-container *ngFor="let category of categories">
+            <article id="{{ category }}" class="category">
+                <header>{{category}}</header>
+                <div class="list">
+                    <ng-container *ngFor="let product of getProducts(category)">
+                        <app-product *ngIf="show(product)" class="product" (details)="showDetails($event)" [productId]="product"></app-product>
+                    </ng-container>
+                </div>
+            </article>
+        </ng-container>
+    </div>
+</main>
+<div class="overlay" *ngIf="showProductDetail && selectedProduct" (click)="hideOverlay()"></div>
+<app-product-detail-popup class="popup" (notLogged)="goToLogin()" (close)="hideOverlay()" *ngIf="showProductDetail && selectedProduct" [product]="selectedProduct"></app-product-detail-popup>

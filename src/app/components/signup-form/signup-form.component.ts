@@ -1,9 +1,11 @@
 import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PasswordValidator } from 'src/app/validators/password.validator';
 import { PhoneValidator } from 'src/app/validators/phone.validator';
 import { Form } from 'src/app/models/form';
+import { UserService } from 'src/app/services/user/user.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -15,11 +17,12 @@ export class SignupFormComponent implements Form {
 	signupForm: FormGroup;
 
 	@ViewChildren('input') inputs!: QueryList<ElementRef>;
+	@ViewChild('emailInput') emailInput!: ElementRef;
 	@ViewChild('confirmPasswordInput') confirmPasswordInput!: ElementRef;
 
-	constructor(private router: Router, private fb: FormBuilder) {
+	constructor(private router: Router, private fb: FormBuilder, private userService: UserService) {
 		this.signupForm = this.fb.group ({
-			name: ['', [Validators.required]],
+			name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],
 			email: ['', [Validators.required, Validators.email]],
 			tel: ['', [Validators.required, PhoneValidator.validPhoneNumber()]],
 			password: ['', [Validators.required, PasswordValidator.strong()]],
@@ -59,12 +62,32 @@ export class SignupFormComponent implements Form {
 
 		return match;
 	}
-
+	
+	private async showAlert(title: string, text: string, icon: 'success' | 'error') {
+    	await Swal.fire(title, text, icon);
+ 	}
+	
 	onSubmit() { 
 		console.log(this.signupForm.value);
 
 		this.resetErrors();
 		let match: boolean = this.checkPasswords();
-		if (!this.checkErrors() && match) console.log("no hay errores");
+		if (!this.checkErrors() && match) {
+			let name: string = this.signupForm.value.name; 
+			let email: string = this.signupForm.value.email;
+			let password: string = this.signupForm.value.password;
+			let tel: string = this.signupForm.value.tel;
+			console.log('form:', name, email, password, tel);
+			
+			this.userService.signup(name, email, password, tel).then((value: boolean) => {
+				if(value) {
+					this.showAlert('Registrado con éxito', 'Te has registrado correctamente', 'success');
+					this.router.navigate(['profile']);
+				} else {
+					this.showAlert('Error', 'No se pudo registrar, por favor intenta de nuevo', 'error');
+					this.onError(this.emailInput);
+				}
+				});
+		}
 	}	
 }

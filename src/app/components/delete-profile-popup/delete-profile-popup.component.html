@@ -1,4 +1,4 @@
-<form class="delete-form">
+<form class="delete-form" (ngSubmit)="onSubmit()" [formGroup]="deleteForm">
     <h2>Borrar Perfil</h2>
     <div class="content">
         <p class="description">
@@ -7,11 +7,11 @@
         </p>
         <div class="label-input">
             <label for="password" class="regular-label">Escribe tu contraseña<span class="asterisk">*</span></label>
-            <input #input id="password" type="password">
+            <input #input id="password" type="password" formControlName="password">
         </div>
     </div>
     <div class="btn-section">
-        <button id="cancel" class="btn">Cancelar</button>
-        <button id="delete" class="btn">Borrar</button>
+        <button id="cancel" class="btn" (click)="onClose()">Cancelar</button>
+        <button id="delete" class="btn" type="submit">Borrar</button>
     </div>
 </form>

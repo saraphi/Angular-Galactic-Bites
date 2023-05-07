@@ -1,37 +1,37 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { User } from 'src/app/models/user.model';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
     styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
 
-    /*@Input() user!: User;*/
     showOverlay: boolean = false;
-    showEditPopup: boolean = false;
+    showEditPopup: boolean = false;    
     showDeletePopup: boolean = false;
 
-    user: User = {
-        id: "0",
-        email: "saragonza.lez0608@gmail.com",
-        name: "Sara González Ramírez",
-        password_token: "Hola!9",
-        phone: "617 322 872",
-        points: 0
+    @ViewChild('overlay') overlay!: ElementRef<any>;
+    
+    user: User | null = null;
+
+    constructor(private router: Router, private userService: UserService) {}
+    
+    ngOnInit(): void {
+        this.user = this.userService.user;
+        if (!this.user) this.router.navigate(['/login']); 
     }
 
-    @ViewChild('overlay') overlay!: ElementRef<any>;
-
-    constructor(private route: ActivatedRoute) {}
-
     hideOverlay() {
+        console.log('closing...');
         this.showOverlay = false;
         if (this.showEditPopup) this.showEditPopup = false;
         else if (this.showDeletePopup) this.showDeletePopup = false;
     }
+
 
     triggerEditPopup() {
         this.showOverlay = true;
@@ -44,6 +44,7 @@ export class ProfileComponent {
     }
 
     logout() {
+        this.userService.logout().then(()=> this.ngOnInit());
 
     }
 }

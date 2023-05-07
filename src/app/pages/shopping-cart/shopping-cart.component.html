@@ -1,2 +1,19 @@
 <app-header></app-header>
-<p>shopping-cart works!</p>
+<main class="main-shopping-cart">
+    <app-space-background class="background"></app-space-background>
+    <div class="nothing-container" *ngIf="!show()">
+        <p>¡El carrito de compra está vacío!</p>
+    </div>
+    <div class="shopping-cart-container" *ngIf="show()">
+        <ng-container>
+            <ng-container *ngFor="let itemId of getItemsKeys()">
+                <app-cart-item [item]="getItemById(itemId)"></app-cart-item>
+            </ng-container>
+        </ng-container>
+        <div class="bottom">
+            <label class="price-tag">PRECIO TOTAL: <span class="price">{{ getTotalPrice() }}</span> €</label>
+            <label class="price-tag">PUNTOS: <span class="price">{{ getTotalPoints() }}</span></label>
+            <button class="cyber-btn" (click)="onBuy()">COMPRAR</button>
+        </div>
+    </div>
+</main>

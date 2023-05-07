@@ -1,0 +1,23 @@
+<div class="product-info" *ngIf="product">
+    <div class="left-side"><img [src]="url" alt="Imagen"></div>
+    <div class="right-side">
+        <div class="content">
+            <div class="top">
+                <h2 class="name">{{ product.name }}</h2>
+                <i class="close-btn bi bi-x-circle-fill" (click)="onClose()"></i>
+            </div>
+            <div class="product-description">
+                <label class="price" *ngIf="!showPoints">Precio: <span class="cost">{{ price }}</span> €</label>
+                <label class="price" *ngIf="showPoints">Precio: <span class="cost">{{ points }}</span> Puntos</label>
+                <p class="description">{{ product.description }}</p>
+            </div>
+        </div>
+        <div class="btn-container">
+            <button class="btn" (click)="add()">Añadir</button>
+        </div>
+
+    </div>
+    <div *ngIf="showDiscount()" class="overlay-tag">
+        <label class="price-tag">- {{ product.discount }} %</label>
+    </div>
+</div>

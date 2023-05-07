@@ -1,6 +1,12 @@
-<div class="product">
-    <img src="{{ product.image }}">
-    <div class="name-container">
-        <label class="name">{{ product.name }}</label>
+<div class="product-container" *ngIf="product" (click)="onDetails()">
+    <div class="product">
+        <img src="{{ image }}" alt="Imagen">
+        <div class="text-container">
+            <label class="name">{{ product.name }}</label>
+        </div>
+    </div>
+    <div *ngIf="showDiscount() || showPoints()" class="overlay-tag">
+        <label *ngIf="showDiscount()" class="price">- {{ product.discount }} %</label>
+        <label *ngIf="showPoints()" class="price">{{ points }}</label>
     </div>
 </div>

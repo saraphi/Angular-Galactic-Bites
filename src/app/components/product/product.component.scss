@@ -1,41 +1,78 @@
-@import '../../shared/colors';
+@import '../../shared/variables';
 
-.product {
-    width: 250px;
-    height: 200px;
-    
-    box-sizing: border-box;
-
-    border: 2px solid $black;
-
+.product-container {
     display: flex;
     flex-direction: column;
+    position: relative;
+    width: 8em;
+    height: 8em;
+    font-size: 2.65vw;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: rgba($black, .6);
+    border: 2px solid $black;
 
-    img {
-        background-color: $white;
-        height: 70%;
+    .product {
+        box-sizing: border-box;
+        
         width: 100%;
-        object-fit: cover;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+    
+        img {
+            background-color: $white;
+            height: 70%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .text-container {
+            height: 30%;
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            color: $white;
+            font-weight: bold;
+            padding: 2%;
+            overflow: hidden;
+
+            box-sizing: border-box;
+
+            .name {
+                text-transform: uppercase;
+                font-style: italic;
+                font-size: 1.5vw;
+                width: 80%;
+                text-align: center;
+                &:hover { cursor: pointer; }
+            }
+        }
     }
 
-    .name-container {
-        height: 100%;
-        width: 100%;
-
+    .overlay-tag {
+        top: 5%;
+        right: 0;
+        position: absolute;
+        background-color: $lavender;
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 3.2em;
+        height: 1.5em;
+        padding-bottom: .2em;
+        font-size: 2vw;
+        border-radius: 5px;
+        color: $white;
+        font-weight: bold;
 
-        background-color: $black;
-
-        .name {
-            font-size: 10pt;
-            text-transform: uppercase;
-            font-weight: bold;
-
-            color: $white;
-            font-family: $raleway;
-        }
+        .price:hover { cursor: pointer; }
+        &:hover { cursor: pointer; }
     }
 
     &:hover {
@@ -43,6 +80,6 @@
         cursor: pointer;
 
         img { opacity: 0.95; }
-        .name-container .name { color: $turquoise; }
+        .text-container .name { color: $turquoise; }
     }
 }
