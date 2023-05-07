@@ -57,8 +57,6 @@ export class LoginFormComponent implements Form {
 
 	onSubmit(): void { 
 		console.log(this.loginForm.value);
-		// const pipo = this.authServices.login(this.loginForm.value);
-	
 		
 		this.resetErrors();
 		if (!this.checkErrors()) {
@@ -70,7 +68,7 @@ export class LoginFormComponent implements Form {
 				if (!this.userService.emailExists(email)) {
 					console.log('email doesn\'t exists');
 					this.onError(this.email);
-				}else if (!this.userService.checkPassword(email, password)) {
+				}else {
 					console.log('password does not match');
 					this.onError(this.password); 
 				}

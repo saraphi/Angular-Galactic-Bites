@@ -98,7 +98,7 @@ export class EditProfilePopupComponent implements OnInit, MultiForm {
   }
 
   onClose(): void {
-    //this.close.emit();
+    this.close.emit();
   }
 
   async save(): Promise<void> {
@@ -116,47 +116,40 @@ export class EditProfilePopupComponent implements OnInit, MultiForm {
 
     let errors: boolean = false;
 
-    if (this.emailForm.value.email != this.user.email && this.checkErrors(this.emailForm, this.emailInputs)) return;
+    if (this.emailForm.value.email != this.user.email&& this.emailForm.value.email != "" && this.checkErrors(this.emailForm, this.emailInputs)) return;
     else if (this.emailForm.value.email != this.user.email) {
-      
-      // aqui iría el cambio de email, que debe devolver un booleano falso
-      // en caso de que ya exista el email. ejemplo:
-      // this.userService.updateEmail(this.user.id, this.emailForm.value.email).then(
-      //  (value: boolean) => {
-      //    if (!value) {
-      //      errors = true;
-      //      this.onError(this.emailInput);
-      //    } 
-      //    else user.email = this.emailForm.value.email;
-      // })
-      console.log("Se para")
-      //await this.userService.updateEmail(this.emailForm.value.email).then((booleano) => { return booleano })
+      await this.userService.updateEmail(this.emailForm.value.email).then((booleano) => {
+        if (!booleano) {
+            this.onError(this.oldPasswordInput)
+            errors = true;
+
+          }
+      })
     }
 
     if (this.checkPasswordFormNotEmpty() && this.checkErrors(this.passwordForm, this.passwordInputs)) return;
     else if (this.checkPasswordFormNotEmpty()) {
       let match: boolean = this.checkPasswords();
       if (match) {
-        // aquí iría el cambio de contraseña, si da error debe devolver un booleano 
-        // falso en caso de que la contraseña no sea correcta, ejemplo:
-        // this.userService.updatePassword(this.passwordForm.value.oldPassword, this.passwordForm.value.newPassword).then(
-        //  (value: boolean) => {
-        //    if (!value) {
-        //      errors = true;
-        //      this.onError(this.oldPasswordInput);
-        //    }    
-        // })
+        await this.userService.updatePassword(this.passwordForm.value.newPassword).then((booleano) => {
+          if (!booleano) {
+            this.onError(this.oldPasswordInput)
+            errors = true;
+
+          }
+           
+        })
       }
     }
 
     if (errors) return;
-
+    await this.userService.updateData()
     // aquí iría el update user, debe devolver un booleano. (puedes pasar el user completo o
     // los valores necesarios por separado como user.phone, user.name) ejemplo:
     // this.userService.update(user).then(
     //  (value: boolean) => if (!value) return
     // )
 
-    //this.onClose();
+    this.onClose();
   }
 }

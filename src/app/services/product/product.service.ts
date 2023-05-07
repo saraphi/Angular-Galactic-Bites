@@ -8,6 +8,7 @@ import { Observable, finalize, from } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
+  
   private mapProducts: Map<string, Product> = new Map<string, Product>(); //ids: Productos
   private mapCategory: Map<string, string[]> = new Map<string, string[]>();
   myMap = new Map<number, string>();  //categorias: idsProductos//categorias: idsProductos
@@ -51,6 +52,13 @@ export class ProductService {
     })
 
     return discounted;
+  }
+  getPointsCost(itemId: string) {
+    let product: Product = this.getItem(itemId);
+    if (product.hasPoints) {
+      return parseInt(product.price.toFixed(0)) * 100;
+    }
+    return 0;
   }
 
   isOnDiscount(itemId: string): boolean {
