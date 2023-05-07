@@ -64,4 +64,8 @@ export class FirebaseAuthService {
       console.error('Error logging out:', error);
     }
   }
+  async saveUser(user: User):Promise<void> {
+    console.log("Pi")
+    return await this.firestoreService.updateUser(user).then(() => { return; })
+  }
 }

@@ -8,6 +8,7 @@ export interface Product {
     price: number;
     discount: number;
     category: string;
+    hasPoints: boolean;
 }
 
 /*
