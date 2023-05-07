@@ -4,8 +4,8 @@
         <nav class="navbar">
             <ul class="navbar-list">
                 <li class="navbar-item"><a class="navbar-link" routerLink="">Inicio</a></li>
-                <li class="navbar-item"><a class="navbar-link" routerLink="menu">Carta</a></li>
-                <li class="navbar-item"><a class="navbar-link" routerLink="offers">Ofertas</a></li>
+                <li class="navbar-item"><a class="navbar-link" routerLink="/menu">Carta</a></li>
+                <li class="navbar-item"><a class="navbar-link" routerLink="/offers">Ofertas</a></li>
             </ul>
         </nav>
     </div>
@@ -18,7 +18,7 @@
                     <span class="points-output">0</span>
                 </div>
             </div>
-            <img id="profile-pic" src="../../../assets/icons/user.png" (click)="login()">
+            <img id="profile-pic" [src]="userPic" (click)="login()">
         </div>
     </div>
 </header>
