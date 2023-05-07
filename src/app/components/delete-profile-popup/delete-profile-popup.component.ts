@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 import { PasswordValidator } from 'src/app/validators/password.validator';
 
+
 @Component({
   selector: 'app-delete-profile-popup',
   templateUrl: './delete-profile-popup.component.html',
@@ -19,7 +20,7 @@ export class DeleteProfilePopupComponent implements Form {
 
   @ViewChild('input') input!: ElementRef;
 
-  constructor(private fb: FormBuilder, private userServices:UserService) {
+  constructor(private fb: FormBuilder, private userServices:UserService, private router:Router) {
     this.deleteForm = this.fb.group({
       password: ['', [Validators.required, PasswordValidator.strong()]]
     })
@@ -57,12 +58,15 @@ export class DeleteProfilePopupComponent implements Form {
 
     console.log('checking password...');
     console.log(await this.userServices.passwordExist(this.deleteForm.value.password));
-    // await this.userServices.delete();
-    // checkPassword, que devuelva un booleano, y con el resultado del booleano,
-    // si es false:
-    // this.onError(this.input);
+    await this.userServices.deleteUser().then(() => {
+      if (!this.user) this.router.navigate(['login']);
+
+
+    })
+
     
     console.log('deleting...');
-    //this.onClose();
+    
   }
 }
+import { Route, Router } from '@angular/router';

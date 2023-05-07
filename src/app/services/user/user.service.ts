@@ -115,8 +115,9 @@ export class UserService {
   
   }
   async deleteUser(): Promise<void> {
-    await this.firebaseAuthService.deleteUser(this.user)
-    
+    return await this.firebaseAuthService.deleteUser(this.user).then(()=>{
+      this.user = null;
+    })
   }
   getUserPoints() {
     return this.user.points;

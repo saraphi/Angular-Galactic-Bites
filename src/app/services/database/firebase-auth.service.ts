@@ -120,8 +120,6 @@ export class FirebaseAuthService {
           await user.delete();
 
         });
-        // Elimina al usuario de Firebase Authentication
-        await user.delete();
       } catch (error) {
         console.error('Error deleting user:', error);
       }

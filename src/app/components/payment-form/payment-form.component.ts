@@ -1,6 +1,7 @@
 import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Form } from 'src/app/models/form';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -59,8 +60,11 @@ export class PaymentFormComponent implements Form {
         })
 
         }else {
-            console.log("Puntos insuficientes")
+            Swal.fire({
+                title: 'Puntos insuficientes',
+                text: 'No tienes suficientes puntos para completar la compra.',
+                icon: 'error'
+            });
         }
-
     }
 }
