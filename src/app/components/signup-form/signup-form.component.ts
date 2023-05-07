@@ -5,6 +5,7 @@ import { PasswordValidator } from 'src/app/validators/password.validator';
 import { PhoneValidator } from 'src/app/validators/phone.validator';
 import { Form } from 'src/app/models/form';
 import { UserService } from 'src/app/services/user/user.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -61,7 +62,9 @@ export class SignupFormComponent implements Form {
 
 		return match;
 	}
-
+	private async showAlert(title: string, text: string, icon: 'success' | 'error') {
+    	await Swal.fire(title, text, icon);
+ 	 }
 	onSubmit() { 
 		console.log(this.signupForm.value);
 
@@ -75,10 +78,15 @@ export class SignupFormComponent implements Form {
 			console.log('form:', name, email, password, tel);
 			
 			this.userService.signup(name, email, password, tel).then((value: boolean) => {
-				if(value)this.router.navigate(['profile']);
-				else this.onError(this.emailInput);
-			});
-			
+				if(value) {
+					this.showAlert('Registrado con éxito', 'Te has registrado correctamente', 'success');
+					this.router.navigate(['profile']);
+				} else {
+					this.showAlert('Error', 'No se pudo registrar, por favor intenta de nuevo', 'error');
+					this.onError(this.emailInput);
+				}
+				});
+				
 			// this.signup(name, email, password, tel);
 		}
 	}	

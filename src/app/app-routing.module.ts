@@ -1,5 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
@@ -25,7 +27,7 @@ const routes: Routes = [
   // { path: 'product-detail/:id', component: ProductDetailComponent },
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), SweetAlert2Module.forRoot()],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

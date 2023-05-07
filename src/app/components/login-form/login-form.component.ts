@@ -6,6 +6,7 @@ import { Form } from 'src/app/models/form';
 // import { AuthService } from 'src/app/services/database/firebase-auth.service';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   	selector: 'app-login-form',
@@ -55,7 +56,7 @@ export class LoginFormComponent implements Form {
 		this.router.navigate(['signup']);
 	}
 
-	onSubmit(): void { 
+	async onSubmit(): Promise<void> { 
 		console.log(this.loginForm.value);
 		
 		this.resetErrors();
@@ -64,15 +65,44 @@ export class LoginFormComponent implements Form {
 			let email: string = this.loginForm.value.email;
 			let password: string = this.loginForm.value.password;
 
-			this.userService.login(email, password).then(() => {this.router.navigate(['profile'])}).catch((error) => {
+			try {
+				await this.userService.login(email, password).then(async (booleano) => {
+					if (booleano) {
+					await Swal.fire({
+					title: '¡Inicio de sesión exitoso!',
+					text: 'Bienvenido de vuelta.',
+					icon: 'success'
+				});
+					} else {
+					await Swal.fire({
+					title: '¡Opss.. Parece que no estas registrado!',
+					text: 'O te habras equivocado',
+					icon: 'error'
+				});
+						
+					}
+				});
+				
+				this.router.navigate(['profile']);
+			} catch (error) {
 				if (!this.userService.emailExists(email)) {
 					console.log('email doesn\'t exists');
 					this.onError(this.email);
-				}else {
+					await Swal.fire({
+						title: 'Error',
+						text: 'El correo electrónico no existe.',
+						icon: 'error'
+					});
+				} else {
 					console.log('password does not match');
-					this.onError(this.password); 
+					this.onError(this.password);
+					await Swal.fire({
+						title: 'Error',
+						text: 'La contraseña no coincide.',
+						icon: 'error'
+					});
 				}
-			})
+			}
 		}
 	}
 }
