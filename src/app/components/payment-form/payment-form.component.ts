@@ -56,7 +56,13 @@ export class PaymentFormComponent implements Form {
         console.log(this.paymentForm.value);
         if ((this.userservices.getUserPoints() - this.shoopingServices.getTotalPoints()) > 0) {
             this.userservices.setPoints(this.shoopingServices.getPoints()).then(() => {
+             Swal.fire({
+                title: '¡Compra realizada con éxito!',
+                text: 'Has ganado ' + this.shoopingServices.getPoints() + ' puntos',
+                icon: 'success'
+             })
              this.shoopingServices.clear();
+             this.router.navigate(['']);
         })
 
         }else {
