@@ -73,6 +73,11 @@
         }
     }
 
+    .password-label {
+        width: 100%;
+        text-align: justify
+    }
+
     #signup-btn { 
         @include cyber-btn(12em, 2.5em, 14pt, $black, $turquoise, $raleway); 
     }
