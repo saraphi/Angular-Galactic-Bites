@@ -1,4 +1,4 @@
-<form class="edit-form" *ngIf="user">
+<div class="edit-form" *ngIf="user">
     <h2>Editar Perfil</h2>
     <div class="content">
         <form class="group" [formGroup]="phoneForm">
@@ -51,7 +51,7 @@
         </form>
     </div>
     <div class="btn-section">
-        <button id="cancel" class="btn">Cancelar</button>
-        <button id="edit" class="btn">Guardar</button>
+        <button id="cancel" class="btn" (click)="onClose()">Cancelar</button>
+        <button id="edit" class="btn" (click)="save()">Guardar</button>
     </div>
-</form>
+</div>
