@@ -6,21 +6,20 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: $white;
 
     width: 100%;
     height: $banner-height;
 
     text-transform: uppercase;
     font-weight: bold;
-    font-family: $raleway;
-    
+
     margin: 0;
 
     .banner-img {
         object-fit: cover;
         width: 100%;
         height: 100%;
+        opacity: .6;
     }
 
     .banner-info {
@@ -35,19 +34,18 @@
         text-align: end;
 
         .title {
-            font-size: 50pt;
-            color: $white;
+            font-size: 5vw;
+            background: -webkit-linear-gradient($turquoise, $lavender);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             -webkit-text-stroke: 0.025em $black;
         }
 
         .cyber-btn {
-            @include cyber-btn(9em, 2em, 20pt, $white, $eerie-black, $raleway);
+            @include cyber-btn(9em, 2em, 2vw, $black, $lavender, $raleway);
             cursor: pointer;
             align-self: end;
-            &:hover { 
-                color: $lavender; 
-                box-shadow: 0 8px 5px rgba($lavender, 0.7);
-            }
             &:active { transform: translateY(10%); }
         }
     }
