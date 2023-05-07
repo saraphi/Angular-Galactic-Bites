@@ -49,6 +49,13 @@ export class ProductService {
 
     return discounted;
   }
+  getPointsCost(itemId: string) {
+    let product: Product = this.getItem(itemId);
+    if (product.hasPoints) {
+      return parseInt(product.price.toFixed(0)) * 100;
+    }
+    return 0;
+  }
 
   isOnDiscount(itemId: string): boolean {
     return this.getItem(itemId).discount > 0;

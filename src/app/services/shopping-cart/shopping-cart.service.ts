@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ShoppingCartService {
+  
   private shoppingCartSubject: BehaviorSubject<Map<string, number>> = new BehaviorSubject(new Map<string, number>());
   shoppingCart: Observable<Map<string, number>> = this.shoppingCartSubject.asObservable();
   totalPrice: number = 0;
@@ -74,9 +75,19 @@ export class ShoppingCartService {
       resolve();
     });
   }
+  getTotalPoinst(): number {
+    this.totalPoints = 0;
+    if (!this.isShoppingCart()) return this.totalPrice;
+    const currentCart = this.shoppingCartSubject.getValue();
+    Object.keys(currentCart).forEach(key => {
+        this.totalPoints  += this.itemService.getPointsCost(key) * Object(currentCart)[key];
+    });
+    return parseFloat(this.totalPoints.toFixed(2));
+  }
   getPoints() {
-    let points = this.getTotalPrice()
-    return parseInt(points.toFixed(0))*10
+    let points = parseInt(this.getTotalPrice().toFixed(0))*10 
+    let pointslost = this.getTotalPoinst();
+    return points-pointslost
   }
   clear() {
     let updatedCart = this.shoppingCartSubject.getValue();
@@ -85,5 +96,4 @@ export class ShoppingCartService {
     });
     this.shoppingCartSubject.next(updatedCart);
   }
-
 }

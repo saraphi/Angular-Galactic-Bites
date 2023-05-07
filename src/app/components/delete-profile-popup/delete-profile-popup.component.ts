@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Form } from 'src/app/models/form';
 import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user/user.service';
 import { PasswordValidator } from 'src/app/validators/password.validator';
 
 @Component({
@@ -18,7 +19,7 @@ export class DeleteProfilePopupComponent implements Form {
 
   @ViewChild('input') input!: ElementRef;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userServices:UserService) {
     this.deleteForm = this.fb.group({
       password: ['', [Validators.required, PasswordValidator.strong()]]
     })
@@ -50,16 +51,18 @@ export class DeleteProfilePopupComponent implements Form {
     this.close.emit();
   }
 
-  onSubmit(): void {
+  async onSubmit() {
     this.resetErrors();
     if (this.checkErrors()) return;
 
     console.log('checking password...');
+    console.log(await this.userServices.passwordExist(this.deleteForm.value.password));
+    // await this.userServices.delete();
     // checkPassword, que devuelva un booleano, y con el resultado del booleano,
     // si es false:
     // this.onError(this.input);
     
     console.log('deleting...');
-    this.onClose();
+    //this.onClose();
   }
 }

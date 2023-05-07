@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { FirebaseAuthService } from '../database/firebase-auth.service';
 import { __await } from 'tslib';
-import { waitForAsync } from '@angular/core/testing';
 import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
-import { from } from 'rxjs/internal/observable/from';
-import { of } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
 
   constructor(private firebaseAuthService: FirebaseAuthService, private shoppingCartService: ShoppingCartService) {}
 
@@ -54,7 +53,6 @@ export class UserService {
   }
 }
 
-
   async signup(name: string, email: string, password: string, phone: string): Promise<boolean> {  
     return await this.firebaseAuthService.signUp({ email, password, name, phone })
       .then((user) => {
@@ -75,6 +73,11 @@ export class UserService {
     this.user.points += newPoints;
   
   }
+  async passwordExist(password: string): Promise<boolean> {
+    return await this.firebaseAuthService.checkPassword(password);
+
+  }
+
 
   async emailExists(email: string): Promise<boolean> {
     return this.firebaseAuthService.checkIfEmailExists(email)
@@ -91,11 +94,11 @@ export class UserService {
     return this.firebaseAuthService.saveUser(this.user).then(async () =>
     {return await this.firebaseAuthService.updateEmail(email) })
   }
-  
+  async updatePassword(password: string): Promise<boolean> {
+    return await this.firebaseAuthService.updatePassword(password)
+  }
 
-  checkPassword(_email: string, _password: string): boolean {
-    return true;
-  } 
+
   async updateData():Promise<void>  {
     this.shoppingCartService.shoppingCart.subscribe(async (value) => {
       this.user.shoppingCart = value;
@@ -104,5 +107,19 @@ export class UserService {
      
    )
   }
+  async saveUserData(userChanges:User): Promise<void> {
+    this.user = userChanges;
+    await this.firebaseAuthService.saveUser(this.user).then(() => { return; }); 
+  
+  }
+  async deleteUser(): Promise<void> {
+    await this.firebaseAuthService.deleteUser(this.user)
+    
+  }
+  getUserPoints() {
+    return this.user.points;
+  }
+  
+  
   
 }

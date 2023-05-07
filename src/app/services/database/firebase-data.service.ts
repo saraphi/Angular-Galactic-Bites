@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { getFirestore, getDoc, doc, collection, query, getDocs, addDoc, setDoc, updateDoc } from '@angular/fire/firestore';
+import { getFirestore, getDoc, doc, collection, query, getDocs, addDoc, setDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+import firebase from 'firebase/compat';
 import { update } from 'firebase/database';
 import { Observable, from } from 'rxjs';
 
@@ -22,6 +23,7 @@ interface ProductO {
   providedIn: 'root'
 })
 export class FirebaseDataService {
+  
   //Images
   private cache: { [url: string]: Observable<string> } = {};
   private db = getFirestore();
@@ -100,7 +102,6 @@ export class FirebaseDataService {
   } 
 
   async updateUser(userData: User) {
-    console.log("Pi")
     console.log(userData.id)
     console.log(userData)
     const userDoc = doc(this.db, 'Users', userData.id);
@@ -115,46 +116,10 @@ export class FirebaseDataService {
 
 
   }
-  // async getShopping(uid: string):Promise<Map<string, number>| null > {
-  //     // console.log(uid)
-  //     // const userDoc = doc(this.db, 'Users', uid);
-  //   // return await getDoc(userDoc).then((doc) =>
-  //   // {
-  //   //   console.log(doc.data())
-  //   //   if (doc.exists()) {
-  //   //     const userData = doc.data() as UserData;
-  //   //     console.log(userData)
-  //   //     return userData.shoppingCart;
-  //   //   } else {
-  //   //     console.log("Paso por aqui")
-  //   //     return new Map<string,number>()
-  //   //   }
-  //   //   }
-  //   // ).catch((error) => {
-  //   //   console.error(error)
-  //   //   return new Map<string,number>()
-  //   // })
-
-
-  //   // try {
-  //   //   const userDoc = doc(this.db, 'Users', uid);
-  //   //   return getDoc(userDoc).then((doc) => {
-  //   //     console.log(doc.data())
-  //   //     if (doc.exists()) {
-  //   //       const userData = doc.data() as UserData;
-  //   //       console.log(userData)
-  //   //       return userData.shoppingCart;
-  //   //     } else {
-  //   //       console.log("Paso por aqui")
-  //   //       return new Map<string, number>()
-  //   //     }
-  //   //   })
-  //   // } catch (error) {
-  //   //   console.error("Error getInShoppingCart", error)
-  //   //   return null
-  //   // }
-
-  //   }
+  async deleteUserData(user: User) {
+    await deleteDoc(doc(this.db, 'Users', user.id))
+     
+  }
     
   
   
