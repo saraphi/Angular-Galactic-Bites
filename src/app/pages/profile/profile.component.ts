@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
     }
 
     hideOverlay() {
+        console.log('closing...');
         this.showOverlay = false;
         if (this.showEditPopup) this.showEditPopup = false;
         else if (this.showDeletePopup) this.showDeletePopup = false;

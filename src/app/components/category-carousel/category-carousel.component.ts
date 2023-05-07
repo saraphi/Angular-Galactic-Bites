@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Category } from 'src/app/models/category';
 
 @Component({
@@ -8,17 +8,22 @@ import { Category } from 'src/app/models/category';
 })
 export class CategoryCarouselComponent implements OnInit {
 
-  categories: string[] = [];
+  @Input() categories: string[] = [];
+  @Output() scroll: EventEmitter<string> = new EventEmitter<string>();
+
   carouselItems: string[] = [];
   position: number = 0;
 
   constructor() {
-    this.categories = [Category.menu, Category.pizza, Category.burguer, Category.taco, Category.main, Category.complement, Category.drink];
     this.carouselItems = this.categories.slice(0, 3);
   }
 
   ngOnInit(): void {
     this.updateCarouselItems();
+  }
+
+  onClick(category: string): void {
+    this.scroll.emit(category);
   }
 
   updateCarouselItems() {

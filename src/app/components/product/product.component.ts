@@ -35,4 +35,8 @@ export class ProductComponent implements OnInit {
   details() {
     this.router.navigate(['']);
   }
+
+  showDiscount(): boolean {
+    return this.productService.isOnDiscount(this.productId);
+  }
 }

@@ -20,19 +20,24 @@ export class ProductService {
       .then((lista) => {
       lista.forEach((product) => {
         const categoria = product.category;
-        if (this.mapCategory.has(categoria)) {
-          this.mapCategory.get(categoria)?.push(product.id);
-        } else {
-          this.mapCategory.set(categoria, [product.id]);
-        }
+        if (this.mapCategory.has(categoria)) this.mapCategory.get(categoria)?.push(product.id);
+        else this.mapCategory.set(categoria, [product.id]);
         this.mapProducts.set(product.id, product);
-        })
       })
+    })
   }
 
   getURL(itemId: string): Observable<string> {
     return from(this.firebaseDataService.getImage(this.getItem(itemId).image));
   } 
+
+  getCategories(): string[] {
+    return Array.from(this.mapCategory.keys());
+  }
+
+  getProdutsIdByCategory(category: string): string[] {
+    return this.mapCategory.get(category);
+  }
 
   getProductsId(): string[] {
     return Object.keys(this.mapProducts);
