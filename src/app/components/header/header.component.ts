@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
         this.userService.isLogged().subscribe({
             next: (value: boolean) => {
                 if (value) this.userPic = "../../../assets/profile.jpg";
-                console.log('aaa:', value);
+                else this.userPic =  "../../../assets/icons/user.png";
             },
             error: (error: any) => console.error('error checking user is logged:', error)
         })

@@ -7,7 +7,8 @@
         </div>
         <p class="description">{{ item.description }}</p>
         <div class="bottom">
-            <label>Precio: <span class="price">{{ getPrice(item.id) }} €</span></label>
+            <label *ngIf="!showPoints()">Precio: <span class="price">{{ getPrice() }} €</span></label>
+            <label *ngIf="showPoints()">Precio: <span class="price">{{ getPoints() }} Puntos</span></label>
             <div class="right">
                 <img id="sub-btn" class="btn btn-1" src="../../../assets/icons/minus.svg" (click)="remove()">
                 <output class="quantity">{{ getQuantity()}}</output>

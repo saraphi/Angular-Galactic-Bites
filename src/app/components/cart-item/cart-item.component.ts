@@ -16,23 +16,31 @@ export class CartItemComponent  implements OnInit {
 
   @Input() item: Product | null = null;
   imageUrl: Observable<string>;
+
   constructor(private shoppingCartService:ShoppingCartService,private prdoductService:ProductService ,private firebaseservices:FirebaseDataService) {}
+
   ngOnInit() {
     this.imageUrl = from(this.firebaseservices.getImage(this.item.image));
-    this.q = of(this.shoppingCartService.getQuantity(this.item.id)) ;
-    console.log(this.q);
-    
+    // this.q = of(this.shoppingCartService.getQuantity(this.item.id)) ;
+    // console.log(this.q);
   }
   
-  getPrice(id:string): number | null {
+  getPrice(): number | null {
     if (!this.item) return null;
-    return parseFloat(this.prdoductService.getItemPrice(id).toFixed(2));
+    return parseFloat(this.prdoductService.getItemPrice(this.item.id).toFixed(2));
   }
 
   getQuantity(): number {
     return this.shoppingCartService.getQuantity(this.item.id);
   }
 
+  showPoints(): boolean {
+    return this.prdoductService.isOnPoints(this.item.id);
+  }
+
+  getPoints(): number {
+    return this.prdoductService.getPointsCost(this.item.id);
+  }
 
   delete() {
     if (!this.item) return;

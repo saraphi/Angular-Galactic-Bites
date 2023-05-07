@@ -11,8 +11,9 @@
             </ng-container>
         </ng-container>
         <div class="bottom">
-            <label class="price-tag">TOTAL PRICE: <span class="price">{{ getTotalPrice() }}</span> €</label>
-            <button class="cyber-btn" (click)="onBuy()">BUY</button>
+            <label class="price-tag">PRECIO TOTAL: <span class="price">{{ getTotalPrice() }}</span> €</label>
+            <label class="price-tag">PUNTOS: <span class="price">{{ getTotalPoints() }}</span></label>
+            <button class="cyber-btn" (click)="onBuy()">COMPRAR</button>
         </div>
     </div>
 </main>

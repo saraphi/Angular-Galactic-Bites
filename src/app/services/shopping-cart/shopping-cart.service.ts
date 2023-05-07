@@ -54,7 +54,7 @@ export class ShoppingCartService {
     if (!this.isShoppingCart()) return this.totalPrice;
     const currentCart = this.shoppingCartSubject.getValue();
     Object.keys(currentCart).forEach(key => {
-        this.totalPrice += this.itemService.getItemPrice(key) * Object(currentCart)[key];
+      if (!this.itemService.isOnPoints(key)) this.totalPrice += this.itemService.getItemPrice(key) * Object(currentCart)[key];
     });
 
     return parseFloat(this.totalPrice.toFixed(2));
@@ -74,7 +74,7 @@ export class ShoppingCartService {
       resolve();
     });
   }
-  getTotalPoinst(): number {
+  getTotalPoints(): number {
     this.totalPoints = 0;
     if (!this.isShoppingCart()) return this.totalPrice;
     const currentCart = this.shoppingCartSubject.getValue();
@@ -85,7 +85,7 @@ export class ShoppingCartService {
   }
   getPoints() {
     let points = parseInt(this.getTotalPrice().toFixed(0))*10 
-    let pointslost = this.getTotalPoinst();
+    let pointslost = this.getTotalPoints();
     return points-pointslost
   }
   clear() {

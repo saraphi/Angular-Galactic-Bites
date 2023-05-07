@@ -22,7 +22,16 @@ export class ProfileComponent implements OnInit {
     
     ngOnInit(): void {
         this.user = this.userService.user;
-        if (!this.user) this.router.navigate(['login']);
+        this.checkUser();
+    }
+
+    private checkUser(): void {
+        this.userService.isLogged().subscribe({
+            next: (value: boolean) => {
+                if (!value) this.router.navigate(['/login']); 
+            },
+            error: (error: any) => console.error('error checking user is logged:', error)
+        })
     }
 
     hideOverlay() {

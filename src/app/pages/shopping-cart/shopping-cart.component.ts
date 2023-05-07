@@ -43,8 +43,7 @@ export class ShoppingCartComponent implements OnInit {
   onBuy(): void {
     this.router.navigate(['payment']);
   }
-  getTotalPoinst(): number {
-    return this.shoppingCartService.getTotalPoinst();
+  getTotalPoints(): number {
+    return this.shoppingCartService.getTotalPoints();
   }
-  
 }

@@ -54,7 +54,7 @@ export class PaymentFormComponent implements Form {
 
     onSubmit(): void {
         console.log(this.paymentForm.value);
-        if ((this.userservices.getUserPoints() - this.shoopingServices.getTotalPoinst()) > 0) {
+        if ((this.userservices.getUserPoints() - this.shoopingServices.getTotalPoints()) > 0) {
             this.userservices.setPoints(this.shoopingServices.getPoints()).then(() => {
              this.shoopingServices.clear();
         })
