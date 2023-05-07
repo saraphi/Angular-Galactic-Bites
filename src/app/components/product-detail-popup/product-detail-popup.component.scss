@@ -114,4 +114,24 @@
             }
         }
     }
+
+    .overlay-tag {
+        top: 15%;
+        right: 0;
+        position: absolute;
+        background-color: $lavender;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3.2em;
+        height: 1.5em;
+        padding-bottom: .2em;
+        font-size: 2vw;
+        border-radius: 5px;
+        color: $white;
+        font-weight: bold;
+
+        .price-tag:hover { cursor: pointer; }
+        &:hover { cursor: pointer; }
+    }
 }

@@ -16,14 +16,15 @@ export class ProductComponent implements OnInit {
 
   image: string = '../../assets/placeholder.png';
   product: Product | null = null;
-  discount: number | null = null;
-  points: number | null = null;
+  discount: number = 0;
+  points: number = 0;
 
   constructor(private router: Router, private productService: ProductService) {}
 
   ngOnInit(): void {
     this.product = this.productService.getItem(this.productId);
     this.setUrl();
+    this.points = this.productService.getPointsCost(this.productId);
   }
 
   private setUrl() {
@@ -40,5 +41,9 @@ export class ProductComponent implements OnInit {
 
   showDiscount(): boolean {
     return this.productService.isOnDiscount(this.productId);
+  }
+
+  showPoints(): boolean {
+    return this.productService.isOnPoints(this.productId);
   }
 }

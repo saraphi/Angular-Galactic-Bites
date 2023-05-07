@@ -32,7 +32,7 @@ export class ProductService {
     return Array.from(this.mapCategory.keys());
   }
 
-  getProdutsIdByCategory(category: string): string[] {
+  getProductsIdByCategory(category: string): string[] {
     return this.mapCategory.get(category);
   }
 
@@ -49,6 +49,16 @@ export class ProductService {
 
     return discounted;
   }
+
+  getProductsOnPoints(): string[] {
+    let points: string[] = [];
+
+    this.mapProducts.forEach((value: Product, key: string) => {
+      if (this.isOnPoints(key)) points.push(key);
+    })
+
+    return points;
+  }
   
   getPointsCost(itemId: string) {
     let product: Product = this.getItem(itemId);
@@ -60,6 +70,10 @@ export class ProductService {
 
   isOnDiscount(itemId: string): boolean {
     return this.getItem(itemId).discount > 0;
+  }
+
+  isOnPoints(itemId: string): boolean {
+    return this.getItem(itemId).hasPoints;
   }
 
   getItemPrice(itemId: string): number {
