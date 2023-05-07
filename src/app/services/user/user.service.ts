@@ -72,6 +72,7 @@ export class UserService {
   }
   async setPoints(newPoints:number):Promise<void> {
     this.user.points += newPoints;
+    await this.saveUserData(this.user);
   
   }
   async passwordExist(password: string): Promise<boolean> {

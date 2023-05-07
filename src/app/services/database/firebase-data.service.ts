@@ -90,7 +90,7 @@ export class FirebaseDataService {
       email: userData.email,
       points: userData.points,
       phone: userData.phone, 
-      shoppingCart: userData.shoppingCart
+      shoppingCart: Object.fromEntries(userData.shoppingCart)
     })
   }
   

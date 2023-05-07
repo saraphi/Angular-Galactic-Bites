@@ -32,6 +32,7 @@ export class ProfileComponent implements OnInit {
         else if (this.showDeletePopup) this.showDeletePopup = false;
     }
 
+
     triggerEditPopup() {
         this.showOverlay = true;
         this.showEditPopup = true;

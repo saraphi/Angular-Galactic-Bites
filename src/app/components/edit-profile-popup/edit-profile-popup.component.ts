@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 import { PasswordValidator } from 'src/app/validators/password.validator';
 import { PhoneValidator } from 'src/app/validators/phone.validator';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-profile-popup',
@@ -142,13 +143,21 @@ export class EditProfilePopupComponent implements OnInit, MultiForm {
       }
     }
 
-    if (errors) return;
+    if (errors) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error al actualizar el perfil',
+      text: 'Ha ocurrido un error al actualizar el perfil. Por favor, inténtalo de nuevo.'
+    });
+    return;
+  }
     await this.userService.updateData()
-    // aquí iría el update user, debe devolver un booleano. (puedes pasar el user completo o
-    // los valores necesarios por separado como user.phone, user.name) ejemplo:
-    // this.userService.update(user).then(
-    //  (value: boolean) => if (!value) return
-    // )
+
+      Swal.fire({
+      icon: 'success',
+      title: 'Perfil actualizado',
+      text: 'Tu perfil ha sido actualizado exitosamente.'
+    });
 
     this.onClose();
   }
