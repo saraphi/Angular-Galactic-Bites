@@ -62,6 +62,10 @@ export class ProductService {
     return this.getItem(itemId).discount > 0;
   }
 
+  isOnPoints(itemId: string): boolean {
+    return this.getItem(itemId).hasPoints;
+  }
+
   getItemPrice(itemId: string): number {
     let product: Product = this.getItem(itemId);
     if (!product) return 0;
