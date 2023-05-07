@@ -10,6 +10,7 @@ export class ShoppingCartService {
   private shoppingCartSubject: BehaviorSubject<Map<string, number>> = new BehaviorSubject(new Map<string, number>());
   shoppingCart: Observable<Map<string, number>> = this.shoppingCartSubject.asObservable();
   totalPrice: number = 0;
+  totalPoints: number = 0;
   
   constructor(private itemService: ProductService, private firebaseServices: FirebaseDataService) {}
 
@@ -22,7 +23,6 @@ export class ShoppingCartService {
     return  Object(shoppingCartMap)[itemId];
 
   }
-
 
   deleteItem(itemId: string): void {
     const updatedCart = this.shoppingCartSubject.getValue();
@@ -37,6 +37,7 @@ export class ShoppingCartService {
     if (itemId in Object(updatedCart) ) quantity = this.getQuantity(itemId);
     Object(updatedCart)[itemId] = quantity + 1;
     this.shoppingCartSubject.next(updatedCart);
+
   }
 
   removeItem(itemId: string): void {

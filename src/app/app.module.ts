@@ -40,8 +40,7 @@ import { PageSectionComponent } from './components/page-section/page-section.com
 import { ProductComponent } from './components/product/product.component';
 import { SpaceBackgroundComponent } from './components/space-background/space-background.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component'
-import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
-
+import { ProductDetailPopupComponent } from './components/product-detail-popup/product-detail-popup.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +67,7 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
     ProductComponent,
     SpaceBackgroundComponent,
     CartItemComponent,
-    ProductDetailComponent,
+    ProductDetailPopupComponent,
     ProductComponent,
   ],
   imports: [

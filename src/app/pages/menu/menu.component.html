@@ -7,10 +7,12 @@
                 <header>{{category}}</header>
                 <div class="list">
                     <ng-container *ngFor="let product of getProducts(category)">
-                        <app-product class="product" [productId]="product"></app-product>
+                        <app-product class="product" (details)="showDetails($event)" [productId]="product"></app-product>
                     </ng-container>
                 </div>
             </article>
         </ng-container>
     </div>
 </main>
+<div class="overlay" *ngIf="showProductDetail && selectedProduct" (click)="hideOverlay()"></div>
+<app-product-detail-popup class="popup" (close)="hideOverlay()" *ngIf="showProductDetail && selectedProduct" [product]="selectedProduct"></app-product-detail-popup>

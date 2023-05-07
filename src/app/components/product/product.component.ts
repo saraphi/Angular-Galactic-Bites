@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product/product.service';
@@ -12,6 +12,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class ProductComponent implements OnInit {
 
   @Input() productId: string = '';
+  @Output() details: EventEmitter<Product> = new EventEmitter<Product>();
 
   image: string = '../../assets/placeholder.png';
   product: Product | null = null;
@@ -32,8 +33,9 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  details() {
-    this.router.navigate(['']);
+  onDetails() {
+    if (!this.product) return;
+    this.details.emit(this.product);
   }
 
   showDiscount(): boolean {

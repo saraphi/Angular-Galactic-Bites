@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { Category } from 'src/app/models/category';
 import { FirebaseDataService } from '../database/firebase-data.service';
-import { Observable, finalize, from } from 'rxjs';
+import { Observable, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private mapProducts: Map<string, Product> = new Map<string, Product>(); //ids: Productos
+  private mapProducts: Map<string, Product> = new Map<string, Product>();
   private mapCategory: Map<string, string[]> = new Map<string, string[]>();
-  myMap = new Map<number, string>();  //categorias: idsProductos//categorias: idsProductos
 
-  // NOT FINAL
   constructor(private firebaseDataService: FirebaseDataService){}
 
   async setUp() {
@@ -59,6 +56,7 @@ export class ProductService {
 
   getItemPrice(itemId: string): number {
     let product: Product = this.getItem(itemId);
+    if (!product) return 0;
     return  product.price - (product.price * (product.discount/100))
   }
 
