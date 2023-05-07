@@ -62,9 +62,11 @@ export class SignupFormComponent implements Form {
 
 		return match;
 	}
+	
 	private async showAlert(title: string, text: string, icon: 'success' | 'error') {
     	await Swal.fire(title, text, icon);
- 	 }
+ 	}
+	
 	onSubmit() { 
 		console.log(this.signupForm.value);
 
