@@ -15,13 +15,14 @@ export class ProductDetailPopupComponent implements OnInit {
   @Input() product: Product | null = null;
   @Input() showPoints: boolean = false;
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
+  @Output() notLogged: EventEmitter<void> = new EventEmitter<void>();
 
   url: string = '../../../assets/placeholder.png';
   discount: number = 0;
   price: number = 0;
   points: number = 0;
 
-  constructor(private router: Router, private shoppingCartService: ShoppingCartService, private userService: UserService, private productService: ProductService) {}
+  constructor(private shoppingCartService: ShoppingCartService, private userService: UserService, private productService: ProductService) {}
 
   ngOnInit(): void {
     if (!this.product) return;
@@ -55,9 +56,18 @@ export class ProductDetailPopupComponent implements OnInit {
   }
 
   add(): void {
+    console.log('holi');
     if (!this.product) return;
-    if (!this.userService.isLogged()) this.router.navigate['/login'];
-    this.shoppingCartService.addItem(this.product.id);
-    this.onClose();
+    this.userService.isLogged().subscribe({
+      next: (value: boolean) => {
+        if (!value) {
+          this.notLogged.emit();
+        } else {
+          this.shoppingCartService.addItem(this.product.id);
+          this.onClose();
+        }
+      },
+      error: (error: any) => console.error('error checking user is logged:', error)
+    })
   }
 }

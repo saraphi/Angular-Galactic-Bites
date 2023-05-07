@@ -1,5 +1,6 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Category } from 'src/app/models/category';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product/product.service';
@@ -14,7 +15,7 @@ export class MenuComponent {
   selectedProduct: Product | null = null;
   showProductDetail: boolean = false;
 
-  constructor(private productService: ProductService, private viewportScroller: ViewportScroller) {}
+  constructor(private router: Router, private productService: ProductService, private viewportScroller: ViewportScroller) {}
 
   getProducts(category: string): string[] {
     return this.productService.getProdutsIdByCategory(category);
@@ -27,6 +28,11 @@ export class MenuComponent {
   showDetails(product: Product) {
     this.selectedProduct = product;
     this.showProductDetail = true;
+  }
+
+  goToLogin() {
+    this.hideOverlay();
+    this.router.navigate(['/login']);
   }
 
   hideOverlay() {

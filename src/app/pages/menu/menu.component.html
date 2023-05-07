@@ -15,4 +15,4 @@
     </div>
 </main>
 <div class="overlay" *ngIf="showProductDetail && selectedProduct" (click)="hideOverlay()"></div>
-<app-product-detail-popup class="popup" (close)="hideOverlay()" *ngIf="showProductDetail && selectedProduct" [product]="selectedProduct"></app-product-detail-popup>
+<app-product-detail-popup class="popup" (notLogged)="goToLogin()" (close)="hideOverlay()" *ngIf="showProductDetail && selectedProduct" [product]="selectedProduct"></app-product-detail-popup>

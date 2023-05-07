@@ -38,7 +38,6 @@ export class ShoppingCartService {
     if (itemId in Object(updatedCart) ) quantity = this.getQuantity(itemId);
     Object(updatedCart)[itemId] = quantity + 1;
     this.shoppingCartSubject.next(updatedCart);
-
   }
 
   removeItem(itemId: string): void {

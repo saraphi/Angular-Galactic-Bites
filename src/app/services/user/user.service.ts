@@ -3,6 +3,7 @@ import { User } from 'src/app/models/user';
 import { FirebaseAuthService } from '../database/firebase-auth.service';
 import { __await } from 'tslib';
 import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
+import { Observable, from } from 'rxjs';
 
 
 @Injectable({
@@ -19,8 +20,8 @@ export class UserService {
   //    return true//return await this.firebaseAuthService.isLoggedIn();
   //  } 
 
-  isLogged(): boolean {
-    return (this.user != null);
+  isLogged(): Observable<boolean> {
+    return from(this.firebaseAuthService.isLoggedIn());
   }
 
   async logout(): Promise<void> {
