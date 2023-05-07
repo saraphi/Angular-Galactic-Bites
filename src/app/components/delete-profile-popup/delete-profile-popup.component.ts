@@ -1,9 +1,11 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Form } from 'src/app/models/form';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 import { PasswordValidator } from 'src/app/validators/password.validator';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -52,21 +54,30 @@ export class DeleteProfilePopupComponent implements Form {
     this.close.emit();
   }
 
+  private async showAlert(title: string, text: string, icon: 'success' | 'error') {
+    await Swal.fire(title, text, icon);
+  }
+
   async onSubmit() {
     this.resetErrors();
     if (this.checkErrors()) return;
 
     console.log('checking password...');
-    console.log(await this.userServices.passwordExist(this.deleteForm.value.password));
-    await this.userServices.deleteUser().then(() => {
-      if (!this.user) this.router.navigate(['login']);
-
-
-    })
-
-    
-    console.log('deleting...');
-    
+    await this.userServices.passwordExist(this.deleteForm.value.password).then(
+      async (value: boolean) => {
+        if (!value) {
+          this.onError(this.input); 
+          this.showAlert('¡Oops...!', 'Contraseña incorrecta', 'error')
+          return;
+        } else {
+          await this.userServices.deleteUser().then(
+            () => {
+              this.user = this.userServices.user;
+              this.showAlert('Cuenta borrada', 'Usuario borrado con éxito', 'success')
+              if (!this.user) this.router.navigate(['login']);
+          }) 
+        }
+      }
+    );
   }
 }
-import { Route, Router } from '@angular/router';

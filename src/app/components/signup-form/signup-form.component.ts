@@ -22,7 +22,7 @@ export class SignupFormComponent implements Form {
 
 	constructor(private router: Router, private fb: FormBuilder, private userService: UserService) {
 		this.signupForm = this.fb.group ({
-			name: ['', [Validators.required, Validators.maxLength(20)]],
+			name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],
 			email: ['', [Validators.required, Validators.email]],
 			tel: ['', [Validators.required, PhoneValidator.validPhoneNumber()]],
 			password: ['', [Validators.required, PasswordValidator.strong()]],
@@ -86,19 +86,6 @@ export class SignupFormComponent implements Form {
 					this.onError(this.emailInput);
 				}
 				});
-				
-			// this.signup(name, email, password, tel);
 		}
 	}	
-
-	// private signup(name: string, email: string, password: string, tel: string) {
-	// 	this.userService.signup(name, email, password, tel).subscribe({
-	// 		next: (value: boolean) => {	
-	// 			if (value) this.router.navigate(['profile']);
-	// 			else this.onError(this.emailInput);
-	// 			console.log('next:', value)
-	// 		},
-	// 		error: (error: any) => console.error('error signing up:', error)
-	// 	})
-	// } 
 }
