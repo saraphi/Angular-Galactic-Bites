@@ -2,7 +2,7 @@
 
 .slider-product {
     width: 100%;
-    height: 180px;
+    height: 250px;
 
     background-color: rgba($black, .2);
 
@@ -39,22 +39,22 @@
         .category {
             padding: 5%;
             box-sizing: border-box;
-            width: 8.5em;
-            height: 8.5em;
+            width: 10.5em;
+            height: 10.5em;
             
             font-weight: bold;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: rgba($lavender, .4);
+            background: -webkit-linear-gradient(rgba($turquoise, .8), rgba($lavender, .8));
             border: 2px solid rgba($white, .6);
 
             .name {
                 margin: 0;
                 padding: 0;
                 text-transform: uppercase;
-                font-size: 10pt;
+                font-size: 14pt;
 
                 &:hover { cursor: pointer; }
             }

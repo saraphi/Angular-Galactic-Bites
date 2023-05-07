@@ -17,10 +17,47 @@
     }
 
     .menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         z-index: 1;
         width: 90%;
         min-height: calc(100vh - 65px);
         height: fit-content;
         background-color: rgba($black, .4);
+
+        .carousel { width: 100%; }
+
+        article {
+            width: 100%;
+            
+
+            header {
+                width: 100%;
+                height: calc($header-height + .4em);
+                background-color: rgba($black, .6);
+                color: $white;
+                text-transform: uppercase;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 30pt;
+                font-style: italic;
+                text-shadow: 1px 1px .5em $lavender;
+            }
+
+            .list {
+                display: flex;
+                max-width: 100%;
+                height: fit-content;
+                padding-top: 5%;
+                padding-left: 2.1%;
+                box-sizing: border-box;
+                flex-wrap: wrap;
+                
+                .product { margin: 0 4.2% 5% 4.2%; }
+            } 
+        }
     }
 }
