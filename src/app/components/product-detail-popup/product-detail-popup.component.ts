@@ -57,16 +57,11 @@ export class ProductDetailPopupComponent implements OnInit {
 
   add(): void {
     if (!this.product) return;
-    this.userService.isLogged().subscribe({
-      next: (value: boolean) => {
-        if (!value) {
-          this.notLogged.emit();
-        } else {
-          this.shoppingCartService.addItem(this.product.id);
-          this.onClose();
-        }
-      },
-      error: (error: any) => console.error('error checking user is logged:', error)
-    })
+
+    if (this.userService.user) {
+      this.shoppingCartService.addItem(this.product.id);
+      this.onClose();
+    } 
+    else this.notLogged.emit();
   }
 }
