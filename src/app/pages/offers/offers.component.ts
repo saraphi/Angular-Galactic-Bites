@@ -1,5 +1,6 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product/product.service';
 
@@ -8,7 +9,7 @@ import { ProductService } from 'src/app/services/product/product.service';
   templateUrl: './offers.component.html',
   styleUrls: ['./offers.component.scss']
 })
-export class OffersComponent {
+export class OffersComponent implements OnInit {
 
   selectedProduct: Product | null = null;
   showProductDetail: boolean = false;
@@ -20,7 +21,15 @@ export class OffersComponent {
     'https://brand-uk.assets.kfc.co.uk/2023-04/W4_23_WEBSITE_CAROUSEL_DESKTOP_HW_2000X650.jpg?VersionId=zRmEv456lu__2T2vW5GaywBXGZEIlKK8'
   ];
 
-  constructor(private router: Router, private productService: ProductService) {}
+  constructor(private router: Router, private route: ActivatedRoute, private productService: ProductService, private viewportScroller: ViewportScroller) {}
+
+  ngOnInit(): void {
+    console.log(this.route.snapshot.fragment)
+  }
+
+  ngAfterViewInit(): void {
+    this.viewportScroller.scrollToAnchor(this.route.snapshot.fragment);
+  }
 
   discounted(): string[] {
     return this.productService.getProductsOnDiscount();

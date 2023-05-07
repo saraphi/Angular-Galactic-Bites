@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-page-section',
@@ -13,11 +12,9 @@ export class PageSectionComponent {
   @Input() img: string = '';
   @Input() fragment: string = '';
 
-  constructor(private router: Router, private viewportScroller: ViewportScroller) {}
+  constructor(private router: Router) {}
 
   goToPage() {
-    this.router.navigate(['/offers'], { fragment: this.fragment }).then(() => {
-      this.viewportScroller.scrollToAnchor(this.fragment);
-    });
+    this.router.navigate(['/offers'], { fragment: this.fragment });
   }  
 }
