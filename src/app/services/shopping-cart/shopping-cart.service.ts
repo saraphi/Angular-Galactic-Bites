@@ -73,5 +73,16 @@ export class ShoppingCartService {
       resolve();
     });
   }
+  getPoints() {
+    let points = this.getTotalPrice()
+    return parseInt(points.toFixed(0))*10
+  }
+  clear() {
+    let updatedCart = this.shoppingCartSubject.getValue();
+    Object.keys(updatedCart).forEach(key => {
+         delete Object(updatedCart)[key];
+    });
+    this.shoppingCartSubject.next(updatedCart);
+  }
 
 }

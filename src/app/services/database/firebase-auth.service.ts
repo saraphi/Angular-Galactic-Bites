@@ -1,8 +1,13 @@
+
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import {
+  
+} from 'firebase/auth';
+import { EmailAuthProvider, getAuth, reauthenticateWithCredential, Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FirebaseDataService } from './firebase-data.service';
 import { User } from 'src/app/models/user';
+import * as firebase from 'firebase/compat';
 
 @Injectable({
   providedIn: 'root'
@@ -68,4 +73,41 @@ export class FirebaseAuthService {
     console.log("Pi")
     return await this.firestoreService.updateUser(user).then(() => { return; })
   }
+  //
+  async updateEmail(newEmail: string):Promise<boolean> {
+    return await this.afAuth.currentUser.then((user) => {
+       
+       return user.updateEmail(newEmail).then(() => {
+         console.log("Correo electrónico actualizado exitosamente");
+          return true;
+      }).catch((error) => {
+        console.error("Error al actualizar el correo electrónico:", error)
+           return false;
+      });
+      })
 }
+
+
+async reauthenticateUser(providedPassword: string) {
+  const user = await this.afAuth.currentUser;
+  const email = user.email;
+  
+  const credential = EmailAuthProvider.credential(email, providedPassword);
+
+  user.reauthenticateWithCredential(credential).then(() => {
+    console.log("Usuario re-autenticado exitosamente");
+
+    // Actualizar correo electrónico y/o contraseña aquí
+    // Ejemplo: user.updateEmail("nuevo.email@example.com");
+    // Ejemplo: user.updatePassword("nuevaContraseña");
+
+  }).catch((error) => {
+    console.error("Error al re-autenticar el usuario:", error);
+  });
+}
+
+
+}
+
+
+

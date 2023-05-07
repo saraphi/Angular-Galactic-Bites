@@ -11,6 +11,7 @@ import { of } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
+
   constructor(private firebaseAuthService: FirebaseAuthService, private shoppingCartService: ShoppingCartService) {}
 
   user: User | null = null;
@@ -69,7 +70,11 @@ export class UserService {
   }
   async setUpCarritoWey(): Promise<void> {
     return this.shoppingCartService.setData(this.user.shoppingCart);
-}
+  }
+  async setPoints(newPoints:number):Promise<void> {
+    this.user.points += newPoints;
+  
+  }
 
   async emailExists(email: string): Promise<boolean> {
     return this.firebaseAuthService.checkIfEmailExists(email)
@@ -81,16 +86,23 @@ export class UserService {
         return false;
       });
   }
+  async updateEmail(email: string): Promise<boolean> {
+    this.user.email = email;
+    return this.firebaseAuthService.saveUser(this.user).then(async () =>
+    {return await this.firebaseAuthService.updateEmail(email) })
+  }
+  
 
-  checkPassword(email: string, password: string): boolean {
+  checkPassword(_email: string, _password: string): boolean {
     return true;
   } 
   async updateData():Promise<void>  {
     this.shoppingCartService.shoppingCart.subscribe(async (value) => {
       this.user.shoppingCart = value;
-      await this.firebaseAuthService.saveUser(this.user).then(() => { return; }); //Hago más tarde
+      await this.firebaseAuthService.saveUser(this.user).then(() => { return; }); 
     }
      
    )
   }
+  
 }

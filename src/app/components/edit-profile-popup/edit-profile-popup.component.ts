@@ -98,10 +98,10 @@ export class EditProfilePopupComponent implements OnInit, MultiForm {
   }
 
   onClose(): void {
-    this.close.emit();
+    //this.close.emit();
   }
 
-  save(): void {
+  async save(): Promise<void> {
     if (!this.user) return;
 
     this.resetErrors();
@@ -118,6 +118,7 @@ export class EditProfilePopupComponent implements OnInit, MultiForm {
 
     if (this.emailForm.value.email != this.user.email && this.checkErrors(this.emailForm, this.emailInputs)) return;
     else if (this.emailForm.value.email != this.user.email) {
+      
       // aqui iría el cambio de email, que debe devolver un booleano falso
       // en caso de que ya exista el email. ejemplo:
       // this.userService.updateEmail(this.user.id, this.emailForm.value.email).then(
@@ -128,6 +129,8 @@ export class EditProfilePopupComponent implements OnInit, MultiForm {
       //    } 
       //    else user.email = this.emailForm.value.email;
       // })
+      console.log("Se para")
+      //await this.userService.updateEmail(this.emailForm.value.email).then((booleano) => { return booleano })
     }
 
     if (this.checkPasswordFormNotEmpty() && this.checkErrors(this.passwordForm, this.passwordInputs)) return;
@@ -154,6 +157,6 @@ export class EditProfilePopupComponent implements OnInit, MultiForm {
     //  (value: boolean) => if (!value) return
     // )
 
-    this.onClose();
+    //this.onClose();
   }
 }
